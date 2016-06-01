@@ -1,0 +1,1 @@
+web: gunicorn ispark.wsgi --log-file -
