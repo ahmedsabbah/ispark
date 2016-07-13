@@ -18,3 +18,6 @@
 
 # If you can not understand any of the previous, It's okay.
 ## My only request is changing the way files(css, js, images) are included to match the way they are included in the templates here.
+## Home page in this project is different than the last version, I tried fixing it as much as I can but there is still some differences.
+
+# If you have any questions contact me on Whatsapp, Hazem is going to make a whatsapp group for us.
