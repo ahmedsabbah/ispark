@@ -7,7 +7,9 @@ urlpatterns = [
     # Examples:
     # url(r'^$', 'ispark.views.home', name='home'),
 
-    url(r'^', include('auth.urls')),
+    url(r'^', include('authentication.urls')),
+    url(r'^', include('contents.urls')),
+    url(r'^', include('services.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

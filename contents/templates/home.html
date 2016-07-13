@@ -1,0 +1,642 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+  <link rel='stylesheet' type="text/css" href="{% static "css/fullcalendar.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+  <script src="{% static "js/moment.min.js" %}"></script>
+  <script src="{% static "js/fullcalendar.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div id="homeCarousel" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#homeCarousel" data-slide-to="1"></li>
+    <li data-target="#homeCarousel" data-slide-to="2"></li>
+    <li data-target="#homeCarousel" data-slide-to="3"></li>
+  </ol>
+
+  <div class="down-arrow">
+    <img src="{% static "images/down-arrow.png" %}" />
+  </div>
+
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <div class="slider-panel">
+        <div>
+          JOIN OUR <span>COMMUNITY</span> OF BRIGHT YOUNG MINDS
+        </div>
+        <div>
+          <button>Learn More</button>
+          <button>Join Now</button>
+        </div>
+      </div>
+      <img src="{% static "images/slider1.jpg" %}" alt="Chania">
+    </div>
+
+    <div class="item">
+      <img src="{% static "images/slider1.jpg" %}" alt="Chania">
+    </div>
+
+    <div class="item">
+      <div class="slider-panel">
+        <div>
+          JOIN OUR <span>COMMUNITY</span> OF BRIGHT YOUNG MINDS
+        </div>
+        <div>
+          <button>Learn More</button>
+          <button>Join Now</button>
+        </div>
+      </div>
+      <img src="{% static "images/slider1.jpg" %}" alt="Flower">
+    </div>
+
+    <div class="item">
+      <img src="{% static "images/slider1.jpg" %}" alt="Flower">
+    </div>
+  </div>
+
+      <!-- Left and right controls -->
+  <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#homeCarousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<div class="container">
+  <!--Headers -->
+  <div class="row">
+    <!-- Main Header -->
+    <nav class="main-header navbar navbar-default">
+      <div class="container">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+          </div>
+
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/major_exploration">Major Exploration</a></li>
+                  <li><a href="/job_shadowing">Job Shadowing & Internships</a></li>
+                  <li><a href="/conferences">Conferences</a></li>
+                </ul>
+              </li>
+              <li><a href="/jobs_majors">Jobs & Majors</a></li>
+              <li><a href="/mentors">Mentors</a></li>
+              <li><a href="/team">Team</a></li>
+              <li><a href="/contact_us">Contact Us</a></li>
+              {% if user.is_authenticated %}
+              <li><a href="/logout/">Logout</a></li>
+              {% else %}
+              <li><a href="/login/">Login</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sticky Header -->
+    <nav class="sticky no-display navbar navbar-default">
+      <div class="container">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#"><img src="{% static "images/logo.png" %}" /></a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/major_exploration">Major Exploration</a></li>
+                  <li><a href="/job_shadowing">Job Shadowing & Internships</a></li>
+                  <li><a href="/conferences">Conferences</a></li>
+                </ul>
+              </li>
+              <li><a href="/jobs_majors">Jobs & Majors</a></li>
+              <li><a href="/mentors">Mentors</a></li>
+              <li><a href="/team">Team</a></li>
+              <li><a href="/contact_us">Contact Us</a></li>
+              {% if user.is_authenticated %}
+              <li><a href="/logout/">Logout</a></li>
+              {% else %}
+              <li><a href="/login/">Login</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<div class="homepage">
+
+  <!-- Mission and Vision -->
+  <div class="container">
+    <div id="content" class="row white-bg">
+      <div class="title col-xs-12">
+        OUR STORY SO FAR
+      </div>
+      <div class="sub-title col-xs-12">
+        <a href="#">Check our bio</a>
+      </div>
+      <div class="col-xs-12">
+        <div class="col-xs-6 mission">
+          <img src="{% static "images/circle.png" %}" />
+          <span>Mission</span>
+          <div>Open the world’s greatest opportunities for students by creating a new knowledge via career coaching workshops and educational trips for universities in a safe and entertaining environment</div>
+        </div>
+        <div class="col-xs-6 vision">
+          <img src="{% static "images/circle.png" %}" />
+          <span>Vision</span>
+          <div>Open the world’s greatest opportunities for students by creating a new knowledge via career coaching workshops and educational trips for universities in a safe and entertaining environment</div>
+        </div>
+      </div>
+      <div class="title col-xs-12">
+        OUR PROGRAM
+      </div>
+      <div class="sub-title col-xs-12">
+        <a href="#">Check our illustration</a>
+      </div>
+    </div>
+  </div>
+
+  <!--- Middle Banner -->
+  <div class="banner-container">
+    <div class="banner">
+      <img src="{% static "images/illustration.jpg" %}" />
+    </div>
+  </div>
+
+  <!-- Partners -->
+  <div class="container">
+    <div class="row white-bg partners">
+      <div class="title col-xs-12">
+        OUR PARTNERS
+      </div>
+      <div class="sub-title col-xs-12">
+        <a href="#">Check our partners</a>
+      </div>
+      <div class="col-xs-12 select-container">
+        <select>
+          <option value="1">Trusted Partners</option>
+          <option value="2">Another Option</option>
+          <option value="3">Third Option</option>
+        </select>
+      </div>
+      <div class="sliders col-xs-12">
+        <div class="flexslider">
+          <ul class="slides">
+            <li>
+              <div class="overlay">
+                <div>Injaz</div>
+                <div>Trusted Partner</div>
+              </div>
+              <img src="{% static "images/injaz.png" %}" />
+            </li>
+            <li>
+              <div class="overlay">
+                <div>GUC</div>
+                <div>Trusted Partner</div>
+              </div>
+              <img src="{% static "images/guc.png" %}" />
+            </li>
+            <li>
+              <div class="overlay">
+                <div>Vodafone</div>
+                <div>Trusted Partner</div>
+              </div>
+              <img src="{% static "images/vodafone.png" %}" />
+            </li>
+            <li>
+              <div class="overlay">
+                <div>Edge</div>
+                <div>Trusted Partner</div>
+              </div>
+              <img src="{% static "images/edge.png" %}" />
+            </li>
+            <li>
+              <div class="overlay">
+                <div>Career Advancers</div>
+                <div>Trusted Partner</div>
+              </div>
+              <img src="{% static "images/career-advancers.png" %}" />
+            </li>
+            <li>
+              <div class="overlay">
+                <div>Wuzzuf</div>
+                <div>Trusted Partner</div>
+              </div>
+              <img src="{% static "images/wuzzuf.png" %}" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Counter -->
+  <div class="counter-container">
+    <div class="counter" id="waypoint">
+      <div class="col-xs-4">
+        <div><span>1520</span></div>
+        <div>Coaching Hours</div>
+      </div>
+      <div class="col-xs-4">
+        <div><span>923</span></div>
+        <div>Students Impacted</div>
+      </div>
+      <div class="col-xs-4">
+        <div><span>597</span></div>
+        <div>Jobs Offered</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="white-bg">
+    <div class="title col-xs-12">
+      OUR PARTICIPANTS' TESTIMONIALS
+    </div>
+    <div class="sub-title col-xs-12">
+      <a href="#">Check our happy participants</a>
+    </div>
+    <div id="testCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <div><img src="{% static "images/user1.png" %}" alt="Chania" /></div>
+            <div class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less  normal distribution of letters, as  opposed to using 'Content here</div>
+            <div class="author">
+              <span>Ahmed Saeed</span>
+              <span>|</span>
+              <span>Successful Student 2016</span>
+            </div>
+            <button>Video Testimonials</button>
+          </div>
+
+          <div class="item">
+            <div><img src="{% static "images/user1.png" %}" alt="Chania" /></div>
+            <div class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less  normal distribution of letters, as  opposed to using 'Content here</div>
+            <div class="author">
+              <span>Ahmed Saeed</span>
+              <span>|</span>
+              <span>Successful Student 2016</span>
+            </div>
+            <button>Video Testimonials</button>
+          </div>
+        </div>
+        <a class="left carousel-control" href="#testCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#testCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+    </div>
+  </div>
+
+  <!-- Endorsment -->
+  <div id="endCarousel" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#endCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#endCarousel" data-slide-to="1"></li>
+    </ol>
+
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <div class="slider-panel">
+          <div class="col-xs-3">
+            <img class="logo" src="{% static "images/injaz1.png" %}" alt="Chania">
+          </div>
+          <div class="col-xs-9 text">
+            <div>
+              INJAZ STARTUP EGYPT WINNER 2016
+            </div>
+            <div>
+              Injaz Egypt is a non-profit organization that strives to actively engage the Egyptian community in inspiring and educating current and future generations in becoming qualified employees and entrepreneurs who can help contribute to the growth of our local and global economy.
+            </div>
+          </div>
+        </div>
+        <img src="{% static "images/slider2.jpg" %}" alt="Chania">
+      </div>
+
+      <div class="item">
+        <div class="slider-panel">
+          <div class="col-xs-3">
+            <img class="logo" src="{% static "images/injaz1.png" %}" alt="Chania">
+          </div>
+          <div class="col-xs-9 text">
+            <div>
+              INJAZ STARTUP EGYPT WINNER 2016
+            </div>
+            <div>
+              Injaz Egypt is a non-profit organization that strives to actively engage the Egyptian community in inspiring and educating current and future generations in becoming qualified employees and entrepreneurs who can help contribute to the growth of our local and global economy.
+            </div>
+          </div>
+        </div>
+        <img src="{% static "images/slider2.jpg" %}" alt="Chania">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#endCarousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#endCarousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+
+  <!-- Main Events -->
+  <div class="event-container">
+    <div class="title col-xs-12">
+      OUR MAIN EVENTS
+    </div>
+    <div class="sub-title col-xs-12">
+      <a href="#">Check our calendar</a>
+    </div>
+    <div>
+      <div class="event col-xs-12 col-md-4">
+        <div class="inner-event">
+          <div class="row">
+            <div class="col-xs-12">
+              <img class="pic" src="{% static "images/event1.jpg" %}" />
+            </div>
+          </div>
+          <div class="date">
+            <div class="col-xs-8 pull-left">1st of June 2016</div>
+            <img class="col-xs-4 pull-right" src="{% static "images/tour.png" %}" />
+          </div>
+          <div class="clear"></div>
+          <div class="col-xs-12 text">
+            Find out which major is the one for you
+          </div>
+          <div class="location">
+            <div class="col-xs-8 pull-left">Event Location</div>
+            <img class="col-xs-4 pull-right" src="{% static "images/pin.png" %}" />
+          </div>
+          <div class="clear"></div>
+          <div class="col-xs-12 content">
+            We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+          </div>
+          <div class="col-xs-12 submit-btn">
+            <button>View Event</button>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="event col-xs-12 col-md-4">
+        <div class="inner-event">
+          <div class="row">
+            <div class="col-xs-12">
+              <img class="pic" src="{% static "images/event1.jpg" %}" />
+            </div>
+          </div>
+          <div class="date">
+            <div class="col-xs-8 pull-left">1st of June 2016</div>
+            <img class="col-xs-4 pull-right" src="{% static "images/tour.png" %}" />
+          </div>
+          <div class="clear"></div>
+          <div class="col-xs-12 text">
+            Find out which major is the one for you
+          </div>
+          <div class="location">
+            <div class="col-xs-8 pull-left">Event Location</div>
+            <img class="col-xs-4 pull-right" src="{% static "images/pin.png" %}" />
+          </div>
+          <div class="clear"></div>
+          <div class="col-xs-12 content">
+            We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+          </div>
+          <div class="col-xs-12 submit-btn">
+            <button>View Event</button>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="event col-xs-12 col-md-4">
+        <div class="inner-event">
+          <div class="row">
+            <div class="col-xs-12">
+              <img class="pic" src="{% static "images/event1.jpg" %}" />
+            </div>
+          </div>
+          <div class="date">
+            <div class="col-xs-8 pull-left">1st of June 2016</div>
+            <img class="col-xs-4 pull-right" src="{% static "images/tour.png" %}" />
+          </div>
+          <div class="clear"></div>
+          <div class="col-xs-12 text">
+            Find out which major is the one for you
+          </div>
+          <div class="location">
+            <div class="col-xs-8 pull-left">Event Location</div>
+            <img class="col-xs-4 pull-right" src="{% static "images/pin.png" %}" />
+          </div>
+          <div class="clear"></div>
+          <div class="col-xs-12 content">
+            We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+          </div>
+          <div class="col-xs-12 submit-btn">
+            <button>View Event</button>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+    <div class="more-events">
+      <button type="button" id="all-events-btn" data-toggle="modal" data-target="#allEventsModal">View All Events</button>
+    </div>
+  </div>
+  <!-- View all events popup -->
+  <div id="allEventsModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Events Calendar</h4>
+        </div>
+        <div class="modal-body">
+          <div id="calendar"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
+{% block extra_script_end %}
+<script>
+function flexsliderInitialize(){
+  $('.flexslider').flexslider({
+    animation: "slide",
+    animationLoop: false,
+    itemWidth: 185,
+    itemMargin: 5,
+    start: function(slider){
+        $('.flexslider').resize();
+    }
+  });
+  $(".flexslider .slides li").mouseenter(function(){
+    $(this).children(".overlay").slideDown("medium");
+  });
+  $(".flexslider .slides li").mouseleave(function(){
+    $(this).children(".overlay").slideUp("medium");
+  });
+}
+
+function isScrolledIntoView(elem)
+{
+  var docViewTop = $(window).scrollTop();
+  var docViewBottom = docViewTop + $(window).height();
+
+  var elemTop = $(elem).offset().top;
+  var elemBottom = elemTop + $(elem).height();
+
+  return ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
+}
+
+$(document).ready(function(){
+  //--------- Gatting and setting sections height according to screen size ----------//
+  var main_header_height = $(".main-header").height();
+  var sticky_header_height = $(".sticky").height();
+  var counted = false;
+
+  //---------- Scroll to content of page when clicking on the down arrow in the homepage slider -----------//
+  $('.down-arrow').click(function () {
+    $('body,html').animate({
+      scrollTop: $('#content').offset().top + (-sticky_header_height)},
+      1000);
+    return false;
+  });
+
+  $(window).scroll(function() {
+    //---------- Switching between main and sticky headers according to the window's scroll value ----------//
+    if ($(this).scrollTop() > main_header_height){
+      $(".sticky").fadeIn("fast");
+    }
+    else{
+      $(".sticky").fadeOut("fast");
+    }
+
+    //---------- Counter numbers animation ---------->
+    if($('#waypoint').visible() && counted == false){
+      counted = true;
+      var comma_separator_number_step = $.animateNumber.numberStepFactories.separator(',')
+      $(".counter span").each(function(index) {
+      $(this).animateNumber({
+        number: $(this).text(),
+        numberStep: comma_separator_number_step });
+      }, 1500);
+    }
+  });
+
+  //---------- Partners select ----------//
+  flexsliderInitialize();
+  $(".partners select").bselect({ searchInput : false });
+  $( ".partners select" ).change(function() {
+    var val = $( ".partners select option:selected" ).val();
+    if(val == "1") {
+      $(".sliders").html("");
+      $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
+      $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/injaz.png" %}" /></li>');
+      $(".flexslider .slides").append('<li><div class="overlay"><div>GUC</div><div>Trusted Partner</div></div><img src="{% static "images/guc.png" %}" /></li>');
+      $(".flexslider .slides").append('<li><div class="overlay"><div>Vodafone</div><div>Trusted Partner</div></div><img src="{% static "images/vodafone.png" %}" /></li>');
+      $(".flexslider .slides").append('<li><div class="overlay"><div>Edge</div><div>Trusted Partner</div></div><img src="{% static "images/edge.png" %}" /></li>');
+      $(".flexslider .slides").append('<li><div class="overlay"><div>Career Advancers</div><div>Trusted Partner</div></div><img src="{% static "images/career-advancers.png" %}" /></li>');
+      $(".flexslider .slides").append('<li><div class="overlay"><div>Wuzzuf</div><div>Trusted Partner</div></div><img src="{% static "images/wuzzuf.png" %}" /></li>');
+    }
+    else if(val == "2") {
+      $(".sliders").html("");
+      $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/logo.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/logo.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/logo.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/logo.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/logo.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/logo.png" %}' /></li>");
+    }
+    else if(val == "3") {
+      $(".sliders").html("");
+      $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/circle.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/circle.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/circle.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/circle.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/circle.png" %}' /></li>");
+      $(".flexslider .slides").append("<li><div class='overlay'><div>Injaz</div><div>Trusted Partner</div></div><img src='{% static "images/circle.png" %}' /></li>");
+    }
+    flexsliderInitialize();
+  });
+
+  $('#allEventsModal').on('shown.bs.modal', function() {
+  $("#calendar").fullCalendar('destroy');
+  //---------- Calendar ----------//
+  $('#calendar').fullCalendar({
+      aspectRatio: 3,
+      //--- Event click function ---//
+      eventClick: function(event) {
+          if (event.url) {
+              window.open(event.url);
+              return false;
+          }
+      }
+    });
+
+    //--- Adding an event ---//
+    var event1 = { id:"1", title: 'Event 1', start: '2016-07-11', url: '/major_exploration' };
+    var event2 = { id:"2", title: 'Event 2', start: '2016-07-30', url: '/job_shadowing' };
+    var event3 = { id:"3", title: 'Event 3', start: '2016-08-30', url: '/conferences' };
+    $('#calendar').fullCalendar( 'renderEvent', event1, true );
+    $('#calendar').fullCalendar( 'renderEvent', event2, true );
+    $('#calendar').fullCalendar( 'renderEvent', event3, true );
+
+    //---------- Set initial active event ----------//
+    var curr_event = $("#calendar").fullCalendar('clientEvents', $(".item.active").attr("id"));
+  });
+
+});
+
+</script>
+{% endblock %}

@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+      <!--Headers -->
+      <div class="row">
+        <!-- Sticky Header -->
+        <nav class="sticky navbar navbar-default">
+          <div class="container">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/major_exploration">Major Exploration</a></li>
+                      <li><a href="/job_shadowing">Job Shadowing & Internships</a></li>
+                      <li><a href="/conferences">Conferences</a></li>
+                    </ul>
+                  </li>
+                  <li class="active"><a href="/jobs_majors">Jobs & Majors</a></li>
+                  <li><a href="/mentors">Mentors</a></li>
+                  <li><a href="/team">Team</a></li>
+                  <li><a href="/contact_us">Contact Us</a></li>
+                  {% if user.is_authenticated %}
+                  <li><a href="/logout/">Logout</a></li>
+                  {% else %}
+                  <li><a href="/login/">Login</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <div class="jobs-banner">
+        <div class="title">Jobs <span>&</span> Majors</div>
+    </div>
+
+    <div class="container jobs">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 job-item">
+                <img onclick="window.location='/jobs'" src="{% static "images/jobs.png" %}" />
+                <div class="job-title">Jobs</div>
+                <div class="text">Check out which job is the correct one for you through our extensive directory of available positions. If you’re still not sure what industry you’d like to pursue a career in, you can tell us what kind of skills and interests you possess and we’ll suggest some jobs for you</div>
+                <div class="submit-btn">
+                    <button onclick="window.location='/jobs'">Find a job</button>
+                </div>
+                <hr>
+            </div>
+            <div class="col-xs-12 col-sm-6 col-md-4 major-item">
+                <img src="{% static "images/majors.png" %}" />
+                <div class="job-title">Majors</div>
+                <div class="text">Check out which job is the correct one for you through our extensive directory of available positions. If you’re still not sure what industry you’d like to pursue a career in, you can tell us what kind of skills and interests you possess and we’ll suggest some jobs for you</div>
+                <div class="submit-btn">
+                    <button>Find a major</button>
+                </div>
+                <hr>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_script_end %}
+{% endblock %}
