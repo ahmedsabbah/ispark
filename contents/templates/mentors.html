@@ -1,0 +1,360 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bi-style.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-progressbar-3.3.4.min.css" %}">
+  <link rel='stylesheet' type="text/css" href="{% static "css/fullcalendar.min.css" %}">
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery-barIndicator.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+  <script src="{% static "js/jquery.easing.1.3.js" %}"></script>
+  <script src="{% static "js/bootstrap-progressbar.min.js" %}"></script>
+  <script src="{% static "js/moment.min.js" %}"></script>
+  <script src="{% static "js/fullcalendar.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+  <div class="container">
+    <!--Headers -->
+    <div class="row">
+      <!-- Sticky Header -->
+      <nav class="sticky navbar navbar-default">
+        <div class="container">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/majors">Major Exploration</a></li>
+                    <li><a href="/internships">Job Shadowing & Internships</a></li>
+                    <li><a href="/conferences">Conferences</a></li>
+                  </ul>
+                </li>
+                <li><a href="/jobs&majors">Jobs & Majors</a></li>
+                <li><a href="/mentors">Mentors</a></li>
+                <li><a href="/team">Team</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/login">Login</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Top banner image -->
+    <div class="mentors-banner">
+        <div class="title">Our <span>Mentors</span>
+        </div>
+    </div>
+
+    <div class="container mentors">
+      <div class="row profile-row">
+        <div class="title col-xs-12">
+          Choose a Category
+        </div>
+        <div class="sub-title col-xs-12">
+          <a href="#">View our Mentors</a>
+        </div>
+        <div class="col-xs-12 select-container">
+          <select>
+            <option value="1">Administration and Business Management</option>
+            <option value="2">Another Option</option>
+            <option value="3">Third Option</option>
+          </select>
+        </div>
+        <div class="sliders">
+          <div class="flexslider col-xs-12">
+            <ul class="slides">
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hashisha.png" %}" />
+                <div class="data">
+                  <div class="name">Mostafa Hashisha</div>
+                  <div class="job">-Journalist-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    mostafa.hashisha@gmail.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hashisha.png" %}" />
+                <div class="data">
+                  <div class="name">Tasbih Tarek</div>
+                  <div class="job">-Management Consultant-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    tasbih.tarek@gmail.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hazem.png" %}" />
+                <div class="data">
+                  <div class="name">Hazem El Samra</div>
+                  <div class="job">-Software Engineer-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    hazem.samr@ispark.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hany.png" %}" />
+                <div class="data">
+                  <div class="name">Hany Olama</div>
+                  <div class="job">-Mechanical Engineer-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    hany.olama@ispark.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hashisha.png" %}" />
+                <div class="data">
+                  <div class="name">Mostafa Hashisha</div>
+                  <div class="job">-Journalist-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    mostafa.hashisha@gmail.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hashisha.png" %}" />
+                <div class="data">
+                  <div class="name">Tasbih Tarek</div>
+                  <div class="job">-Management Consultant-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    tasbih.tarek@gmail.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hazem.png" %}" />
+                <div class="data">
+                  <div class="name">Hazem El Samra</div>
+                  <div class="job">-Software Engineer-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    hazem.samr@ispark.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+              <li>
+                <div class="overlay" onclick="openModal(this)">
+                  <div>
+                    <img src="{% static "images/zoom.png" %}" />
+                  </div>
+                </div>
+                <img src="{% static "images/hany.png" %}" />
+                <div class="data">
+                  <div class="name">Hany Olama</div>
+                  <div class="job">-Mechanical Engineer-</div>
+                  <div class="avail">Availability</div>
+                  <div class="dates">
+                    Mondays, 3 PM to 6 PM <br/>
+                    Wednesdays, 12 PM to 5 PM<br />
+                    Thursdays, 10 AM to !2 PM<br />
+                    Fridays, 4 PM to 8 PM
+                  </div>
+                  <div class="email">
+                    <img src="{% static "images/email2.png" %}" />
+                    hany.olama@ispark.com
+                  </div>
+                  <div class="line"><hr></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image popup -->
+    <div id="imageModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-md">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-body">
+            <div>
+              <img class="magnified-image" src="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block extra_script_end %}
+  <script>
+    //---------- Open image popup ----------//
+    function openModal(elem){
+      var image = $(elem).parent().children("img").attr("src");
+      $("#imageModal .magnified-image").attr("src", image);
+      $('#imageModal').modal();
+    }
+
+    //---------- Initializing mentors slider ----------//
+    function flexsliderInitialize(){
+      $('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: false,
+        itemWidth: 265,
+        itemMargin: 30,
+        prevText: "",
+        nextText: "",
+        start: function(slider){
+            $('.flexslider').resize();
+        }
+      });
+      $(".flexslider .slides li").mouseenter(function(){
+        $(this).children(".data").children(".line").children("hr").css("border-color", "#821638");
+        $(this).children(".overlay").slideDown("fast");
+      });
+      $(".flexslider .slides li").mouseleave(function(){
+        $(this).children(".data").children(".line").children("hr").css("border-color", "#feb041");
+        $(this).children(".overlay").slideUp("fast");
+      });
+    }
+
+    //---------- Mentors select ----------//
+    flexsliderInitialize();
+    $(".mentors select").bselect({ searchInput : false });
+    $(".mentors select").change(function() {
+      var val = $( ".mentors select option:selected" ).val();
+      if(val == "1" || val == "2" || val == "3") {
+        $(".sliders").html("");
+        $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+        $(".flexslider .slides").append('<li><div class="overlay" onclick="openModal(this)"><div><img src="{% static "images/zoom.png" %}" /></div></div><img src="{% static "images/hashisha.png" %}" /><div class="data"><div class="name">Mostafa Hashisha</div><div class="job">-Journalist-</div><div class="avail">Availability</div><div class="dates">Mondays, 3 PM to 6 PM <br/>Wednesdays, 12 PM to 5 PM<br />Thursdays, 10 AM to !2 PM<br />Fridays, 4 PM to 8 PM</div><div class="email"><img src="{% static "images/email2.png" %}" />mostafa.hashisha@gmail.com</div><div class="line"><hr></div></div></li>');
+      }
+      flexsliderInitialize();
+    });
+  </script>
+{% endblock %}

@@ -192,7 +192,7 @@ a:hover {
     font-size: 18px;
     margin: 7px;
 }
-#homeCarousel .slider-panel button:last-child {
+#homeCarousel .slider-panel button:hover {
 	background-color: #821638;
     color: #feb041;
     border: 1px solid #821638
@@ -224,7 +224,7 @@ a:hover {
 	font-weight: bold;
 	text-align: center;
 	padding: 15px;
-	line-height: 25px;
+	line-height: 30px;
     text-transform: uppercase;
 }
 .title span {
@@ -273,6 +273,14 @@ a:hover {
 }
 .counter-container {
     height: 23vw;
+}
+.banner-container .banner.illustration {
+    position: absolute;
+    left: 0;
+    right: 0;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
 }
 .banner {
 	position: absolute;
@@ -384,6 +392,8 @@ a:hover {
     margin: 0;
     padding: 95px 0;
     background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .counter > div {
 	text-align: center;
@@ -453,6 +463,9 @@ a:hover {
     margin-left: 0;
     padding: 0 115px;
     margin-top: -125px;
+}
+#endCarousel .item img {
+    width: 100%;
 }
 #endCarousel .logo {
     /*max-width: 250px;*/
@@ -534,14 +547,14 @@ a:hover {
     font-size: 22px;
     margin: 7px;
 }
-.submit-btn button:hover, .more-events button:hover, #testCarousel button:hover, .job-item button:hover, .major-item button:hover, .announcements button:hover {
+.message .submit-btn:hover, .submit-btn button:hover, .more-events button:hover, #testCarousel button:hover, .job-item button:hover, .major-item button:hover, .announcements button:hover {
     background-color: #821638;
     color: #fff;
 }
 .more-events {
     text-align: center;
 }
-.jobs-banner, .jobs-outer-banner {
+.jobs-banner, .jobs-outer-banner, .shadowing-banner {
     background-image: url("../images/jobs_banner.jpg");
 }
 .mentors-banner {
@@ -550,7 +563,7 @@ a:hover {
 .contact-banner {
     background-image: url("../images/contact_banner.jpg");
 }
-.jobs-banner, .mentors-banner, .contact-banner, .jobs-outer-banner {
+.jobs-banner, .mentors-banner, .contact-banner, .jobs-outer-banner, .shadowing-banner {
     margin-top: 120px;
     position: absolute;
     background-repeat: no-repeat;
@@ -559,7 +572,7 @@ a:hover {
     background-size: cover;
     background-position: center;
 }
-.jobs-banner .title, .mentors-banner .title, .contact-banner .title, .jobs-outer-banner .title {
+.jobs-banner .title, .mentors-banner .title, .contact-banner .title, .jobs-outer-banner .title, .shadowing-banner .title {
     font-size: 36px;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
@@ -573,12 +586,16 @@ a:hover {
 .jobs-outer-banner .title {
     margin-left: -60px;
 }
-.jobs-banner .title span, .mentors-banner .title span, .contact-banner .title span, .jobs-outer-banner .title span {
+.shadowing-banner .title {
+    margin-left: -330px;
+}
+.jobs-banner .title span, .mentors-banner .title span, .contact-banner .title span, .jobs-outer-banner .title span, .shadowing-banner .title span {
     font-family: 'Sketch Rockwell', sans-serif;
     color: #feb041;
 }
 .title span.lowercase {
     font-family: 'Open Sans', sans-serif;
+    color: inherit;
 }
 .jobs, .contact-info, .mentors, .jobs-outer, .jobs-inner {
     margin-top: 315px;
@@ -586,17 +603,37 @@ a:hover {
 .contact-info > div {
     text-align: center;
 }
+.contact-row .contact-item {
+    height: 200px;
+}
+.contact-row .contact-item p {
+    font-weight: bold !important;
+    font-size: 20px;
+    line-height: 23px;
+    margin: 17px 0;
+}
 .contact-info .contact-item {
     text-align: center;
     display: inline-block;
     border: 1px solid #821638;
-    padding: 5px 40px 5px 40px;
+    padding: 5px 30px 5px 30px;
     border-radius: 10px;
     margin: 30px;
 }
 .contact-info .contact-item img {
-    width: 50px;
+    width: 70px;
     padding: 10px;
+}
+.contact-row .contact-item img {
+    margin-top: 10px;
+}
+.contact-row .contact-item div {
+    display: table;
+    height: 100px;
+}
+.contact-row .contact-item div p {
+    display: table-cell;
+    vertical-align: middle;
 }
 .contact-info .contact-item p {
     color: #831538;
@@ -639,6 +676,9 @@ a:hover {
 .jobs .job-item, .jobs .major-item {
     padding-top: 40px;
     padding-bottom: 60px;
+}
+.jobs .job-item:first-child img {
+    cursor: pointer;
 }
 .jobs .job-item img, .jobs .major-item img {
     max-width: 150px;
@@ -686,15 +726,19 @@ a:hover {
 }
 .message input::-webkit-input-placeholder, .message textarea::-webkit-input-placeholder {
    color: #feb041;
+   font-size: 18px;
 }
 .message input:-moz-placeholder, .message textarea:-moz-placeholder { /* Firefox 18- */
    color: #feb041;  
+   font-size: 18px;
 }
 .message input::-moz-placeholder, .message textarea::-moz-placeholder {  /* Firefox 19+ */
    color: #feb041;  
+   font-size: 18px;
 }
 .message input:-ms-input-placeholder, .message textarea:-ms-input-placeholder {  
    color: #feb041;  
+   font-size: 18px;
 }
 .message form input {
     background-color: transparent;
@@ -728,14 +772,22 @@ a:hover {
     background-image: url("../images/loginHeader.jpg");
     margin-top: 120px;
     width: 100%;
+    background-size: cover;
+    background-position: center;
+<<<<<<< HEAD
+    height: 200px;
+    display: table;
+=======
+>>>>>>> 044514d20da547734e1f51cc28edd9baf6fd1c00
 }
-.login-header-img p{
+.login-header-img div{
     text-align: center;
     color: #feb041;
     font-weight: 900;
     font-size: 36px;
-    line-height: 5.4;
     font-family: 'Sketch Rockwell', sans-serif;
+    display: table-cell;
+    vertical-align: middle;
 }
 .login-form-div {
     text-align: center;
@@ -770,6 +822,7 @@ a:hover {
     padding-bottom: 10px;
     border-bottom: 3px solid #821638;
     margin-bottom: 10px;
+    text-align: left;
 }
 .login-form-input {
     border-color: #821638 !important;
@@ -778,6 +831,7 @@ a:hover {
 }
 .login-form-input-div {
     margin-bottom: 10px;
+    text-align: left;
 }
 .login-form-button {
     width: 100%;
@@ -893,11 +947,11 @@ input#password {
 #accordion .fa {
     float: right;
 }
-.accordion-color-blue {
-    background-color: #102b4c !important;
+#accordion h3.accordion-color:nth-of-type(2n) {
+    background-color: #821638;
 }
-.accordion-color-red {
-    background-color: #821638 !important;
+#accordion h3.accordion-color:nth-of-type(2n+1) {
+    background-color: #102b4c;
 }
 .accordion-body-img {
     width: 100%;
@@ -1137,7 +1191,7 @@ input#password {
 }
 .team-person-img-border {
     border: 10px solid #821638;
-    border-radius: 127px;
+    border-radius: 50%;
 }
 .team-person-img-apply {
     width: 255px;
@@ -1200,13 +1254,28 @@ input#password {
 .team-img-overlay {
     display: none;
     position: absolute;
-    width: 235px;
-    height: 235px;
-    border: 1px solid #feb041;
-    border-radius: 116px;
-    padding-top: 95px;
+    width: 255px;
+    height: 255px;
+    border: 10px solid rgb(130, 22, 56);
+    border-radius: 50%;
     background: #821638;
-    top: 10px;
+    top: 0;
+    margin-left: -10px;
+    cursor: pointer;
+}
+.team-img-overlay > div {
+    height: 100%;
+    padding: 20px;
+    border: 2px solid #feb041;
+    border-radius: 50%;
+}
+.team-img-overlay > div> img {
+    width: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
 }
 .job .bselect {
     width: 435px;
@@ -1324,13 +1393,21 @@ input#password {
 .job-more-div-margin {
     margin-bottom: 40px;
 }
-.achievements .flexslider .flex-nav-prev a, .mentors .flexslider .flex-nav-prev a {
+.achievements .flexslider .flex-nav-prev a {
     background-image: url("../images/right-arrow.png");
     -moz-transform: scaleX(-1);
     -o-transform: scaleX(-1);
     -webkit-transform: scaleX(-1);
     transform: scaleX(-1);
     left: 0 !important;
+}
+.mentors .flexslider .flex-nav-prev a {
+    background-image: url("../images/right-arrow.png");
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    left: -33px !important;
 }
 .related-jobs .flex-nav-prev a {
     background-image: url("../images/right-arrow2.png");
@@ -1350,9 +1427,13 @@ input#password {
     width: 60px;
     margin-top: -45px;
 }
-.achievements .flexslider .flex-nav-next a, .mentors .flexslider .flex-nav-next a {
+.achievements .flexslider .flex-nav-next a {
     background-image: url("../images/right-arrow.png");
     right: 0 !important;
+}
+.mentors .flexslider .flex-nav-next a {
+    background-image: url("../images/right-arrow.png");
+    right: -33px !important;
 }
 .achievements .flexslider .flex-direction-nav a, .mentors .flexslider .flex-direction-nav a, .progress-bars-container .flex-direction-nav a, .related-jobs .flex-direction-nav a {
     opacity: 1 !important;
@@ -1365,10 +1446,10 @@ input#password {
     transition: none;
 }
 .progress-bars-container .flex-nav-next a {
-    right: 0 !important;
+    right: -33px !important;
 }
 .progress-bars-container .flex-nav-prev a {
-    left: 0 !important;
+    left: -33px !important;
 }
 .progress-bars-container .flex-direction-nav a:before {
     color: #feb041;
@@ -1381,6 +1462,7 @@ input#password {
     padding: 25px 0;
     border: 1px solid #feb041;
     border-radius: 10px;
+    margin: 10px 0;
 }
 .services .service-item > div img {
     width: 100%;
@@ -1400,6 +1482,9 @@ input#password {
 }
 #calendar {
     margin-bottom: 20px;
+}
+#calendar a.fc-event:active {
+    color: #fff;
 }
 #calendar .fc-widget-content span {
     font-family: 'Lato', sans-serif;
@@ -1439,7 +1524,10 @@ input#password {
     position: relative;
     opacity: 1;
 }
-.events #eventsCarousel .carousel-control span, .events #eventsCarousel .carousel-control span strong {
+.events #eventsCarousel .carousel-control span:hover {
+    font-weight: bold;
+}
+.events #eventsCarousel .carousel-control span {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
 }
@@ -1484,12 +1572,13 @@ input#password {
     border-radius: 50%;
 }
 .mentors .flexslider .overlay {
-    width: 250px;
-    height: 250px;
+    width: 265px;
+    height: 265px;
     border-radius: 50%;
     border: 10px solid rgb(130, 22, 56);
     margin-left: 0px;
     padding: 0 !important;
+    cursor: pointer;
 }
 .mentors .flexslider .overlay > div {
     height: 100%;
@@ -1546,7 +1635,6 @@ input#password {
 .mentors .flexslider li .user-image {
     cursor: pointer;
 }
-<<<<<<< HEAD
 .form-background {
     background-color: rgba(251, 174, 64, 0.95);
 }
@@ -1619,12 +1707,16 @@ input#password {
 }
 /* Base for label styling */
 [type="checkbox"]:not(:checked),
-[type="checkbox"]:checked {
+[type="checkbox"]:checked,
+[type="radio"]:not(:checked),
+[type="radio"]:checked {
   position: absolute;
   left: -9999px;
 }
 [type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
+[type="checkbox"]:checked + label,
+[type="radio"]:not(:checked) + label,
+[type="radio"]:checked + label {
   position: relative;
   top: -10px;
   padding-left: 25px;
@@ -1632,7 +1724,9 @@ input#password {
 }
 /* checkbox aspect */
 [type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
+[type="checkbox"]:checked + label:before,
+[type="radio"]:not(:checked) + label:before,
+[type="radio"]:checked + label:before {
   content: '';
   position: absolute;
   left:0; top: 2px;
@@ -1644,7 +1738,9 @@ input#password {
 }
 /* checked mark aspect */
 [type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
+[type="checkbox"]:checked + label:after,
+[type="radio"]:not(:checked) + label:after,
+[type="radio"]:checked + label:after {
   content: '✔';
   position: absolute;
   top: 3px; left: 4px;
@@ -1654,30 +1750,38 @@ input#password {
   transition: all .2s;
 }
 /* checked mark aspect changes */
-[type="checkbox"]:not(:checked) + label:after {
+[type="checkbox"]:not(:checked) + label:after,
+[type="radio"]:not(:checked) + label:after {
   opacity: 0;
   transform: scale(0);
 }
-[type="checkbox"]:checked + label:after {
+[type="checkbox"]:checked + label:after,
+[type="radio"]:checked + label:after {
   opacity: 1;
   transform: scale(1);
 }
 /* disabled checkbox */
 [type="checkbox"]:disabled:not(:checked) + label:before,
-[type="checkbox"]:disabled:checked + label:before {
+[type="checkbox"]:disabled:checked + label:before,
+[type="radio"]:disabled:not(:checked) + label:before,
+[type="radio"]:disabled:checked + label:before {
   box-shadow: none;
   border-color: #821638;
   background-color: #821638;
 }
-[type="checkbox"]:disabled:checked + label:after {
+[type="checkbox"]:disabled:checked + label:after,
+[type="radio"]:disabled:checked + label:after {
   color: #999;
 }
-[type="checkbox"]:disabled + label {
+[type="checkbox"]:disabled + label,
+[type="radio"]:disabled + label {
   color: #aaa;
 }
 /* accessibility */
 [type="checkbox"]:checked:focus + label:before,
-[type="checkbox"]:not(:checked):focus + label:before {
+[type="checkbox"]:not(:checked):focus + label:before,
+[type="radio"]:checked:focus + label:before,
+[type="radio"]:not(:checked):focus + label:before {
   border: 2px solid #821638;
 }
 /* hover style just for information */
@@ -1697,6 +1801,7 @@ label:hover:before {
     display: inline-block;
     margin: 0px !important;
     margin-left: 60px !important;
+    text-align: left !important;
 }
 .popup-form-select .bselect-label {
     height: 30px !important;
@@ -1727,11 +1832,11 @@ label:hover:before {
     border-radius: 10px !important;
     float: right;
 }
-.modal-dialog {
+#myModal .modal-dialog {
     width: 100%;
     margin: 0px;
 }
-.modal {
+#myModal.modal {
     z-index: 100000;
     padding: 0px !important;
 }
@@ -1739,7 +1844,7 @@ label:hover:before {
     opacity: 1 !important;
 }
 .major-dropdown .select-container {
-    margin-left: 0px !important;
+    margin: 10px 0 !important;
 }
 .major-dropdown .bselect {
     width: 100%;
@@ -1751,19 +1856,7 @@ label:hover:before {
     margin-bottom: 0px;
     color: #821638 !important;
 }
-
-@media (max-width: 767px) {
-    .counter {
-        padding: 50px 0;
-    }
-    .counter > div > div, .counter > div > div span {
-        font-size: 30px;
-    }
-    .counter > div > div:last-child {
-        font-size: 20px;
-    }
-=======
-.jobs-outer .title {
+.jobs-outer .title, .shadowing- {
     font-size: 36px;
     font-weight: 600;
 }
@@ -1835,7 +1928,7 @@ label:hover:before {
     font-size: 20px;
     font-family: 'Open Sans', sans-serif;
     color: #821638;
-    margin-bottom: 17px;
+    margin-bottom: 2px;
 }
 .jobs-outer .job-details .job-types > div span {
     background-color: #821638;
@@ -1844,6 +1937,7 @@ label:hover:before {
     padding: 8px 10px;
     font-family: 'Open Sans', sans-serif;
     cursor: pointer;
+    display: inline-block;
 }
 .sticky-sidebar {
   position: relative;
@@ -1860,6 +1954,9 @@ label:hover:before {
 }
 .job-desc-container {
     padding: 50px 0;
+}
+.job-desc-container > div {
+    margin: 10px 0;
 }
 .job-desc-container > div > div {
     border: 1px solid #821638;
@@ -1884,17 +1981,17 @@ label:hover:before {
     color: #821638;
     padding: 8px 15px;
 }
-.job-desc-container > div:last-child .job-desc > div:last-child {
+.job-desc-container > div:last-child .job-desc > div:last-child, .major-interests {
     max-height: 210px;
     overflow-y: scroll;
 }
-.job-desc-container .job-desc > div:last-child {
+.job-desc-container .job-desc > div:last-child, .major-interests {
     font-size: 18px;
     font-weight: bold;
     line-height: 21px;
     padding: 15px 0;
 }
-.job-desc-container .job-desc > div span {
+.job-desc-container .job-desc > div span, .major-interests > span {
     font-size: 18px;
     font-weight: bold;
     padding: 5px 10px;
@@ -1903,20 +2000,24 @@ label:hover:before {
     line-height: 26px;
     margin: 2px;
 }
-.job-desc-container .job-desc > div span:nth-child(3n+1) {
+.job-desc-container .job-desc > div span:nth-child(3n+1), .major-interests > span:nth-child(3n+1) {
     background-color: #102b4c;
     color: #fff;
 }
-.job-desc-container .job-desc > div span:nth-child(3n+2) {
+.job-desc-container .job-desc > div span:nth-child(3n+2), .major-interests > span:nth-child(3n+2) {
     background-color: #821638;
     color: #feb041;
 }
-.job-desc-container .job-desc > div span:nth-child(3n) {
+.job-desc-container .job-desc > div span:nth-child(3n), .major-interests > span:nth-child(3n) {
     background-color: #feb041;
     color: #821638;
 }
-.job-desc-container .job-desc .interests .add-btn {
+.job-desc-container .job-desc .interests .add-btn, .major-interests .add-btn {
     cursor: pointer;
+}
+.job-desc-container .job-desc .interests .add-btn:hover , .major-interests .add-btn:hover {
+    background-color: #821638;
+    color: white;
 }
 .pie_progress .pie_progress__number {
     color: #fff;
@@ -1975,7 +2076,60 @@ label:hover:before {
 .related-jobs {
     margin: 30px 0;
 }
+<<<<<<< HEAD
+.accordion-button:hover, .job-load-more-button:hover, .login-form-button:hover {
+    background-color: #821638;
+    color: white;
+}
+.job-main-content:hover {
+    border: 1px solid #821638;
+    border-radius: 10px;
+    margin-bottom: 18px !important;
+}
+.accordion-main-block-height {
+    height: 259px;
+}
+.accordion-main-block-height img {
+    border: 1px solid #102b4c;
+    border-radius: 30px;
+}
+.accordion-block-min-wdith {
+    min-width: 200px !important;
+}
+.accordion-block-min-wdith .col-md-3 {
+    padding: 0px !important;
+=======
+.fc-event-container {
+    cursor: pointer;
+}
+.error {
+    color: red;
+    text-shadow: none;
+    font-weight: normal;
+}
+#major-exploration-form .error, #conferences-form .error {
+    color: #fff;
+}
+#major-exploration-form input.form-control, #conferences-form input.form-control {
+    color: #821638;
+}
+#imageModal {
+    z-index: 100000;
+}
+#imageModal .magnified-image {
+    width: 100%;
+}
 
+@media (max-width: 1199px) {
+    .sticky .navbar-nav > li > a {
+        font-size: 15px;
+    }
+    .team-img-overlay {
+        width: 205px;
+        height: 205px;
+    }
+>>>>>>> 044514d20da547734e1f51cc28edd9baf6fd1c00
+}
 @media (max-width: 1166px) {
 #endCarousel .text div:first-child {
     font-size: 30px;
@@ -1985,7 +2139,6 @@ label:hover:before {
 }
 .counter-container {
     height: 26vw;
->>>>>>> e5a4b2eb3150f30e66c743d5b865256f6c38852a
 }
 }
 @media (max-width: 1019px) {
@@ -2002,11 +2155,23 @@ label:hover:before {
     font-size: 28px;
 }
 }
-@media (max-width: 992px) and (min-width: 767px) {
+<<<<<<< HEAD
+=======
+/*@media (max-width: 992px) and (min-width: 767px) {
 .login-header-img {
     margin-top: 290px;
 }
+}*/
+@media (max-width: 992px) {
+    .team-img-overlay {
+        width: 330px;
+        height: 330px;
+    }
+    .popup-form-input-div {
+        margin-top: 0px;
+    }
 }
+>>>>>>> 044514d20da547734e1f51cc28edd9baf6fd1c00
 @media (max-width: 923px) {
 .counter > div > div:last-child {
     font-size: 22px;
@@ -2016,6 +2181,12 @@ label:hover:before {
 }
 .counter-container {
     height: 33vw;
+}
+}
+@media (max-width: 900px) {
+.sticky .navbar-nav > li > a {
+    font-size: 13px;
+    padding: 15px 10px;
 }
 }
 @media (min-width: 768px) {
@@ -2029,6 +2200,13 @@ label:hover:before {
 }
 .main-header .container, .sticky .container {
     width: 100%;
+}
+.footer-main-block {
+    padding: 5px 35px 5px 35px !important;
+    margin: 0px 25px 0px 25px !important;
+}
+.footer-container {
+    width: 100% !important;
 }
 }
 @media (max-width: 933px) {
@@ -2095,9 +2273,16 @@ label:hover:before {
     .down-arrow {
         bottom: 10px;
     }
-    .login-header-img {
+<<<<<<< HEAD
+=======
+    /*.login-header-img {
         margin-top: 158px;
+    }*/
+    .team-person-img-border {
+        width: 330px;
+        margin: 0 auto;
     }
+>>>>>>> 044514d20da547734e1f51cc28edd9baf6fd1c00
 }
 @media (max-width: 690px) {
 .counter-container {
@@ -2129,10 +2314,21 @@ label:hover:before {
 .counter {
     padding: 60px 0;
 }
+.shadowing-banner .title {
+    margin-left: -250px;
+}
 }
 @media (max-width: 450px) {
 .counter-container {
     height: 50vw;
+}
+<<<<<<< HEAD
+.ui-accordion .ui-accordion-content {
+    padding: 0px !important;
+=======
+.shadowing-banner .title {
+    margin-left: -200px;
+>>>>>>> 044514d20da547734e1f51cc28edd9baf6fd1c00
 }
 }
 @media (max-width: 400px) {
@@ -2151,7 +2347,27 @@ label:hover:before {
     width: 100px;
     font-size: 12px;
 }
+.shadowing-banner .title {
+    margin-left: -160px;
+    top: 70px;
 }
-
+}
+@media (max-width: 502px) {
+.login-header-img-sm {
+    display: block !important;
+    padding-top: 40px !important;
+}
+.login-header-img-sm span {
+    display: block !important;
+    margin-right: 0px !important;
+}
+.login-header-img-sm div {
+    display: block;
+    font-size: 34px !important;
+}
+.conf-img div {
+    margin-top: 35px;
+}
+}
 
 

@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+  <script src="{% static "js/jquery.validate.min.js" %}"></script>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+  <script src="{% static "js/jquery.gmap.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<!-- Sticky navigation bar -->
+  <div class="container">
+    <!--Headers -->
+    <div class="row">
+      <!-- Sticky Header -->
+      <nav class="sticky navbar navbar-default">
+        <div class="container">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="/majors">Major Exploration</a></li>
+                    <li><a href="/internships">Job Shadowing & Internships</a></li>
+                    <li><a href="/conferences">Conferences</a></li>
+                  </ul>
+                </li>
+                <li><a href="/jobs&majors">Jobs & Majors</a></li>
+                <li><a href="/mentors">Mentors</a></li>
+                <li><a href="/team">Team</a></li>
+                <li><a href="/contact">Contact Us</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="/logout">Logout</a></li>
+                {% else %}
+                <li><a href="/login">Login</a></li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Banner image and title -->
+  <div class="contact-banner">
+      <div class="title"><span>Contact</span> Us</div>
+  </div>
+
+  <!-- Contact information -->
+  <div class="container contact-info contact-row">
+    <div class="row">
+      <div class="title col-xs-12">
+        Contact Information
+      </div>
+      <div class="sub-title col-xs-12">
+        <a href="#">Check our channels</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="contact-item">
+        <img src="{% static "images/office.png" %}"/>
+        <div>
+          <p class="footer-main-block-p-1">Villa 56, Street 21</br>Settlement 5</br>Cairo, Egypt</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <img src="{% static "images/email2.png" %}"/>
+        <div>
+          <p class="footer-main-block-p-2">info@ispark.com</br>sales@ispark.com</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <img src="{% static "images/phone2.png" %}"/>
+        <div>
+          <p class="footer-main-block-p-2">+2 012 345 67890</br>+2 23745662</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact form -->
+  <div class="message grey-bg contact-row">
+    <div class="title col-xs-12">
+      Write Us a Message
+    </div>
+    <div class="sub-title col-xs-12">
+      <a href="#">Drop us an email</a>
+    </div>
+    <form id="contact-form" class="col-xs-12 col-md-8 col-md-offset-2">
+      <div class="form-group col-xs-12 col-md-4">
+        <input class="full-width" name="Name" placeholder="Name" />
+      </div>
+      <div class="form-group col-xs-12 col-md-4">
+        <input class="full-width" name="Email" placeholder="Email" />
+      </div>
+      <div class="form-group col-xs-12 col-md-4">
+        <input class="full-width" name="Number" placeholder="Number" />
+      </div>
+      <div class="form-group col-xs-12">
+        <textarea class="full-width" name="Message" placeholder="Type your message here"></textarea>
+      </div>
+      <div class="form-group col-xs-12 col-md-4 pull-right">
+        <input class="full-width submit-btn" type="submit" value="Send Message" />
+      </div>
+    </form>
+    <div class="clear"></div>
+  </div>
+
+  <!-- Contact numbers -->
+  <div class="contact-row">
+    <div class="title col-xs-12">
+      Contact numbers
+    </div>
+    <div class="sub-title col-xs-12">
+      <a href="#">For different entities</a>
+    </div>
+    <div class="col-xs-12 col-md-8 col-md-offset-2 contact-numbers">
+      <div class="col-xs-12">
+        <div><img src="{% static "images/family.png" %}" /></div>
+        <div><strong>STUDENTS/PARENTS:  </strong></div>
+        <div>+2 012 345 67890, +2 02 273 56727</div>
+      </div>
+      <div class="col-xs-12">
+        <div><img src="{% static "images/bus.png" %}" /></div>
+        <div><strong>SCHOOLS:  </strong></div>
+        <div>+2 012 345 67890, +2 02 273 56727</div>
+      </div>
+      <div class="col-xs-12">
+        <div><img src="{% static "images/university.png" %}" /></div>
+        <div><strong>UNIVERSITIES:  </strong></div>
+        <div>+2 012 345 67890, +2 02 273 56727</div>
+      </div>
+      <div class="col-xs-12">
+        <div><img src="{% static "images/company.png" %}" /></div>
+        <div><strong>COMPANIES:  </strong></div>
+        <div>+2 012 345 67890, +2 02 273 56727</div>
+      </div>
+      <div class="col-xs-12"><hr></div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <!-- Map -->
+  <div class="contact-row no-padding">
+    <div class="title col-xs-12">
+      Visit our head office
+    </div>
+    <div id="map"></div>
+  </div>
+{% endblock %}
+
+{% block extra_script_end %}
+  <script>
+    var options = {
+      controls: {
+             panControl: true,
+             zoomControl: true,
+             mapTypeControl: true,
+             scaleControl: true,
+             streetViewControl: true,
+             overviewMapControl: true
+         },
+      scrollwheel: false,
+      maptype: 'ROADMAP',
+      markers: [
+          {
+              latitude: 30.0444,
+              longitude: 31.2357,
+          }
+      ],
+      latitude: 30.0444,
+      longitude: 31.2357,
+      zoom: 15
+    }
+    $('#map').gMap(options);
+
+    $("#contact-form").validate({
+      rules: {
+        Name: "required",
+        Email: { required: true, email: true },
+        Number: "required",
+        Message: "required"
+      }
+     });
+  </script>
+{% endblock %}

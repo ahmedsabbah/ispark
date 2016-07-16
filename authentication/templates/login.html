@@ -3,11 +3,12 @@
 {% load staticfiles %}
 {% load static %}
 
-{% block extra_script_loaded %}
-  <script src="{% static "js/jquery.validate.min.js" %}"></script>
+{% block extra_css %}
 {% endblock %}
 
-{% block extra_css %}
+{% block extra_script %}
+  <script src="{% static "js/jquery.jrumble.1.3.min.js" %}"></script>
+  <script src="{% static "js/jquery.validate.min.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -28,19 +29,19 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
             <ul class="dropdown-menu">
-              <li><a href="/major_exploration">Major Exploration</a></li>
-              <li><a href="/job_shadowing">Job Shadowing & Internships</a></li>
+              <li><a href="/majors">Major Exploration</a></li>
+              <li><a href="/internships">Job Shadowing & Internships</a></li>
               <li><a href="/conferences">Conferences</a></li>
             </ul>
           </li>
-          <li><a href="/jobs_majors">Jobs & Majors</a></li>
+          <li><a href="/jobs&majors">Jobs & Majors</a></li>
           <li><a href="/mentors">Mentors</a></li>
           <li><a href="/team">Team</a></li>
-          <li><a href="/contact_us">Contact Us</a></li>
+          <li><a href="/contact">Contact Us</a></li>
           {% if user.is_authenticated %}
-          <li><a href="/logout/">Logout</a></li>
+          <li><a href="/logout">Logout</a></li>
           {% else %}
-          <li><a href="/login/">Login</a></li>
+          <li><a href="/login">Login</a></li>
           {% endif %}
         </ul>
       </div>
@@ -74,7 +75,7 @@
               <input type="submit" value="Sign in" class="submit login-form-button">
           </div>
           <div class="clearfix"></div>
-      </form>
+        </form>
       <div class="login-forgot-div">
         <p><a class="login-forgot-link" href="#">Forgot Password?</a></p>
       </div>
@@ -85,28 +86,41 @@
 {% endblock %}
 
 {% block extra_script_end %}
-<script>
-  $("input").focusin(function () {
-          $(this).css("background-image", "none");
+  <script>
+  $(document).ready(function(){
+    $('.footer-social-div img').jrumble({
+      x: 2,
+      y: 2,
+      rotation: 1
+    });
+    $(".footer-social-div img").hover(function(){
+      $(this).trigger('startRumble');
+      }, function(){
+        $(this).trigger('stopRumble');
       });
+  })
+    $("input").focusin(function () {
+            $(this).css("background-image", "none");
+        });
 
-  $("input").focusout(function () {
-      var value = $(this).val();
-      if (value != "") {
-          $(this).css("background-image", "none");
-      } else {
-          if ($(this).attr("id") == "username") {
-              $(this).css("background", "url('{% static 'images/email-env.jpg' %}') no-repeat right");
-          } else if ($(this).attr("id") == "password") {
-              $(this).css("background", "url('{% static 'images/pass-lock.jpg' %}') no-repeat right");
-          }
+    $("input").focusout(function () {
+        var value = $(this).val();
+        if (value != "") {
+            $(this).css("background-image", "none");
+        } else {
+            if ($(this).attr("id") == "username") {
+                $(this).css("background", "url('{% static 'images/email-env.jpg' %}') no-repeat right");
+            } else if ($(this).attr("id") == "password") {
+                $(this).css("background", "url('{% static 'images/pass-lock.jpg' %}') no-repeat right");
+            }
+        }
+    });
+
+    $("#loginform").validate({
+      rules: {
+        Username: "required",
+        Password: "required"
       }
-  });
-  $("#loginform").validate({
-    rules: {
-      username: "required",
-      password: "required"
-    }
-  });
-</script>
+    });
+  </script>
 {% endblock %}
