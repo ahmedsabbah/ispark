@@ -16,8 +16,8 @@ class TourApplication(models.Model):
     email = models.EmailField(blank=True, null=True)
     school_name = models.CharField(max_length=200, blank=True, null=True)
     grade_level = models.CharField(max_length=200, blank=True, null=True)
-    # wave = models.ForeignKey('services.Wave', related_name='tour_applications')
-    joined_previous_event = models.NullBooleanField(blank=True, null=True)
+    wave = models.CharField(max_length=200, blank=True, null=True)
+    joined_previous_event = models.BooleanField(default=False)
     previous_event = models.CharField(max_length=200, blank=True, null=True)
     know_about_us = models.CharField(max_length=2, choices=KNOW_CHOICES)
     class Meta:

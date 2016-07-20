@@ -1,0 +1,313 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/progress.css" %}">
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery-ui.min.js" %}"></script>
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+  <script src="{% static "js/jquery-asPieProgress.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <!--Headers -->
+      <div class="row">
+        <!-- Sticky Header -->
+        <nav class="sticky navbar navbar-default">
+          <div class="container">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/majors">Major Exploration</a></li>
+                      <li><a href="/internships">Job Shadowing & Internships</a></li>
+                      <li><a href="/conferences">Conferences</a></li>
+                    </ul>
+                  </li>
+                  <li class="active"><a href="/jobs&majors">Jobs & Majors</a></li>
+                  <li><a href="/mentors">Mentors</a></li>
+                  <li><a href="/team">Team</a></li>
+                  <li><a href="/contact">Contact Us</a></li>
+                  {% if user.is_authenticated %}
+                  <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
+                  {% else %}
+                  <li><a href="/login">Login</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="jobs-outer-banner">
+        <div class="title"><span>Jobs</span></div>
+    </div>
+
+    <!-- Page titles -->
+    <div class="container jobs-inner">
+      <div class="row profile-row">
+        <div class="col-xs-12 title">
+          Animals, Farming & Environment
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 icon">
+          <div><img src="{% static "images/hourse.png" %}" /></div>
+        </div>
+      </div>
+      <div class="row profile-row">
+        <div class="col-xs-12 title">
+          <span>Animal Care Worker</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job description and interests -->
+    <div class="grey-bg">
+      <div class="container">
+        <div class="row job-desc-container">
+          <div class="col-md-4 col-xs-12">
+            <div><img src="{% static "images/amc1.jpg" %}" /></div>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <div class="job-desc">
+              <div>
+                <img class="pull-left" src="{% static "images/business-presentation.png" %}" />
+                <div class="pull-left">Job Description:</div>
+              </div>
+              <div class="clear"></div>
+              <div>
+                - Bachelor degree in any related field <br />
+                - Minimum 3 years of experience <br />
+                - Excellent good communication skills <br />
+                - Good spoken & written English <br />
+                - Ability to work under pressure <br />
+                - Working with minimum supervision <br />
+                - Excellent good communication skills <br />
+                - Good spoken & written English <br />
+                - Ability to work under pressure <br />
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <div class="job-desc">
+              <div>
+                <img class="pull-left" src="{% static "images/in-love.png" %}" />
+                <div class="pull-left">Interests:</div>
+              </div>
+              <div class="clear"></div>
+              <div class="interests">
+                <span class="pull-left">Animal Care</span>
+                <span class="pull-left">Caretaker</span>
+                <span class="pull-left">Visiting Vets</span>
+                <span class="pull-left">Zoo Keepers</span>
+                <span class="pull-left">Playing with Animals</span>
+                <span class="add-btn pull-left" onclick="addInterest()">+</span>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="dark-bg">
+      <div class="container">
+        <div class="row profile-row">
+          <div class="col-xs-12 title">
+            Required Skills
+          </div>
+          <div class="progress-bars-container flexslider col-xs-12">
+            <ul class="slides progress-bars">
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Teamwork</div>
+              </li>
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Analyze</div>
+              </li>
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Work with Numbers</div>
+              </li>
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Budget</div>
+              </li>
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Teamwork</div>
+              </li>
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Analyze</div>
+              </li>
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Work with Numbers</div>
+              </li>
+              <li>
+                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>Budget</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related jobs -->
+    <div class="container">
+      <div class="row profile-row">
+        <div class="col-xs-12 title">
+          Related Jobs
+        </div>
+        <div class="related-jobs flexslider col-xs-12">
+          <ul class="slides">
+            <li>
+              <div>Animal Care Worker</div>
+              <div>
+                <img src="{% static "images/amc3.jpg" %}" />
+                <button class="full-width">View</button>
+              </div>
+            </li>
+            <li>
+              <div>Ecologist</div>
+              <div>
+                <img src="{% static "images/eco.jpg" %}" />
+                <button class="full-width">View</button>
+              </div>
+            </li>
+            <li>
+              <div>Veterinarian</div>
+              <div>
+                <img src="{% static "images/vet2.jpg" %}" />
+                <button class="full-width">View</button>
+              </div>
+            </li>
+            <li>
+              <div>Animal Care Worker</div>
+              <div>
+                <img src="{% static "images/amc3.jpg" %}" />
+                <button class="full-width">View</button>
+              </div>
+            </li>
+            <li>
+              <div>Ecologist</div>
+              <div>
+                <img src="{% static "images/eco.jpg" %}" />
+                <button class="full-width">View</button>
+              </div>
+            </li>
+            <li>
+              <div>Veterinarian</div>
+              <div>
+                <img src="{% static "images/vet2.jpg" %}" />
+                <button class="full-width">View</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block extra_script_end %}
+<script>
+      var animated = false;
+
+      /* Add interest button */
+      function addInterest() {
+        $(".interests .add-btn").remove();
+        $(".interests > div").remove();
+        $(".interests").append('<span class="pull-left">Animal Care</span><span class="pull-left">Caretaker</span><span class="pull-left">Visiting Vets</span><span class="pull-left">Zoo Keepers</span><span class="pull-left">Playing with Animals</span><span class="pull-left add-btn" onclick="addInterest()">+</span><div class="clear"></div>');
+      }
+
+      $(document).ready(function() {
+        /* Pie charts animation */
+        $('.pie_progress').asPieProgress({
+            namespace: 'pie_progress'
+        });
+
+        $(window).scroll(function() {
+          if($('.progress-bars-container').visible() && animated == false) {
+            animated = true;
+            $('.progress-bars > li:nth-child(1) .pie_progress').asPieProgress('go','75%');
+            $('.progress-bars > li:nth-child(2) .pie_progress').asPieProgress('go','50%');
+            $('.progress-bars > li:nth-child(3) .pie_progress').asPieProgress('go','25%');
+            $('.progress-bars > li:nth-child(4) .pie_progress').asPieProgress('go','100%');
+            $('.progress-bars > li:nth-child(5) .pie_progress').asPieProgress('go','75%');
+            $('.progress-bars > li:nth-child(6) .pie_progress').asPieProgress('go','50%');
+            $('.progress-bars > li:nth-child(7) .pie_progress').asPieProgress('go','25%');
+            $('.progress-bars > li:nth-child(8) .pie_progress').asPieProgress('go','100%');
+          }
+        })
+
+        $('.progress-bars-container.flexslider').flexslider({
+          animation: "slide",
+          animationLoop: false,
+          itemWidth: 260,
+          itemMargin: 30,
+          prevText: "",
+          nextText: "",
+          start: function(slider){
+              $('.flexslider').resize();
+          }
+        });
+
+        $('.related-jobs.flexslider').flexslider({
+          animation: "slide",
+          animationLoop: false,
+          itemWidth: 365,
+          itemMargin: 30,
+          prevText: "",
+          nextText: "",
+          start: function(slider){
+              $('.flexslider').resize();
+          }
+        });
+      })
+    </script>
+{% endblock %}

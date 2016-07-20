@@ -36,10 +36,10 @@
           </li>
           <li><a href="/jobs&majors">Jobs & Majors</a></li>
           <li><a href="/mentors">Mentors</a></li>
-          <li><a href="/team">Team</a></li>
+          <li class="active"><a href="/team">Team</a></li>
           <li><a href="/contact">Contact Us</a></li>
           {% if user.is_authenticated %}
-          <li><a href="/logout">Logout</a></li>
+          <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
           {% else %}
           <li><a href="/login">Login</a></li>
           {% endif %}
@@ -67,25 +67,26 @@
 
     <!-- Core team profile -->
     <div class="col-md-12 col-xs-12 team-main-div">
+      {% for core in cores %}
       <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="team-person-img-border">
-          <img class="team-person-img" src="{% static "images/team-person-one.png" %}">
+          <img class="team-person-img" src="{{core.photo.url}}">
           <div class="team-img-overlay" onclick="openModal(this)">
             <div>
               <img class="" src="{% static "images/team-zoom-icon.png" %}">
             </div>
           </div>
         </div>
-        <div class="team-name-div"><p class="team-name">MOSTAFA HASHISHA</p></div>
-        <div class="team-name-div"><p class="team-position">- CEO -</p></div>
+        <div class="team-name-div"><p class="team-name">{{core.name}}</p></div>
+        <div class="team-name-div"><p class="team-position">- {{core.position}} -</p></div>
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">I know where I'm going and I know the truth, and I don't have to be what you want me to be. I am free to be what I want</p></div>
+          <div class="team-quote-table-cell"><p class="team-quote-text">{{core.quote}}</p></div>
           <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
         </div>
         <div class="team-name-div">
           <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">mostafa.hashisha@gmail.com</p></div>
+          <div class="team-name-div"><p class="team-email">{{core.email}}</p></div>
         </div>
         <a href="#">
           <div class="team-name-div">
@@ -95,53 +96,27 @@
         </a>
         <hr class="team-line-yellow">
       </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-person-img-border">
-          <img class="team-person-img" src="{% static "images/team-person-one.png" %}">
-          <div class="team-img-overlay" onclick="openModal(this)">
-            <div>
-              <img class="" src="{% static "images/team-zoom-icon.png" %}">
-            </div>
-          </div>
-        </div>
-        <div class="team-name-div"><p class="team-name">TASBIH TAREK</p></div>
-        <div class="team-name-div"><p class="team-position">- Partner -</p></div>
-        <div class="team-quote-table">
-          <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">In order to succeed, we must first believe that we can</p></div>
-          <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
-        </div>
-        <div class="team-name-div">
-          <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">tasbih.tarek@gmail.com</p></div>
-        </div>
-        <a href="#">
-          <div class="team-name-div">
-            <img src="{% static "images/team-file-icon.png" %}">
-            <div class="team-name-div"><p class="team-download">Download Profile</p></div>
-          </div>
-        </a>
-        <hr class="team-line-yellow">
-      </div>
+      {% endfor %}
+      {% for job_vacancy in job_vacancies %}
       <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="team-person-img-border">
           <img class="team-person-img" src="{% static "images/team-avatar.png" %}">
-          <div class="team-img-overlay" onclick="openDownloadModal(this)">
+          <div class="team-img-overlay" onclick="openDownloadModal({{job_vacancy.id}})">
             <div>
               <img class="" src="{% static "images/team-apply.png" %}">
             </div>
           </div>
         </div>
         <div class="team-name-div"><p class="team-name">APPLY NOW</p></div>
-        <div class="team-name-div"><p class="team-position">- Marketing Manager -</p></div>
+        <div class="team-name-div"><p class="team-position">- {{job_vacancy.position}} -</p></div>
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best  As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best</p></div>
+          <div class="team-quote-table-cell"><p class="team-quote-text">{{job_vacancy.description}}</p></div>
           <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
         </div>
         <div class="team-name-div">
           <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">careers@ispark.com</p></div>
+          <div class="team-name-div"><p class="team-email">{{job_vacancy.contact_email}}</p></div>
         </div>
         <a href="#">
           <div class="team-name-div">
@@ -151,34 +126,7 @@
         </a>
         <hr class="team-line-yellow">
       </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-person-img-border">
-          <img class="team-person-img" src="{% static "images/team-avatar.png" %}">
-          <div class="team-img-overlay" onclick="openDownloadModal(this)">
-            <div>
-              <img class="" src="{% static "images/team-apply.png" %}">
-            </div>
-          </div>
-        </div>
-        <div class="team-name-div"><p class="team-name">APPLY NOW</p></div>
-        <div class="team-name-div"><p class="team-position">- Sales Consultant -</p></div>
-        <div class="team-quote-table">
-          <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best  As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best</p></div>
-          <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
-        </div>
-        <div class="team-name-div">
-          <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">careers@ispark.com</p></div>
-        </div>
-        <a href="#">
-          <div class="team-name-div">
-            <img src="{% static "images/team-file-icon.png" %}">
-            <div class="team-name-div"><p class="team-download">Apply Now</p></div>
-          </div>
-        </a>
-        <hr class="team-line-yellow">
-      </div>
+      {% endfor %}
     </div>
 
     <div class="clear"></div>
@@ -190,101 +138,75 @@
 
     <!-- Interns profile -->
     <div class="col-md-12 col-xs-12 team-main-div">
+      {% for intern in interns %}
       <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="team-person-img-border">
-          <img class="team-person-img" src="{% static "images/team-person-two.png" %}">
+          <img class="team-person-img" src="{{intern.photo.url}}">
           <div class="team-img-overlay" onclick="openModal(this)">
             <div>
               <img class="" src="{% static "images/team-zoom-icon.png" %}">
             </div>
           </div>
         </div>
-        <div class="team-name-div"><p class="team-name">HAZEM SAMRA</p></div>
-        <div class="team-name-div"><p class="team-position">- Marketing Intern -</p></div>
+        <div class="team-name-div"><p class="team-name">{{intern.name}}</p></div>
+        <div class="team-name-div"><p class="team-position">- {{intern.position}} -</p></div>
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">I know where I'm going and I know the truth, and I don't have to be what you want me to be. I am free to be what I want</p></div>
+          <div class="team-quote-table-cell"><p class="team-quote-text">{{intern.quote}}</p></div>
           <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
         </div>
         <div class="team-name-div">
           <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">hazem.samra@gmail.com</p></div>
+          <div class="team-name-div"><p class="team-email">{{intern.email}}</p></div>
         </div>
-        <hr class="team-line-yellow">
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-person-img-border">
-          <img class="team-person-img" src="{% static "images/team-person-two.png" %}">
-          <div class="team-img-overlay" onclick="openModal(this)">
-            <div>
-              <img class="" src="{% static "images/team-zoom-icon.png" %}">
-            </div>
+        <a href="#">
+          <div class="team-name-div">
+            <img src="{% static "images/team-file-icon.png" %}">
+            <div class="team-name-div"><p class="team-download">Download Profile</p></div>
           </div>
-        </div>
-        <div class="team-name-div"><p class="team-name">HANY OLAMA</p></div>
-        <div class="team-name-div"><p class="team-position">- Develpment Intern -</p></div>
-        <div class="team-quote-table">
-          <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">In order to succeed, we must first believe that we can</p></div>
-          <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
-        </div>
-        <div class="team-name-div">
-          <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">hany.olama@gmail.com</p></div>
-        </div>
+        </a>
         <hr class="team-line-yellow">
       </div>
+      {% endfor %}
+      {% for internship_vacancy in internship_vacancies %}
       <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="team-person-img-border">
           <img class="team-person-img" src="{% static "images/team-avatar.png" %}">
-          <div class="team-img-overlay" onclick="openDownloadModal(this)">
+          <div class="team-img-overlay" onclick="openDownloadModal({{internship_vacancy.id}})">
             <div>
               <img class="" src="{% static "images/team-apply.png" %}">
             </div>
           </div>
         </div>
         <div class="team-name-div"><p class="team-name">APPLY NOW</p></div>
-        <div class="team-name-div"><p class="team-position">- Marketing Manager -</p></div>
+        <div class="team-name-div"><p class="team-position">- {{internship_vacancy.position}} -</p></div>
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best  As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best</p></div>
+          <div class="team-quote-table-cell"><p class="team-quote-text">{{internship_vacancy.description}}</p></div>
           <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
         </div>
         <div class="team-name-div">
           <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">careers@ispark.com</p></div>
+          <div class="team-name-div"><p class="team-email">{{internship_vacancy.contact_email}}</p></div>
         </div>
-        <hr class="team-line-yellow">
-      </div>
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="team-person-img-border">
-          <img class="team-person-img" src="{% static "images/team-avatar.png" %}">
-          <div class="team-img-overlay" onclick="openDownloadModal(this)">
-            <div>
-              <img class="" src="{% static "images/team-apply.png" %}">
-            </div>
+        <a href="#">
+          <div class="team-name-div">
+            <img src="{% static "images/team-file-icon.png" %}">
+            <div class="team-name-div"><p class="team-download">Apply Now</p></div>
           </div>
-        </div>
-        <div class="team-name-div"><p class="team-name">APPLY NOW</p></div>
-        <div class="team-name-div"><p class="team-position">- Sales Consultant -</p></div>
-        <div class="team-quote-table">
-          <img src="{% static "images/team-quotation-one.png" %}">
-          <div class="team-quote-table-cell"><p class="team-quote-text">As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best  As the co-founder of iSpark, Mostafa has been very busy working 24/7to make iSpark a successful and one of the best</p></div>
-          <img class="team-quote" src="{% static "images/team-quotation-two.png" %}">
-        </div>
-        <div class="team-name-div">
-          <img src="{% static "images/team-mail-icon.png" %}">
-          <div class="team-name-div"><p class="team-email">careers@ispark.com</p></div>
-        </div>
+        </a>
         <hr class="team-line-yellow">
       </div>
+      {% endfor %}
     </div>
   </div>
 </div>
 
+<!-- for loop on vacancies -->
+{% for job_vacancy in job_vacancies %}
 <!-- modal -->
-<div id="myModal" class="modal fade form-background" role="dialog">
-  <div class="modal-dialog">
+<div id="myModal{{job_vacancy.id}}" class="modal fade form-background modal1" role="dialog">
+  <div class="modal-dialog modal1">
     <div>
     <div>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -312,7 +234,7 @@
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="major-exploration-form" method="post" class="popup-form partners">
+          <form id="major-exploration-form" method="post" class="popup-form partners" action="/vacancy/{{job_vacancy.id}}/apply">
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
             </div>
@@ -398,15 +320,135 @@
     </div>
   </div>
 </div>
+{% endfor %}
+
+{% for internship_vacancy in internship_vacancies %}
+<!-- modal -->
+<div id="myModal{{internship_vacancy.id}}" class="modal fade form-background modal1" role="dialog">
+  <div class="modal-dialog modal1">
+    <div>
+    <div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <img class="popup-form-close" src="{% static "images/form-close.png" %}" />
+      </button>
+    </div>
+    <div class="container">
+      <div class="row">
+
+        <!-- Logo -->
+        <div class="col-md-12 form-logo">
+          <img src="{% static "images/logo.png" %}" /></a>
+        </div>
+
+        <!-- Hidden field for ID -->
+        <div class="col-md-12 hidden">
+          <p id="event-id"></p>
+        </div>
+
+        <!-- Title -->
+        <div class="col-md-12 form-title">
+          <p class="major-title-2">CAREER DISCOVERY PROGRAM 2.0</p>
+          <p>YOU'RE ONE STEP AWAY FROM AN AWESOME EXPERIENCE !!</p>
+        </div>
+
+        <!-- Form -->
+        <div class="col-md-12">
+          <form id="major-exploration-form" method="post" class="popup-form partners" action="/vacancy/{{internship_vacancy.id}}/apply">
+            <div class="col-md-4">
+              <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="email-pop" name="email" class="form-control" placeholder="Email" />
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="popup-form-input-div">
+                <div class="col-md-4">
+                    <input type="text" id="school" name="school" class="form-control" placeholder="School Name" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="grade" name="grade" class="form-control" placeholder="Grade Level" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="wave" name="wave" class="form-control" placeholder="Wave" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="popup-form-input-div major-dropdown">
+                <div class="col-md-4 select-container popup-form-select">
+                  <select name="select1">
+                    <option value="1">Choose a major</option>
+                    <option value="2">Another Option</option>
+                    <option value="3">Third Option</option>
+                  </select>
+                </div>
+                <div class="col-md-4 select-container popup-form-select">
+                  <select name="select2">
+                    <option value="1">Choose a major</option>
+                    <option value="2">Another Option</option>
+                    <option value="3">Third Option</option>
+                  </select>
+                </div>
+                <div class="col-md-4 select-container popup-form-select">
+                  <select name="select3">
+                    <option value="1">Choose a major</option>
+                    <option value="2">Another Option</option>
+                    <option value="3">Third Option</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-12 popup-form-input-div">
+                <p class="popup-checkbox-text popup-form-text-1">Have you ever joined any of iSpark events?</p>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2">Yes</p>
+                  <input type="radio" value="None" id="check3" name="check3" checked />
+                  <label for="check3"></label>
+                </label>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">No</p>
+                  <input type="radio" value="None" id="check4" name="check3" />
+                  <label for="check4"></label>
+                </label>
+            </div>
+            <div class="col-md-12">
+                <input type="text" id="state" name="state" class="form-control" placeholder="if yes, state it" />
+            </div>
+             <div class="col-md-12 popup-form-input-div">
+                <p class="popup-checkbox-text">*Please note that not all applicants will be able to come</p>
+            </div>
+            <div class="col-md-12 popup-form-dropdown-div">
+                <p class="popup-checkbox-text">How did you know about us?</p>
+                <div class="popup-form-select select-container">
+                  <select name="select4">
+                    <option value="1">Previous Event</option>
+                    <option value="2">Another Option</option>
+                    <option value="3">Third Option</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-12 popup-form-dropdown-div">
+                <input type="submit" value="Send" class="popup-form-submit">
+            </div>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
 
 <!-- Image popup -->
-<div id="imageModal" class="modal fade" role="dialog">
+<div id="imageModal" class="modal fade modal2" role="dialog">
   <div class="modal-dialog modal-md">
     <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-body">
         <div>
-          <img class="magnified-image" src="" />
+          <img class="magnified-image modal2" src="" />
         </div>
       </div>
     </div>
@@ -419,12 +461,13 @@
   //---------- Open image popup ----------//
   function openModal(elem){
     var image = $(elem).parent().children("img").attr("src");
+    console.log(image);
     $("#imageModal .magnified-image").attr("src", image);
     $('#imageModal').modal();
   }
 
-  function openDownloadModal(elem){
-    $('#myModal').modal();
+  function openDownloadModal(id){
+    $('#myModal'+id).modal();
   }
 
   $(document).ready(function(){
@@ -434,7 +477,7 @@
       $(this).children(".team-person-img-border").children(".team-img-overlay").slideDown("fast");
     });
     $(".team-main-div > div").mouseleave(function(){
-    $(this).children("hr").css("border-color", "#feb041");
+      $(this).children("hr").css("border-color", "#feb041");
       $(this).children(".team-person-img-border").children(".team-img-overlay").slideUp("fast");
     });
   });

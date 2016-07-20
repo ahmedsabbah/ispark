@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http.response import HttpResponseBadRequest
-
+from contents.models import Contact
 
 def login_request(request):
-    print request.user.is_authenticated()
     if request.user.is_authenticated():
         return redirect('/')
     if request.method == 'POST':
@@ -20,7 +19,10 @@ def login_request(request):
         else:
             return render(request, 'login.html', {'error': 'Invalid username or password'})
     else:
-        return render(request, 'login.html')
+        addresses = Contact.objects.filter(type='A')
+        emails = Contact.objects.filter(type='E')
+        phones = Contact.objects.filter(type='P')
+        return render(request, 'login.html', {'emails': emails, 'addresses': addresses, 'phones': phones})
 
 def logout_request(request):
     logout(request)

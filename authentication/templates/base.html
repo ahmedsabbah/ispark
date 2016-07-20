@@ -4,10 +4,11 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap.min.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
     {% block extra_css %}
     {% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800,300' rel='stylesheet' type='text/css'>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="{% static "js/bootstrap.min.js" %}"></script>
     {% block extra_script %}
@@ -22,15 +23,36 @@
           <div class="row footer-main-row hidden-xs">
             <div class="footer-main-block">
               <img src="{% static "images/footer-building.jpg" %}"/>
-              <p class="footer-main-block-p footer-main-block-p-1">Villa 56, Street 21</br>Settlement 5</br>Cairo, Egypt</p>
+              <p class="footer-main-block-p footer-main-block-p-1">
+                {% for address in addresses %}
+                  {{address.value}}
+                  {% if forloop.counter != addresses|length %}
+                    </br>
+                  {% endif %}
+                {% endfor %}
+              </p>
             </div>
             <div class="footer-main-block">
               <img src="{% static "images/footer-env.jpg" %}"/>
-              <p class="footer-main-block-p footer-main-block-p-2">info@ispark.com</br>sales@ispark.com</p>
+              <p class="footer-main-block-p footer-main-block-p-2">
+                {% for email in emails %}
+                  {{email.value}}
+                  {% if forloop.counter != emails|length %}
+                    </br>
+                  {% endif %}
+                {% endfor %}
+              </p>
             </div>
             <div class="footer-main-block">
               <img src="{% static "images/footer-phone.jpg" %}"/>
-              <p class="footer-main-block-p footer-main-block-p-2">+2 012 345 67890</br>+2 23745662</p>
+              <p class="footer-main-block-p footer-main-block-p-2">
+                {% for phone in phones %}
+                  {{phone.value}}
+                  {% if forloop.counter != phones|length %}
+                    </br>
+                  {% endif %}
+                {% endfor %}
+              </p>
             </div>
           </div>
           <div class="footer-social-div">

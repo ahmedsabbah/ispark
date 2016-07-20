@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Category, Major, Skill, University, Mentor, Contact, Announcement
+from .models import Category, Major, Skill, University, Mentor, Contact, Announcement, TeamMember
 
 
 class MajorInline(admin.TabularInline):
@@ -53,3 +53,5 @@ class AnnouncementAdmin(admin.ModelAdmin):
     ordering = ('-created_date',)
     list_filter = ('created_date',)
 admin.site.register(Announcement, AnnouncementAdmin)
+
+admin.site.register(TeamMember)

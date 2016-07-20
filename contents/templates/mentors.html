@@ -52,11 +52,11 @@
                   </ul>
                 </li>
                 <li><a href="/jobs&majors">Jobs & Majors</a></li>
-                <li><a href="/mentors">Mentors</a></li>
+                <li class="active"><a href="/mentors">Mentors</a></li>
                 <li><a href="/team">Team</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="/logout">Logout</a></li>
+                <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 {% endif %}
@@ -92,198 +92,29 @@
         <div class="sliders">
           <div class="flexslider col-xs-12">
             <ul class="slides">
+              {% for mentor in mentors %}
               <li>
                 <div class="overlay" onclick="openModal(this)">
                   <div>
                     <img src="{% static "images/zoom.png" %}" />
                   </div>
                 </div>
-                <img src="{% static "images/hashisha.png" %}" />
+                <img src="{{mentor.photo.url}}" />
                 <div class="data">
-                  <div class="name">Mostafa Hashisha</div>
-                  <div class="job">-Journalist-</div>
+                  <div class="name">{{mentor.name}}</div>
+                  <div class="job">-{{mentor.job}}-</div>
                   <div class="avail">Availability</div>
                   <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
+                    {{mentor.availability}}
                   </div>
                   <div class="email">
                     <img src="{% static "images/email2.png" %}" />
-                    mostafa.hashisha@gmail.com
+                    {{mentor.email}}
                   </div>
                   <div class="line"><hr></div>
                 </div>
               </li>
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{% static "images/hashisha.png" %}" />
-                <div class="data">
-                  <div class="name">Tasbih Tarek</div>
-                  <div class="job">-Management Consultant-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    tasbih.tarek@gmail.com
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{% static "images/hazem.png" %}" />
-                <div class="data">
-                  <div class="name">Hazem El Samra</div>
-                  <div class="job">-Software Engineer-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    hazem.samr@ispark.com
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{% static "images/hany.png" %}" />
-                <div class="data">
-                  <div class="name">Hany Olama</div>
-                  <div class="job">-Mechanical Engineer-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    hany.olama@ispark.com
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{% static "images/hashisha.png" %}" />
-                <div class="data">
-                  <div class="name">Mostafa Hashisha</div>
-                  <div class="job">-Journalist-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    mostafa.hashisha@gmail.com
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{% static "images/hashisha.png" %}" />
-                <div class="data">
-                  <div class="name">Tasbih Tarek</div>
-                  <div class="job">-Management Consultant-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    tasbih.tarek@gmail.com
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{% static "images/hazem.png" %}" />
-                <div class="data">
-                  <div class="name">Hazem El Samra</div>
-                  <div class="job">-Software Engineer-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    hazem.samr@ispark.com
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{% static "images/hany.png" %}" />
-                <div class="data">
-                  <div class="name">Hany Olama</div>
-                  <div class="job">-Mechanical Engineer-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    Mondays, 3 PM to 6 PM <br/>
-                    Wednesdays, 12 PM to 5 PM<br />
-                    Thursdays, 10 AM to !2 PM<br />
-                    Fridays, 4 PM to 8 PM
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    hany.olama@ispark.com
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -291,8 +122,8 @@
     </div>
 
     <!-- Image popup -->
-    <div id="imageModal" class="modal fade" role="dialog">
-      <div class="modal-dialog modal-md">
+    <div id="imageModal" class="modal fade modal2" role="dialog">
+      <div class="modal-dialog modal-md modal2">
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-body">

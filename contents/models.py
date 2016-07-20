@@ -28,6 +28,7 @@ class Skill(models.Model):
 
 class University(models.Model):
     name = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to='universities', blank=True, null=True)
     photo = models.ImageField(upload_to='universities', blank=True, null=True)
     majors = models.ManyToManyField('contents.Major', related_name='universities')
     class Meta:
@@ -38,14 +39,32 @@ class University(models.Model):
 
 class Mentor(models.Model):
     name = models.CharField(max_length=200)
+    job = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='mentors', blank=True, null=True)
     areas_of_expertise = models.ManyToManyField('contents.Major', related_name='mentors', blank=True)
-    availability = models.CharField(max_length=200, blank=True, null=True)
+    availability = models.TextField(blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
     class Meta:
         verbose_name = 'Mentor'
         verbose_name_plural = 'Mentors'
+    def __str__(self):
+        return self.name
+
+class TeamMember(models.Model):
+    ROLE_CHOICES = (
+        ('C', 'Core'),
+        ('I', 'Intern')
+    )
+    role = models.CharField(max_length=1, choices=ROLE_CHOICES)
+    name = models.CharField(max_length=200)
+    photo = models.ImageField(upload_to='team', blank=True, null=True)
+    position = models.CharField(max_length=200, blank=True, null=True)
+    quote = models.TextField(null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
+    class Meta:
+        verbose_name = 'Team Member'
+        verbose_name_plural = 'Team Members'
     def __str__(self):
         return self.name
 
@@ -56,7 +75,9 @@ class Contact(models.Model):
         ('P', 'Phone'),
         ('F', 'Facebook'),
         ('T', 'Twitter'),
-        ('I', 'Instagram')
+        ('I', 'Instagram'),
+        ('D', 'Latitude'),
+        ('G', 'Longitude')
     )
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     value = models.CharField(max_length=300)
@@ -64,7 +85,7 @@ class Contact(models.Model):
         verbose_name = 'Contact Info Item'
         verbose_name_plural = 'Contact Info'
     def __str__(self):
-        return self.name
+        return self.type
 
 class Announcement(models.Model):
     title = models.CharField(max_length=200)

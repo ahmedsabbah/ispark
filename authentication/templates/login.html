@@ -39,9 +39,9 @@
           <li><a href="/team">Team</a></li>
           <li><a href="/contact">Contact Us</a></li>
           {% if user.is_authenticated %}
-          <li><a href="/logout">Logout</a></li>
+          <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
           {% else %}
-          <li><a href="/login">Login</a></li>
+          <li class="active"><a href="/login">Login</a></li>
           {% endif %}
         </ul>
       </div>

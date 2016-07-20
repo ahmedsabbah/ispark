@@ -1,0 +1,361 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/jquery-ui.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery-ui.min.js" %}"></script>
+  <script src="{% static "js/jquery.validate.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<nav class="sticky display-inline-block navbar navbar-default">
+  <div class="container">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown active">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+            <ul class="dropdown-menu">
+              <li class="active"><a href="/majors">Major Exploration</a></li>
+              <li><a href="/internships">Job Shadowing & Internships</a></li>
+              <li><a href="/conferences">Conferences</a></li>
+            </ul>
+          </li>
+          <li><a href="/jobs&majors">Jobs & Majors</a></li>
+          <li><a href="/mentors">Mentors</a></li>
+          <li><a href="/team">Team</a></li>
+          <li><a href="/contact">Contact Us</a></li>
+          {% if user.is_authenticated %}
+          <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
+          {% else %}
+          <li><a href="/login">Login</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="clearfix"></div>
+
+<!-- Image header -->
+<div class="login-header-img login-header-img-sm">
+    <div><span class="major-title-span">MAJORS</span>EXPLORATION</div>
+</div>
+
+<!-- Body-->
+<!-- Text -->
+<div class="container">
+  <div class="row partners conf conf-text-div">
+    <div class="col-md-12">
+      <p class="conf-main-text">UPCOMING TOURS</p>
+      <p class="conf-sub-text">Check our next visit</p>
+    </div>
+
+    <!-- Accordion -->
+    <div class="col-md-12 conf-accordion-container">
+      <div id="accordion">
+        {% if tours %}
+          {% for tour in tours.all %}
+          <h3 class="accordion-color major-accordion-h3">{{tour.university.name}} Visit - <span class="date major-accordion-date">{{tour.start_date}}</span> {% if forloop.counter0 == 0 %} <span class="fa flip-arrow fa-chevron-up"></span> {% else %} <span class="fa flip-arrow fa-chevron-down"></span> {% endif %} </h3>
+          <div class="accordion-body">
+            <div class="col-md-12 accordion-main-block">
+              <div class="col-md-4 col-sm-12">
+                <div class="accordion-main-block-height accordion-block-min-wdith"><img class="accordion-body-img" src="{{tour.university.photo.url}}"></div>
+              </div>
+              <div class="col-md-4 col-sm-12">
+                <div class="accordion-body-border accordion-body-icon-border accordion-block-min-wdith">
+                  <div class="row major-body-icon-row">
+                    <div class="col-md-9 col-sm-9 col-xs-9 accordion-body-icon-text accordion-body-icon-text-blue">
+                      From: {{tour.start_date}}</br>To: {{tour.end_date}}
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                      <img src="{% static "images/conferences-calender.png" %}">
+                    </div>
+                  </div>
+                  <div class="row major-body-icon-row">
+                    <div class="col-md-9 col-sm-9 col-xs-9 accordion-body-icon-text accordion-body-icon-text-red">
+                      {{tour.university.name}}
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                      <img src="{% static "images/major-uni.png" %}">
+                    </div>
+                  </div>
+                  <div class="row major-body-icon-row">
+                    <div class="col-md-9 col-sm-9 col-xs-9 accordion-body-icon-text accordion-body-icon-text-blue">
+                      Transportation
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                      {% if tour.transportation %}
+                      <img src="{% static "images/major-tick.png" %}">
+                      {% else %}
+
+                      {% endif %}
+                    </div>
+                  </div>
+                  <div class="row major-body-icon-row">
+                    <div class="col-md-9 col-sm-9 col-xs-9 accordion-body-icon-text accordion-body-icon-text-red">
+                      {{tour.age_range}}
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                      <img src="{% static "images/major-age.png" %}">
+                    </div>
+                  </div>
+                  <div class="row major-body-icon-row">
+                    <div class="col-md-9 col-sm-9 col-xs-9 accordion-body-icon-text accordion-body-icon-text-blue">
+                      For more info call</br>
+                      36519 050 010 +2
+                    </div>
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                      <img src="{% static "images/conferences-phone.png" %}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 col-sm-12 accordion-table">
+                <div class="accordion-body-border accordion-body-icon-border-2 accordion-body-icon-text-blue accordion-body-icon-text accordion-table-cell accordion-block-min-wdith">
+                    <div class="interests major-interests">
+                      {% for major in tour.majors.all %}
+                      <span class="pull-left">{{major.name}}</span>
+                      {% endfor %}
+                      <!-- <span class="add-btn pull-left" onclick="addInterest(this)">+</span> -->
+                      <div class="clear"></div>
+                    </div>
+                </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 accordion-button-div">
+              <button id="1" class="accordion-button" data-toggle="modal" data-target="#myModal{{tour.id}}">Apply Now</button>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if tours %}
+  {% for tour in tours.all %}
+<!-- modal -->
+<div id="myModal{{tour.id}}" class="modal fade form-background modal1" role="dialog">
+  <div class="modal-dialog modal1">
+    <div>
+    <div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <img class="popup-form-close" src="{% static "images/form-close.png" %}" />
+      </button>
+    </div>
+    <div class="container">
+      <div class="row">
+
+        <!-- Logo -->
+        <div class="col-md-12 form-logo">
+          <img src="{% static "images/logo.png" %}" /></a>
+        </div>
+
+        <!-- Hidden field for ID -->
+        <div class="col-md-12 hidden">
+          <p id="event-id"></p>
+        </div>
+
+        <!-- Title -->
+        <div class="col-md-12 form-title">
+          <p class="major-title-2">CAREER DISCOVERY PROGRAM 2.0</p>
+          <p>YOU'RE ONE STEP AWAY FROM AN AWESOME EXPERIENCE !!</p>
+        </div>
+
+        <!-- Form -->
+        <div class="col-md-12">
+          <form id="major-exploration-form{{tour.id}}" method="post" class="popup-form partners" action="/tour/{{tour.id}}/apply">
+            <div class="col-md-4">
+              <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="email-pop" name="email" class="form-control" placeholder="Email" />
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="popup-form-input-div">
+                <div class="col-md-4">
+                    <input type="text" id="school" name="school" class="form-control" placeholder="School Name" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="grade" name="grade" class="form-control" placeholder="Grade Level" />
+                </div>
+                <div class="col-md-4">
+                    <input type="text" id="wave" name="wave" class="form-control" placeholder="Wave" />
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="popup-form-input-div major-dropdown">
+                <div class="col-md-4 select-container popup-form-select">
+                  <select name="select1">
+                    {% for major in tour.majors.all %}
+                    <option value="{{major.id}}">{{major.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-4 select-container popup-form-select">
+                  <select name="select2">
+                    {% for major in tour.majors.all %}
+                    <option value="{{major.id}}">{{major.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+                <div class="col-md-4 select-container popup-form-select">
+                  <select name="select3">
+                    {% for major in tour.majors.all %}
+                    <option value="{{major.id}}">{{major.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-12 popup-form-input-div">
+                <p class="popup-checkbox-text popup-form-text-1">Have you ever joined any of iSpark events?</p>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2">Yes</p>
+                  <input type="radio" value="None" id="check3" name="check3" checked />
+                  <label for="check3"></label>
+                </label>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">No</p>
+                  <input type="radio" value="None" id="check4" name="check3" />
+                  <label for="check4"></label>
+                </label>
+            </div>
+            <div class="col-md-12">
+                <input type="text" id="state" name="state" class="form-control" placeholder="if yes, state it" />
+            </div>
+             <div class="col-md-12 popup-form-input-div">
+                <p class="popup-checkbox-text">*Please note that not all applicants will be able to come</p>
+            </div>
+            <div class="col-md-12 popup-form-dropdown-div">
+                <p class="popup-checkbox-text">How did you know about us?</p>
+                <div class="popup-form-select select-container">
+                  <select name="select4">
+                    <option value="FB">Facebook</option>
+                    <option value="FR">Friend</option>
+                    <option value="YS">Your School</option>
+                    <option value="OW">Our Website</option>
+                    <option value="PE">Previous Event</option>
+                  </select>
+                </div>
+            </div>
+            <div class="col-md-12 popup-form-dropdown-div">
+                <input type="submit" value="Send" class="popup-form-submit">
+            </div>
+            <div class="clearfix"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+  {% endfor %}
+{% endif %}
+{% endblock %}
+
+{% block extra_script_end %}
+<script>
+$(document).ready(function(){
+  $(".select-container select").bselect({ searchInput : false });
+  $('#accordion').accordion({
+    collapsible:true,
+
+    beforeActivate: function(event, ui) {
+        if (ui.newHeader[0]) {
+            var currHeader  = ui.newHeader;
+            var currContent = currHeader.next('.ui-accordion-content');
+        } else {
+            var currHeader  = ui.oldHeader;
+            var currContent = currHeader.next('.ui-accordion-content');
+        }
+        var isPanelSelected = currHeader.attr('aria-selected') == 'true';
+        currHeader.toggleClass('ui-corner-all',isPanelSelected).toggleClass('accordion-header-active ui-state-active ui-corner-top',!isPanelSelected).attr('aria-selected',((!isPanelSelected).toString()));
+        currHeader.children('.ui-icon').toggleClass('ui-icon-triangle-1-e',isPanelSelected).toggleClass('ui-icon-triangle-1-s',!isPanelSelected);
+        currContent.toggleClass('accordion-content-active',!isPanelSelected)
+        if (isPanelSelected) { currContent.slideUp(); }  else { currContent.slideDown(); }
+        return false;
+    }
+});
+});
+$("#accordion h3").click(function () {
+
+    if ($(this).find(".flip-arrow").hasClass("fa-chevron-up"))
+    {
+      $(this).find(".flip-arrow").addClass("fa-chevron-down")
+      $(this).find(".flip-arrow").removeClass("fa-chevron-up")
+    }
+    else if ($(this).find(".flip-arrow").hasClass("fa-chevron-down"))
+    {
+      $(this).find(".flip-arrow").removeClass("fa-chevron-down")
+      $(this).find(".flip-arrow").addClass("fa-chevron-up")
+    }
+
+});
+$("button.accordion-button").click(function () {
+    var event_id = $(this).attr("id");
+    $("#event-id").text(event_id);
+});
+$('.modal').on('hidden.bs.modal', function(){
+    $(this).find('form')[0].reset();
+})
+// function addInterest(str) {
+//   var str_parent = ($(str).parent());
+//   $(str_parent).children(".add-btn").remove();
+//   $(str_parent).children("div:last-child").remove();
+//   $(str_parent).append('<span class="pull-left">Animal Care</span><span class="pull-left">Caretaker</span><span class="pull-left">Visiting Vets</span><span class="pull-left">Zoo Keepers</span><span class="pull-left">Playing with Animals</span><span class="pull-left add-btn" onclick="addInterest(this)">+</span><div class="clear"></div>');
+// }
+
+$.validator.addMethod("valueNotEquals", function(value, element, arg){
+  return arg != value;
+ }, "This field is required.");
+
+{% for tour in tours.all %}
+$("#major-exploration-form{{tour.id}}").validate({
+  rules: {
+    name: "required",
+    email: { required: true, email: true },
+    phone: "required",
+    school: "required",
+    grade: "required",
+    wave: "required",
+    select1: { valueNotEquals: "1" },
+    select2: { valueNotEquals: "1" },
+    select3: { valueNotEquals: "1" },
+    select4: { valueNotEquals: "1" }
+  },
+  errorPlacement: function(error, element) {
+    if(element.attr("name") == "select1" || element.attr("name") == "select2" || element.attr("name") == "select3" || element.attr("name") == "select4") {
+      error.insertAfter(element.parent().children(".bselect"));
+    } else {
+      error.insertAfter(element);
+    }
+  }
+});
+{% endfor %}
+</script>
+{% endblock %}

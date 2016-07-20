@@ -50,9 +50,9 @@
                 <li><a href="/jobs&majors">Jobs & Majors</a></li>
                 <li><a href="/mentors">Mentors</a></li>
                 <li><a href="/team">Team</a></li>
-                <li><a href="/contact">Contact Us</a></li>
+                <li class="active"><a href="/contact">Contact Us</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="/logout">Logout</a></li>
+                <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 {% endif %}
@@ -83,19 +83,40 @@
       <div class="contact-item">
         <img src="{% static "images/office.png" %}"/>
         <div>
-          <p class="footer-main-block-p-1">Villa 56, Street 21</br>Settlement 5</br>Cairo, Egypt</p>
+          <p class="footer-main-block-p-1">
+            {% for address in addresses %}
+              {{address.value}}
+              {% if forloop.counter != addresses|length %}
+                </br>
+              {% endif %}
+            {% endfor %}
+          </p>
         </div>
       </div>
       <div class="contact-item">
         <img src="{% static "images/email2.png" %}"/>
         <div>
-          <p class="footer-main-block-p-2">info@ispark.com</br>sales@ispark.com</p>
+          <p class="footer-main-block-p-2">
+            {% for email in emails %}
+              {{email.value}}
+              {% if forloop.counter != emails|length %}
+                </br>
+              {% endif %}
+            {% endfor %}
+          </p>
         </div>
       </div>
       <div class="contact-item">
         <img src="{% static "images/phone2.png" %}"/>
         <div>
-          <p class="footer-main-block-p-2">+2 012 345 67890</br>+2 23745662</p>
+          <p class="footer-main-block-p-2">
+            {% for phone in phones %}
+              {{phone.value}}
+              {% if forloop.counter != phones|length %}
+                </br>
+              {% endif %}
+            {% endfor %}
+          </p>
         </div>
       </div>
     </div>
@@ -109,7 +130,7 @@
     <div class="sub-title col-xs-12">
       <a href="#">Drop us an email</a>
     </div>
-    <form id="contact-form" class="col-xs-12 col-md-8 col-md-offset-2">
+    <form id="contact-form" class="col-xs-12 col-md-8 col-md-offset-2" method="post" action="/contact/">
       <div class="form-group col-xs-12 col-md-4">
         <input class="full-width" name="Name" placeholder="Name" />
       </div>
@@ -187,12 +208,12 @@
       maptype: 'ROADMAP',
       markers: [
           {
-              latitude: 30.0444,
-              longitude: 31.2357,
+              latitude: {{latitude.value}},
+              longitude: {{longitude.value}},
           }
       ],
-      latitude: 30.0444,
-      longitude: 31.2357,
+      latitude: {{latitude.value}},
+      longitude: {{longitude.value}},
       zoom: 15
     }
     $('#map').gMap(options);

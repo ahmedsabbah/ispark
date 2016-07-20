@@ -43,12 +43,12 @@
                     <li><a href="/conferences">Conferences</a></li>
                   </ul>
                 </li>
-                <li><a href="/jobs&majors">Jobs & Majors</a></li>
+                <li class="active"><a href="/jobs&majors">Jobs & Majors</a></li>
                 <li><a href="/mentors">Mentors</a></li>
                 <li><a href="/team">Team</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 {% if user.is_authenticated %}
-                <li><a href="/logout">Logout</a></li>
+                <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 {% endif %}

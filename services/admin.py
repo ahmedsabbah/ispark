@@ -39,7 +39,7 @@ admin.site.register(Opportunity, OpportunityAdmin)
 
 class VacancyAdmin(admin.ModelAdmin):
     model = Vacancy
-    list_display = ('role', 'type')
-    search_fields = ('role',)
-    list_filter = ('type',)
+    list_display = ('position', 'role')
+    search_fields = ('position',)
+    list_filter = ('role',)
 admin.site.register(Vacancy, VacancyAdmin)

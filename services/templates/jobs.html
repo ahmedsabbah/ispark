@@ -1,0 +1,251 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery-ui.min.js" %}"></script>
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+  <script src="{% static "js/jquery.jrumble.1.3.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <!--Headers -->
+      <div class="row">
+        <!-- Sticky Header -->
+        <nav class="sticky navbar navbar-default">
+          <div class="container">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/majors">Major Exploration</a></li>
+                      <li><a href="/internships">Job Shadowing & Internships</a></li>
+                      <li><a href="/conferences">Conferences</a></li>
+                    </ul>
+                  </li>
+                  <li class="active"><a href="/jobs&majors">Jobs & Majors</a></li>
+                  <li><a href="/mentors">Mentors</a></li>
+                  <li><a href="/team">Team</a></li>
+                  <li><a href="/contact">Contact Us</a></li>
+                  {% if user.is_authenticated %}
+                  <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
+                  {% else %}
+                  <li><a href="/login">Login</a></li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="jobs-outer-banner">
+        <div class="title"><span>Jobs</span></div>
+    </div>
+
+  <div class="main-content">
+    <div class="container jobs-outer">
+      <div class="row profile-row">
+        <div class="col-xs-12 title">
+          Choose your preferred career <span>category</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6 col-md-8 jobs-list">
+          <div class="job-item">
+            <div>Art</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Art</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Art</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+          <div class="job-item">
+            <div>Animals, Farming & Environment</div>
+            <div><img src="{% static "images/art.png" %}" /></div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-md-4 job-details sticky-sidebar">
+          <div>
+            <div>Choose your preferred <span>JOB</span>:</div>
+            <div>Animals, Farming & Environment</div>
+            <div>
+              <div class="job-types">
+                <div><span onclick="chooseJob(1);">Vet</span></div>
+                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
+                <div><span onclick="chooseJob(1);">Ecologist</span></div>
+                <div><span onclick="chooseJob(1);">Vet</span></div>
+                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
+                <div><span onclick="chooseJob(1);">Ecologist</span></div>
+                <div><span onclick="chooseJob(1);">Vet</span></div>
+                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
+                <div><span onclick="chooseJob(1);">Ecologist</span></div>
+                <div><span onclick="chooseJob(1);">Vet</span></div>
+                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
+                <div><span onclick="chooseJob(1);">Ecologist</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extra_script_end %}
+<script>
+    // Jobs inner navigation //
+    function chooseJob(id) {
+      window.location.href = "/job/"+id+"/";
+    }
+
+    function calcSidebarHeight() {
+      $('.sticky-sidebar').css("height", $(window).height() - headerHeight - 30);
+      $('.sticky-sidebar .job-types').css("height", $('.sticky-sidebar').height() - $('.sticky-sidebar > div > div:nth-child(1)').outerHeight() - $('.sticky-sidebar > div > div:nth-child(2)').outerHeight() - 40);
+    }
+
+    // Sidebar item animation //
+    function wiggle(elem) {
+      $(elem)
+        .animate({'left':(-10)+'px'},200)
+        .animate({'left':(+20)+'px'},200)
+        .animate({'left':(-10)+'px'},200);
+    };
+
+    // Job item click event //
+    $(".job-item").click(function() {
+      $(".job-item").removeClass("active");
+      $(this).addClass("active");
+      $(".job-types").html("");
+      $(".job-types").html('<div><span onclick="chooseJob(1);">Vet</span></div>');
+    });
+
+    var headerHeight = $(".sticky").height(),
+      footerHeight = $("footer").height();
+
+    calcSidebarHeight();
+
+    var stickySidebar = $('.sticky-sidebar');
+    if (stickySidebar.length > 0) {
+      var stickyHeight = stickySidebar.height(),
+          sidebarTop = stickySidebar.offset().top;
+    }
+
+    // on scroll move the sidebar
+    $(window).scroll(function () {
+      if (stickySidebar.length > 0) {
+        var scrollTop = $(window).scrollTop();
+
+        if (sidebarTop < scrollTop+headerHeight) {
+          stickySidebar.css('top', scrollTop - sidebarTop + headerHeight);
+
+          // stop the sticky sidebar at the footer to avoid overlapping
+          var sidebarBottom = stickySidebar.offset().top + stickyHeight,
+              stickyStop = $('.main-content').offset().top + $('.main-content').height();
+          if (stickyStop < sidebarBottom) {
+            var stopPosition = $('.main-content').height() - stickyHeight - headerHeight - 30;
+            stickySidebar.css('top', stopPosition);
+          }
+        }
+        else {
+          stickySidebar.css('top', '0');
+        }
+      }
+    });
+
+    $(window).resize(function () {
+      if (stickySidebar.length > 0) {
+        stickyHeight = stickySidebar.height();
+        headerHeight = $(".sticky").height();
+        footerHeight = $("footer").height();
+        sidebarTop = stickySidebar.offset().top;
+        calcSidebarHeight();
+      }
+    });
+
+    $(document).ready(function(){
+      // Wiggle effect when hovering on a sidebar item //
+      $('.sticky-sidebar .job-types > div > span').jrumble({
+        x: 2,
+        y: 2,
+        rotation: 1
+      });
+      $(".sticky-sidebar .job-types > div > span").hover(function(){
+        $(this).trigger('startRumble');
+        }, function(){
+          $(this).trigger('stopRumble');
+        });
+    })
+    </script>
+{% endblock %}

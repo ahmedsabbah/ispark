@@ -690,7 +690,7 @@ a:hover {
     padding: 0 35px;
     line-height: 20px;
 }
-.jobs .job-item, .jobs .major-item {    
+.jobs .job-item, .jobs .major-item {
     text-align: center;
 }
 .jobs .job-item hr {
@@ -729,15 +729,15 @@ a:hover {
    font-size: 18px;
 }
 .message input:-moz-placeholder, .message textarea:-moz-placeholder { /* Firefox 18- */
-   color: #feb041;  
+   color: #feb041;
    font-size: 18px;
 }
 .message input::-moz-placeholder, .message textarea::-moz-placeholder {  /* Firefox 19+ */
-   color: #feb041;  
+   color: #feb041;
    font-size: 18px;
 }
-.message input:-ms-input-placeholder, .message textarea:-ms-input-placeholder {  
-   color: #feb041;  
+.message input:-ms-input-placeholder, .message textarea:-ms-input-placeholder {
+   color: #feb041;
    font-size: 18px;
 }
 .message form input {
@@ -755,7 +755,7 @@ a:hover {
     box-shadow: none;
     color: #feb041;
     height: 200px;
-    padding: 10px;   
+    padding: 10px;
     background-color: transparent;
 }
 .message .submit-btn {
@@ -806,13 +806,13 @@ a:hover {
 .login-form input::-webkit-input-placeholder {
   color: #c0b48b;
 }
-.login-form input:-moz-placeholder { 
+.login-form input:-moz-placeholder {
   color: #c0b48b;
 }
-.login-form input::-moz-placeholder { 
+.login-form input::-moz-placeholder {
   color: #c0b48b;
 }
-.login-form input:-ms-input-placeholder { 
+.login-form input:-ms-input-placeholder {
   color: #c0b48b;
 }
 .login-form-input-border {
@@ -1109,7 +1109,7 @@ input#password {
     font-size: 36px;
     font-weight: bold;
     color: #821638;
-    text-align: center;  
+    text-align: center;
 }
 .achievements > div:first-child .achieve-title {
     margin-bottom: 40px;
@@ -1516,7 +1516,7 @@ input#password {
     background: none;
     height: 20px;
     color: #102b4c;
-    text-shadow: none; 
+    text-shadow: none;
     width: auto;
     position: relative;
     opacity: 1;
@@ -1671,15 +1671,15 @@ input#password {
 }
 .popup-form input:-moz-placeholder { /* Firefox 18- */
     color: #821638;
-    font-weight: bold;  
+    font-weight: bold;
 }
 .popup-form input::-moz-placeholder {  /* Firefox 19+ */
-    color: #821638; 
-    font-weight: bold; 
-}
-.popup-form input:-ms-input-placeholder {  
     color: #821638;
-    font-weight: bold;  
+    font-weight: bold;
+}
+.popup-form input:-ms-input-placeholder {
+    color: #821638;
+    font-weight: bold;
 }
 .popup-form input:focus::-webkit-input-placeholder {
     color: #102b4c;
@@ -1687,15 +1687,15 @@ input#password {
 }
 .popup-form input:focus:-moz-placeholder { /* Firefox 18- */
     color: #102b4c;
-    font-weight: bold;  
+    font-weight: bold;
 }
 .popup-form input:focus::-moz-placeholder {  /* Firefox 19+ */
     color: #102b4c;
-    font-weight: bold;  
+    font-weight: bold;
 }
-.popup-form input:focus:-ms-input-placeholder {  
+.popup-form input:focus:-ms-input-placeholder {
     color: #102b4c;
-    font-weight: bold;  
+    font-weight: bold;
 }
 .popup-checkbox-text {
     color: #821638;
@@ -1829,11 +1829,11 @@ label:hover:before {
     border-radius: 10px !important;
     float: right;
 }
-#myModal .modal-dialog {
+.modal-dialog.modal1 {
     width: 100%;
     margin: 0px;
 }
-#myModal.modal {
+.modal.modal1 {
     z-index: 100000;
     padding: 0px !important;
 }
@@ -1916,7 +1916,7 @@ label:hover:before {
     padding: 15px 0;
 }
 .jobs-outer .job-details .job-types {
-    padding: 10px 0;    
+    padding: 10px 0;
     /*max-height: 400px;*/
     overflow-y: scroll;
     overflow-x: visible;
@@ -1938,7 +1938,7 @@ label:hover:before {
 }
 .sticky-sidebar {
   position: relative;
-  top: 0; 
+  top: 0;
 }
 .jobs-inner .icon {
     text-align: center;
@@ -2109,10 +2109,10 @@ label:hover:before {
 #major-exploration-form input.form-control, #conferences-form input.form-control {
     color: #821638;
 }
-#imageModal {
+.modal2 {
     z-index: 100000;
 }
-#imageModal .magnified-image {
+.modal2 .magnified-image {
     width: 100%;
 }
 #allEventsModal {
@@ -2365,5 +2365,3 @@ label:hover:before {
     margin-top: 35px;
 }
 }
-
-

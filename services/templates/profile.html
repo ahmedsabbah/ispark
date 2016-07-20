@@ -1,0 +1,540 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bi-style.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-progressbar-3.3.4.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/fullcalendar.min.css" %}">
+  <link href='https://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery-barIndicator.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+  <script src="{% static "js/jquery.easing.1.3.js" %}"></script>
+  <script src="{% static "js/bootstrap-progressbar.min.js" %}"></script>
+  <script src="{% static "js/moment.min.js" %}"></script>
+  <script src="{% static "js/fullcalendar.min.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!--Headers -->
+  <div class="row">
+    <!-- Sticky Header -->
+    <nav class="sticky navbar navbar-default">
+      <div class="container">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                <ul class="dropdown-menu">
+                  <li><a href="/majors">Major Exploration</a></li>
+                  <li><a href="/internships">Job Shadowing & Internships</a></li>
+                  <li><a href="/conferences">Conferences</a></li>
+                </ul>
+              </li>
+              <li><a href="/jobs&majors">Jobs & Majors</a></li>
+              <li><a href="/mentors">Mentors</a></li>
+              <li><a href="/team">Team</a></li>
+              <li><a href="/contact">Contact Us</a></li>
+              {% if user.is_authenticated %}
+              <li class="logged-in active"><a href="/profile">Welcome, Abdel Rahman</a></li>
+              {% else %}
+              <li><a href="/login">Login</a></li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<!-- Top banner image -->
+<div class="jobs-banner">
+    <div class="profile-title title">Mostafa Hashisha
+      <div class="sub-title">Cairo, Egypt</div>
+    </div>
+</div>
+
+<!-- Personal information -->
+<div class="container jobs">
+    <div class="row profile-row">
+      <div class="title col-xs-12">
+        Personal Information
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-offset-4 col-xs-4 col-md-offset-0 col-md-3 profile-image">
+        <img src="{% static "images/hashisha.png" %}" />
+      </div>
+      <div class="col-xs-12 col-md-9 col-lg-8 col-lg-offset-1 profile-info">
+        <div class="col-xs-7">
+          <img src="{% static "images/env.png" %}" />
+          <span>mostafa.hashisha@gmail.com</span>
+        </div>
+        <div class="col-xs-5">
+          <img src="{% static "images/calendar.png" %}" />
+          <span>1989 / 05 / 19</span>
+        </div>
+        <div class="col-xs-7">
+          <img src="{% static "images/blackboard.png" %}" />
+          <span>Modern Education Schools</span>
+        </div>
+        <div class="col-xs-5">
+          <img src="{% static "images/phone.png" %}" />
+          <span>+2 012 3456789 </span>
+        </div>
+        <div class="col-xs-6 upload">
+          <button>Upload CV</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- Achievements -->
+<div class="grey-bg">
+  <div class="container">
+    <div class="row profile-row">
+      <div class="title col-xs-12">
+        Achievements with <span class="lowercase">i</span>Spark
+      </div>
+    </div>
+    <div class="row achievements">
+      <div class="col-xs-12 col-md-6">
+        <div class="achieve-title">
+          Overall Progress
+        </div>
+        <div class="prog-bar">
+          <div class="col-xs-11">
+            <div>Coaching</div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" data-transitiongoal="50"></div>
+            </div>
+          </div>
+          <div class="col-xs-1 percentage">
+            50%
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="prog-bar">
+          <div class="col-xs-11">
+            <div>Training</div>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" data-transitiongoal="75"></div>
+            </div>
+          </div>
+          <div class="col-xs-1 percentage">
+            75%
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-6">
+        <div class="achieve-title">
+          Badges Acquired
+        </div>
+        <div class="col-xs-12">
+          <div class="col-xs-4 badge-item">
+            <img class="pull-left" src="{% static "images/tour.png" %}" />
+            <div>University Tour</div>
+          </div>
+          <div class="col-xs-4 badge-item">
+            <img class="pull-left" src="{% static "images/internship.png" %}" />
+            <div>Internship</div>
+          </div>
+          <div class="col-xs-4 badge-item">
+            <img class="pull-left" src="{% static "images/presentation.png" %}" />
+            <div>Conference</div>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <div class="flexslider col-xs-12">
+            <ul class="slides">
+              <li>
+                <img src="{% static "images/tour.png" %}" />
+                <div>GUC</div>
+              </li>
+              <li>
+                <img src="{% static "images/tour.png" %}" />
+                <div>PepsiCo</div>
+              </li>
+              <li>
+                <img src="{% static "images/tour.png" %}" />
+                <div>City Stars</div>
+              </li>
+              <li>
+                <img src="{% static "images/tour.png" %}" />
+                <div>GUC</div>
+              </li>
+              <li>
+                <img src="{% static "images/tour.png" %}" />
+                <div>PepsiCo</div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Services -->
+<div class="dark-bg">
+  <div class="container">
+    <div class="row profile-row">
+      <div class="title col-xs-12">
+        <span class="lowercase">i</span>Spark Services
+      </div>
+    </div>
+    <div class="row services">
+      <div class="col-xs-12 col-md-4">
+        <div class="service-item">
+          <div class="col-xs-3">
+            <img src="{% static "images/uni.png" %}" />
+          </div>
+          <div class="col-xs-9">
+            <div>Find out which major is the one for you</div>
+            <div><a href="#">View More  ></a></div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="service-item">
+          <div class="col-xs-3">
+            <img src="{% static "images/work.png" %}" />
+          </div>
+          <div class="col-xs-9">
+            <div>Browse available job openings now</div>
+            <div><a href="#">View More  ></a></div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <div class="service-item">
+          <div class="col-xs-3">
+            <img src="{% static "images/cal.png" %}" />
+          </div>
+          <div class="col-xs-9">
+            <div>Join us during our upcoming events</div>
+            <div><a href="#">View More  ></a></div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>"
+  </div>
+</div>
+
+<!-- Events calendar -->
+<div class="container">
+  <div class="row profile-row">
+    <div class="title col-xs-12">
+      Events Calendar
+    </div>
+  </div>
+  <div class="row profile-row">
+    <div class="col-xs-12 col-md-7">
+      <div id="calendar"></div>
+    </div>
+    <div class="col-xs-12 col-md-5 events">
+      <div id="eventsCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+          <div class="item active" id="1">
+            <div class="row">
+              <div class="col-xs-12">
+                <img src="{% static "images/guc.jpg" %}" />
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Type:
+              </div>
+              <div class="col-xs-6">
+                Event 1
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Name:
+              </div>
+              <div class="col-xs-6">
+                GUC Visit
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Date:
+              </div>
+              <div class="col-xs-6">
+                2016 / 05 / 19
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Time:
+              </div>
+              <div class="col-xs-6">
+                AM 10:00
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Location:
+              </div>
+              <div class="col-xs-6">
+                5th Settlement
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Details:
+              </div>
+              <div class="col-xs-6">
+                We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+              </div>
+            </div>
+          </div>
+          <div class="item" id="2">
+            <div class="row">
+              <div class="col-xs-12">
+                <img src="{% static "images/guc.jpg" %}" />
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Type:
+              </div>
+              <div class="col-xs-6">
+                Event 2
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Name:
+              </div>
+              <div class="col-xs-6">
+                GUC Visit
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Date:
+              </div>
+              <div class="col-xs-6">
+                2016 / 05 / 19
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Time:
+              </div>
+              <div class="col-xs-6">
+                AM 10:00
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Location:
+              </div>
+              <div class="col-xs-6">
+                5th Settlement
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Details:
+              </div>
+              <div class="col-xs-6">
+                We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+              </div>
+            </div>
+          </div>
+          <div class="item" id="3">
+            <div class="row">
+              <div class="col-xs-12">
+                <img src="{% static "images/guc.jpg" %}" />
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Type:
+              </div>
+              <div class="col-xs-6">
+                Event 3
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Name:
+              </div>
+              <div class="col-xs-6">
+                GUC Visit
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Date:
+              </div>
+              <div class="col-xs-6">
+                2016 / 05 / 19
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Time:
+              </div>
+              <div class="col-xs-6">
+                AM 10:00
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Location:
+              </div>
+              <div class="col-xs-6">
+                5th Settlement
+              </div>
+            </div>
+            <div class="row event-row">
+              <div class="col-xs-6">
+                Event Details:
+              </div>
+              <div class="col-xs-6">
+                We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Left and right controls -->
+        <div class="events-controls">
+          <a class="left carousel-control pull-left" href="#eventsCarousel" role="button" data-slide="prev">
+            <!--<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
+            <span>< Previous Event</span>
+          </a>
+          <a class="right carousel-control pull-right" href="#eventsCarousel" role="button" data-slide="next">
+            <!--<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
+            <span>Next Event ></span>
+          </a>
+          <div class="clear"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Announcements -->
+<div class="grey-bg">
+  <div class="container announcements">
+    <div class="row profile-row">
+      <div class="title col-xs-12">
+        Announcements
+      </div>
+    </div>
+    <div class="row profile-row announcement-item">
+      <div class="col-xs-12">
+        Happy New Year!
+      </div>
+      <div class="col-xs-12">
+        iSpark staff and crew would like to wish you a very happy new year 2016! Looking forwatd to a fruitful year for all of us. Kindly visit our events calendar to check the main events for the upcoming year
+      </div>
+      <div class="col-xs-6">
+        AM 12:00, 01 / 01 / 2016
+      </div>
+      <div class="col-xs-6">
+        - WEBSITE ADMINISTRATOR
+      </div>
+    </div>
+    <hr>
+    <div class="col-xs-12 profile-row">
+      <button>View More</button>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_script_end %}
+<script>
+    function eventClickCallback(calEvent, jsEvent, view) {
+      var event_id = calEvent.id;
+      var events = $("#calendar").fullCalendar('clientEvents')
+      $(events).each(function(i) {
+        events[i].backgroundColor = '#3a87ad';
+      });
+      calEvent.backgroundColor = '#821638';
+      var slide_id = $("#eventsCarousel .item").index($("#" + event_id));
+      $("#eventsCarousel").carousel(slide_id);
+      $('#calendar').fullCalendar('rerenderEvents');
+    }
+
+    $(document).ready(function(){
+      var animated = false;
+      $(window).scroll(function() {
+        //---------- Progress bars animation ---------->=
+        if($('.achievements').visible() && animated == false){
+          animated = true;
+          $('.progress .progress-bar').progressbar();
+        }
+      });
+
+      //---------- Badges slider ----------//
+      $('.flexslider').flexslider({
+        animation: "slide",
+        animationLoop: false,
+        itemWidth: 170,
+        itemMargin: 5,
+        prevText: "",
+        nextText: "",
+        start: function(slider){
+            $('.flexslider').resize();
+        }
+      });
+
+      //---------- Calendar ----------//
+      $('#calendar').fullCalendar({
+        //--- Event click function ---//
+        eventClick: function (calEvent, jsEvent, view) {
+          eventClickCallback(calEvent, jsEvent, view);
+        }
+      });
+
+      //--- Change active event in calendar when slider changes the active slide ---//
+      $('#eventsCarousel').bind('slid.bs.carousel', function (e) {
+        var curr_event = $("#calendar").fullCalendar('clientEvents', $(".item.active").attr("id"));
+        eventClickCallback(curr_event[0], "", "");
+      });
+
+      //--- Adding an event ---//
+      var event1 = { id:"1", title: 'Event 1', start: '2016-07-11' };
+      var event2 = { id:"2", title: 'Event 2', start: '2016-07-30' };
+      var event3 = { id:"3", title: 'Event 3', start: '2016-08-30' };
+      $('#calendar').fullCalendar( 'renderEvent', event1, true );
+      $('#calendar').fullCalendar( 'renderEvent', event2, true );
+      $('#calendar').fullCalendar( 'renderEvent', event3, true );
+
+      //---------- Set initial active event ----------//
+      var curr_event = $("#calendar").fullCalendar('clientEvents', $(".item.active").attr("id"));
+      eventClickCallback(curr_event[0], "", "");
+    });
+    </script>
+{% endblock %}

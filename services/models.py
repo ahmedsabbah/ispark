@@ -8,7 +8,6 @@ class Tour(models.Model):
     end_date = models.DateField(blank=True, null=True)
     transportation = models.NullBooleanField(blank=True, null=True)
     age_range = models.CharField(max_length=200, blank=True, null=True)
-    category = models.CharField(max_length=200, blank=True, null=True)
     majors = models.ManyToManyField('contents.Major', related_name='tours', blank=True)
     class Meta:
         verbose_name = 'Tour'
@@ -33,14 +32,13 @@ class Conference(models.Model):
 class Vacancy(models.Model):
     TYPE_CHOICES = (
         ('I', 'Internship'),
-        ('P', 'Part Time'),
-        ('F', 'Full Time')
+        ('J', 'Job')
     )
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES)
-    role = models.CharField(max_length=200)
+    role = models.CharField(max_length=1, choices=TYPE_CHOICES)
+    position = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='vacancies', blank=True, null=True)
-    internship_type = models.CharField(max_length=200, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
+    contact_email = models.EmailField(blank=True, null=True)
     working_days = models.CharField(max_length=200, blank=True, null=True)
     working_hours = models.CharField(max_length=200, blank=True, null=True)
     duration = models.CharField(max_length=200, blank=True, null=True)
@@ -49,7 +47,7 @@ class Vacancy(models.Model):
         verbose_name = 'Vacancy'
         verbose_name_plural = 'Vacancies'
     def __str__(self):
-        return '%s (%s)' % (self.role, self.type)
+        return '%s (%s)' % (self.position, self.role)
 
 class VacancyRequirement(models.Model):
     text = models.TextField()
