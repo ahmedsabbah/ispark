@@ -56,7 +56,7 @@
                 <li><a href="/team">Team</a></li>
                 <li><a href="/contact">Contact Us</a></li>
                 {% if user.is_authenticated %}
-                <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
+                <li class="logged-in"><a href="/profile">Welcome, {{ user.first_name }} {{ user.last_name }}</a></li>
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 {% endif %}
@@ -84,9 +84,9 @@
         </div>
         <div class="col-xs-12 select-container">
           <select>
-            <option value="1">Administration and Business Management</option>
-            <option value="2">Another Option</option>
-            <option value="3">Third Option</option>
+            {% for category in categories %}
+            <option value="{{category.id}}">{{category.name}}</option>
+            {% endfor %}
           </select>
         </div>
         <div class="sliders">

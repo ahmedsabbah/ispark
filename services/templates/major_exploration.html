@@ -43,7 +43,7 @@
           <li><a href="/team">Team</a></li>
           <li><a href="/contact">Contact Us</a></li>
           {% if user.is_authenticated %}
-          <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
+          <li class="logged-in"><a href="/profile">Welcome, {{ user.first_name }} {{ user.last_name }}</a></li>
           {% else %}
           <li><a href="/login">Login</a></li>
           {% endif %}
@@ -120,7 +120,7 @@
                   <div class="row major-body-icon-row">
                     <div class="col-md-9 col-sm-9 col-xs-9 accordion-body-icon-text accordion-body-icon-text-blue">
                       For more info call</br>
-                      36519 050 010 +2
+                      {{tour.contact_number}}
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-3">
                       <img src="{% static "images/conferences-phone.png" %}">
@@ -187,6 +187,7 @@
         <!-- Form -->
         <div class="col-md-12">
           <form id="major-exploration-form{{tour.id}}" method="post" class="popup-form partners" action="/tour/{{tour.id}}/apply">
+            {% csrf_token %}
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
             </div>
@@ -211,21 +212,21 @@
             <div class="clearfix"></div>
             <div class="popup-form-input-div major-dropdown">
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="select1">
+                  <select name="major1">
                     {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="select2">
+                  <select name="major2">
                     {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="select3">
+                  <select name="major3">
                     {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %}
@@ -236,17 +237,17 @@
                 <p class="popup-checkbox-text popup-form-text-1">Have you ever joined any of iSpark events?</p>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2">Yes</p>
-                  <input type="radio" value="None" id="check3" name="check3" checked />
+                  <input type="radio" value="1" id="check3" name="check3" checked />
                   <label for="check3"></label>
                 </label>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">No</p>
-                  <input type="radio" value="None" id="check4" name="check3" />
+                  <input type="radio" value="0" id="check4" name="check3" />
                   <label for="check4"></label>
                 </label>
             </div>
             <div class="col-md-12">
-                <input type="text" id="state" name="state" class="form-control" placeholder="if yes, state it" />
+                <input type="text" id="state" name="event" class="form-control" placeholder="if yes, state it" />
             </div>
              <div class="col-md-12 popup-form-input-div">
                 <p class="popup-checkbox-text">*Please note that not all applicants will be able to come</p>
@@ -254,7 +255,7 @@
             <div class="col-md-12 popup-form-dropdown-div">
                 <p class="popup-checkbox-text">How did you know about us?</p>
                 <div class="popup-form-select select-container">
-                  <select name="select4">
+                  <select name="about_us">
                     <option value="FB">Facebook</option>
                     <option value="FR">Friend</option>
                     <option value="YS">Your School</option>
@@ -343,13 +344,13 @@ $("#major-exploration-form{{tour.id}}").validate({
     school: "required",
     grade: "required",
     wave: "required",
-    select1: { valueNotEquals: "1" },
-    select2: { valueNotEquals: "1" },
-    select3: { valueNotEquals: "1" },
-    select4: { valueNotEquals: "1" }
+    major1: { valueNotEquals: "1" },
+    major2: { valueNotEquals: "1" },
+    major3: { valueNotEquals: "1" },
+    about_us: { valueNotEquals: "1" }
   },
   errorPlacement: function(error, element) {
-    if(element.attr("name") == "select1" || element.attr("name") == "select2" || element.attr("name") == "select3" || element.attr("name") == "select4") {
+    if(element.attr("name") == "major1" || element.attr("name") == "major2" || element.attr("name") == "major3" || element.attr("name") == "about_us") {
       error.insertAfter(element.parent().children(".bselect"));
     } else {
       error.insertAfter(element);

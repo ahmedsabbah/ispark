@@ -35,8 +35,8 @@ admin.site.register(University, UniversityAdmin)
 
 class MentorAdmin(admin.ModelAdmin):
     model = Mentor
-    search_fields = ('name', 'areas_of_expertise__name', 'areas_of_expertise__category__name')
-    list_filter = ('areas_of_expertise__category', 'availability')# 'areas_of_expertise')
+    search_fields = ('name', 'areas_of_expertise__name')
+    list_filter = ('areas_of_expertise__name',)# 'areas_of_expertise')
 admin.site.register(Mentor, MentorAdmin)
 
 

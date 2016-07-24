@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import TourApplication, ConferenceApplication
+from .models import TourApplication, ConferenceApplication, ContactForm
 
 
 class TourApplicationAdmin(admin.ModelAdmin):
@@ -17,3 +17,5 @@ class ConferenceApplicationAdmin(admin.ModelAdmin):
     search_fields = ('name',)
     list_filter = ('conference__name', 'know_about_us', 'joined_previous_event')
 admin.site.register(ConferenceApplication, ConferenceApplicationAdmin)
+
+admin.site.register(ContactForm)

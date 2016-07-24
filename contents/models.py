@@ -41,7 +41,7 @@ class Mentor(models.Model):
     name = models.CharField(max_length=200)
     job = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='mentors', blank=True, null=True)
-    areas_of_expertise = models.ManyToManyField('contents.Major', related_name='mentors', blank=True)
+    areas_of_expertise = models.ManyToManyField('contents.Category', related_name='mentors', blank=True)
     availability = models.TextField(blank=True, null=True)
     phone = models.CharField(max_length=15, blank=True, null=True)
     email = models.EmailField(blank=True, null=True)
@@ -70,16 +70,21 @@ class TeamMember(models.Model):
 
 class Contact(models.Model):
     TYPE_CHOICES = (
-        ('A', 'Address'),
-        ('E', 'Email'),
-        ('P', 'Phone'),
-        ('F', 'Facebook'),
-        ('T', 'Twitter'),
-        ('I', 'Instagram'),
-        ('D', 'Latitude'),
-        ('G', 'Longitude')
+        ('AD', 'Address'),
+        ('EM', 'Email'),
+        ('PH', 'Phone'),
+        ('FB', 'Facebook'),
+        ('TW', 'Twitter'),
+        ('IN', 'Instagram'),
+        ('YT', 'Youtube'),
+        ('LT', 'Latitude'),
+        ('LG', 'Longitude'),
+        ('PP', 'Phone Students and Parents'),
+        ('PS', 'Phone Schools'),
+        ('PU', 'Phone Universities'),
+        ('PC', 'Phone Companies')
     )
-    type = models.CharField(max_length=1, choices=TYPE_CHOICES)
+    type = models.CharField(max_length=2, choices=TYPE_CHOICES)
     value = models.CharField(max_length=300)
     class Meta:
         verbose_name = 'Contact Info Item'

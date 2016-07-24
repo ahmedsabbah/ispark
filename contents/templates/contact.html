@@ -52,7 +52,7 @@
                 <li><a href="/team">Team</a></li>
                 <li class="active"><a href="/contact">Contact Us</a></li>
                 {% if user.is_authenticated %}
-                <li class="logged-in"><a href="/profile">Welcome, Abdel Rahman</a></li>
+                <li class="logged-in"><a href="/profile">Welcome, {{ user.first_name }} {{ user.last_name }}</a></li>
                 {% else %}
                 <li><a href="/login">Login</a></li>
                 {% endif %}
@@ -131,17 +131,18 @@
       <a href="#">Drop us an email</a>
     </div>
     <form id="contact-form" class="col-xs-12 col-md-8 col-md-offset-2" method="post" action="/contact/">
+      {% csrf_token %}
       <div class="form-group col-xs-12 col-md-4">
-        <input class="full-width" name="Name" placeholder="Name" />
+        <input class="full-width" name="name" placeholder="Name" />
       </div>
       <div class="form-group col-xs-12 col-md-4">
-        <input class="full-width" name="Email" placeholder="Email" />
+        <input class="full-width" name="email" placeholder="Email" />
       </div>
       <div class="form-group col-xs-12 col-md-4">
-        <input class="full-width" name="Number" placeholder="Number" />
+        <input class="full-width" name="number" placeholder="Number" />
       </div>
       <div class="form-group col-xs-12">
-        <textarea class="full-width" name="Message" placeholder="Type your message here"></textarea>
+        <textarea class="full-width" name="message" placeholder="Type your message here"></textarea>
       </div>
       <div class="form-group col-xs-12 col-md-4 pull-right">
         <input class="full-width submit-btn" type="submit" value="Send Message" />
@@ -162,22 +163,50 @@
       <div class="col-xs-12">
         <div><img src="{% static "images/family.png" %}" /></div>
         <div><strong>STUDENTS/PARENTS:  </strong></div>
-        <div>+2 012 345 67890, +2 02 273 56727</div>
+        <div>
+          {% for phone in phones_students %}
+          {{ phone.value }}
+          {% if forloop.counter != phones_students|length %}
+          ,
+          {% endif%}
+          {% endfor %}
+          </div>
       </div>
       <div class="col-xs-12">
         <div><img src="{% static "images/bus.png" %}" /></div>
         <div><strong>SCHOOLS:  </strong></div>
-        <div>+2 012 345 67890, +2 02 273 56727</div>
+        <div>
+          {% for phone in phones_schools %}
+          {{ phone.value }}
+          {% if forloop.counter != phones_schools|length %}
+          ,
+          {% endif%}
+          {% endfor %}
+          </div>
       </div>
       <div class="col-xs-12">
         <div><img src="{% static "images/university.png" %}" /></div>
         <div><strong>UNIVERSITIES:  </strong></div>
-        <div>+2 012 345 67890, +2 02 273 56727</div>
+        <div>
+          {% for phone in phones_universities %}
+          {{ phone.value }}
+          {% if forloop.counter != phones_universities|length %}
+          ,
+          {% endif%}
+          {% endfor %}
+          </div>
       </div>
       <div class="col-xs-12">
         <div><img src="{% static "images/company.png" %}" /></div>
         <div><strong>COMPANIES:  </strong></div>
-        <div>+2 012 345 67890, +2 02 273 56727</div>
+        <div>
+          {% for phone in phones_companies %}
+          {{ phone.value }}
+          {% if forloop.counter != phones_companies|length %}
+          ,
+          {% endif%}
+          {% endfor %}
+          </div>
       </div>
       <div class="col-xs-12"><hr></div>
     </div>

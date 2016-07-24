@@ -9,6 +9,7 @@ class Tour(models.Model):
     transportation = models.NullBooleanField(blank=True, null=True)
     age_range = models.CharField(max_length=200, blank=True, null=True)
     majors = models.ManyToManyField('contents.Major', related_name='tours', blank=True)
+    contact_number = models.CharField(max_length=200, blank=True, null=True)
     class Meta:
         verbose_name = 'Tour'
         verbose_name_plural = 'Tours'
@@ -23,6 +24,7 @@ class Conference(models.Model):
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
+    contact_number = models.CharField(max_length=200, blank=True, null=True)
     class Meta:
         verbose_name = 'Conference'
         verbose_name_plural = 'Conferences'
