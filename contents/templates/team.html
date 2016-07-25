@@ -9,6 +9,7 @@
 
 {% block extra_script %}
   <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery.validate.min.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -88,7 +89,7 @@
           <img src="{% static "images/team-mail-icon.png" %}">
           <div class="team-name-div"><p class="team-email">{{core.email}}</p></div>
         </div>
-        <a href="#">
+        <a href="{{core.profile.url}}">
           <div class="team-name-div">
             <img src="{% static "images/team-file-icon.png" %}">
             <div class="team-name-div"><p class="team-download">Download Profile</p></div>
@@ -159,7 +160,7 @@
           <img src="{% static "images/team-mail-icon.png" %}">
           <div class="team-name-div"><p class="team-email">{{intern.email}}</p></div>
         </div>
-        <a href="#">
+        <a href="{{intern.profile.url}}">
           <div class="team-name-div">
             <img src="{% static "images/team-file-icon.png" %}">
             <div class="team-name-div"><p class="team-download">Download Profile</p></div>
@@ -228,86 +229,53 @@
 
         <!-- Title -->
         <div class="col-md-12 form-title">
-          <p class="major-title-2">CAREER DISCOVERY PROGRAM 2.0</p>
-          <p>YOU'RE ONE STEP AWAY FROM AN AWESOME EXPERIENCE !!</p>
+          <p>JOB APPLICATION FOR "{{job_vacancy.position}}"</p>
         </div>
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="major-exploration-form" method="post" class="popup-form partners" action="/vacancy/{{job_vacancy.id}}/apply">
+          <form id="major-exploration-form{{job_vacancy.id}}" method="post" class="popup-form partners" action="/team/{{job_vacancy.id}}/apply">
+            {% csrf_token %}
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
             </div>
             <div class="col-md-4">
-                <input type="text" id="email-pop" name="email" class="form-control" placeholder="Email" />
+                <input type="text" id="age" name="age" class="form-control" placeholder="Age" />
             </div>
             <div class="col-md-4">
-                <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" />
+                <input type="text" id="phone" name="phone" class="form-control" placeholder="Mobile Number" />
             </div>
             <div class="clearfix"></div>
             <div class="popup-form-input-div">
                 <div class="col-md-4">
-                    <input type="text" id="school" name="school" class="form-control" placeholder="School Name" />
+                    <input type="text" id="email_address" name="email_address" class="form-control" placeholder="Email Address" />
                 </div>
                 <div class="col-md-4">
-                    <input type="text" id="grade" name="grade" class="form-control" placeholder="Grade Level" />
+                    <input type="text" id="university" name="university" class="form-control" placeholder="University" />
                 </div>
                 <div class="col-md-4">
-                    <input type="text" id="wave" name="wave" class="form-control" placeholder="Wave" />
+                    <input type="text" id="major" name="major" class="form-control" placeholder="Major" />
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="popup-form-input-div major-dropdown">
-                <div class="col-md-4 select-container popup-form-select">
-                  <select name="select1">
-                    <option value="1">Choose a major</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
+            <div class="popup-form-input-div">
+                <div class="col-md-4">
+                    <input type="text" id="year_study" name="year_study" class="form-control" placeholder="Year of Study/Graduation" />
                 </div>
-                <div class="col-md-4 select-container popup-form-select">
-                  <select name="select2">
-                    <option value="1">Choose a major</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
+                <div class="col-md-4">
+                    <input type="text" id="why_join" name="why_join" class="form-control" placeholder="Why do you want to join iSpark?" />
                 </div>
-                <div class="col-md-4 select-container popup-form-select">
-                  <select name="select3">
-                    <option value="1">Choose a major</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
+                <div class="col-md-4">
+                    <input type="text" id="experience" name="experience" class="form-control" placeholder="Prior experience" />
                 </div>
             </div>
             <div class="col-md-12 popup-form-input-div">
-                <p class="popup-checkbox-text popup-form-text-1">Have you ever joined any of iSpark events?</p>
+                <p class="popup-checkbox-text popup-form-text-1">In order for this application to be valid you should send your CV to info@iSparkEgypt.com</p>
                 <label>
-                  <p class="popup-checkbox-text popup-form-text-2">Yes</p>
-                  <input type="radio" value="None" id="check3" name="check3" checked />
+                  <p class="popup-checkbox-text popup-form-text-2">Confirm</p>
+                  <input type="checkbox" value="1" id="check3" name="check3"/>
                   <label for="check3"></label>
                 </label>
-                <label>
-                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">No</p>
-                  <input type="radio" value="None" id="check4" name="check3" />
-                  <label for="check4"></label>
-                </label>
-            </div>
-            <div class="col-md-12">
-                <input type="text" id="state" name="state" class="form-control" placeholder="if yes, state it" />
-            </div>
-             <div class="col-md-12 popup-form-input-div">
-                <p class="popup-checkbox-text">*Please note that not all applicants will be able to come</p>
-            </div>
-            <div class="col-md-12 popup-form-dropdown-div">
-                <p class="popup-checkbox-text">How did you know about us?</p>
-                <div class="popup-form-select select-container">
-                  <select name="select4">
-                    <option value="1">Previous Event</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
-                </div>
             </div>
             <div class="col-md-12 popup-form-dropdown-div">
                 <input type="submit" value="Send" class="popup-form-submit">
@@ -347,86 +315,53 @@
 
         <!-- Title -->
         <div class="col-md-12 form-title">
-          <p class="major-title-2">CAREER DISCOVERY PROGRAM 2.0</p>
-          <p>YOU'RE ONE STEP AWAY FROM AN AWESOME EXPERIENCE !!</p>
+          <p>INTERNSHIP APPLICATION FOR "{{internship_vacancy.position}}"</p>
         </div>
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="major-exploration-form" method="post" class="popup-form partners" action="/vacancy/{{internship_vacancy.id}}/apply">
+          <form id="major-exploration-form{{internship_vacancy.id}}" method="post" class="popup-form partners" action="/team/{{internship_vacancy.id}}/apply">
+            {% csrf_token %}
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
             </div>
             <div class="col-md-4">
-                <input type="text" id="email-pop" name="email" class="form-control" placeholder="Email" />
+                <input type="text" id="age" name="age" class="form-control" placeholder="Age" />
             </div>
             <div class="col-md-4">
-                <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone" />
+                <input type="text" id="phone" name="phone" class="form-control" placeholder="Mobile Number" />
             </div>
             <div class="clearfix"></div>
             <div class="popup-form-input-div">
                 <div class="col-md-4">
-                    <input type="text" id="school" name="school" class="form-control" placeholder="School Name" />
+                    <input type="text" id="email_address" name="email_address" class="form-control" placeholder="Email Address" />
                 </div>
                 <div class="col-md-4">
-                    <input type="text" id="grade" name="grade" class="form-control" placeholder="Grade Level" />
+                    <input type="text" id="university" name="university" class="form-control" placeholder="University" />
                 </div>
                 <div class="col-md-4">
-                    <input type="text" id="wave" name="wave" class="form-control" placeholder="Wave" />
+                    <input type="text" id="major" name="major" class="form-control" placeholder="Major" />
                 </div>
             </div>
             <div class="clearfix"></div>
-            <div class="popup-form-input-div major-dropdown">
-                <div class="col-md-4 select-container popup-form-select">
-                  <select name="select1">
-                    <option value="1">Choose a major</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
+            <div class="popup-form-input-div">
+                <div class="col-md-4">
+                    <input type="text" id="year_study" name="year_study" class="form-control" placeholder="Year of Study/Graduation" />
                 </div>
-                <div class="col-md-4 select-container popup-form-select">
-                  <select name="select2">
-                    <option value="1">Choose a major</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
+                <div class="col-md-4">
+                    <input type="text" id="why_join" name="why_join" class="form-control" placeholder="Why do you want to join iSpark?" />
                 </div>
-                <div class="col-md-4 select-container popup-form-select">
-                  <select name="select3">
-                    <option value="1">Choose a major</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
+                <div class="col-md-4">
+                    <input type="text" id="experience" name="experience" class="form-control" placeholder="Prior experience" />
                 </div>
             </div>
             <div class="col-md-12 popup-form-input-div">
-                <p class="popup-checkbox-text popup-form-text-1">Have you ever joined any of iSpark events?</p>
+                <p class="popup-checkbox-text popup-form-text-1">In order for this application to be valid you should send your CV to info@iSparkEgypt.com</p>
                 <label>
-                  <p class="popup-checkbox-text popup-form-text-2">Yes</p>
-                  <input type="radio" value="None" id="check3" name="check3" checked />
+                  <p class="popup-checkbox-text popup-form-text-2">Confirm</p>
+                  <input type="checkbox" value="1" id="check3" name="check3"/>
                   <label for="check3"></label>
                 </label>
-                <label>
-                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">No</p>
-                  <input type="radio" value="None" id="check4" name="check3" />
-                  <label for="check4"></label>
-                </label>
-            </div>
-            <div class="col-md-12">
-                <input type="text" id="state" name="state" class="form-control" placeholder="if yes, state it" />
-            </div>
-             <div class="col-md-12 popup-form-input-div">
-                <p class="popup-checkbox-text">*Please note that not all applicants will be able to come</p>
-            </div>
-            <div class="col-md-12 popup-form-dropdown-div">
-                <p class="popup-checkbox-text">How did you know about us?</p>
-                <div class="popup-form-select select-container">
-                  <select name="select4">
-                    <option value="1">Previous Event</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
-                  </select>
-                </div>
             </div>
             <div class="col-md-12 popup-form-dropdown-div">
                 <input type="submit" value="Send" class="popup-form-submit">
@@ -480,6 +415,55 @@
       $(this).children("hr").css("border-color", "#feb041");
       $(this).children(".team-person-img-border").children(".team-img-overlay").slideUp("fast");
     });
+
+    {% for job_vacancy in job_vacancies %}
+    $("#major-exploration-form{{job_vacancy.id}}").validate({
+      rules: {
+        name: "required",
+        age: { required: true, number: true },
+        phone: "required",
+        email_address: { required: true, email: true },
+        university: "required",
+        major: "required",
+        year_study: "required",
+        why_join: "required",
+        experiencce: "required",
+        check3: "required"
+      },
+      errorPlacement: function(error, element) {
+          if(element.attr("name") == "check3") {
+          error.insertAfter(element.parent().children(".popup-checkbox-text"));
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+    {% endfor %}
+
+    {% for internship_vacancy in internship_vacancies %}
+    $("#major-exploration-form{{internship_vacancy.id}}").validate({
+      rules: {
+        name: "required",
+        age: { required: true, number: true },
+        phone: "required",
+        email_address: { required: true, email: true },
+        university: "required",
+        major: "required",
+        year_study: "required",
+        why_join: "required",
+        experiencce: "required",
+        check3: "required"
+      },
+      errorPlacement: function(error, element) {
+          if(element.attr("name") == "check3") {
+          error.insertAfter(element.parent().children(".popup-checkbox-text"));
+        } else {
+          error.insertAfter(element);
+        }
+      }
+    });
+    {% endfor %}
+
   });
   $("button.accordion-button").click(function () {
       var event_id = $(this).attr("id");
@@ -487,6 +471,8 @@
   });
   $('.modal').on('hidden.bs.modal', function(){
       $(this).find('form')[0].reset();
+      var validator = $( "#major-exploration-form" ).validate();
+      validator.resetForm();
   })
   </script>
 {% endblock %}

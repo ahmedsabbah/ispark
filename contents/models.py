@@ -62,6 +62,7 @@ class TeamMember(models.Model):
     position = models.CharField(max_length=200, blank=True, null=True)
     quote = models.TextField(null=True, blank=True)
     email = models.EmailField(null=True, blank=True)
+    profile = models.FileField(upload_to='team', blank=True, null=True)
     class Meta:
         verbose_name = 'Team Member'
         verbose_name_plural = 'Team Members'

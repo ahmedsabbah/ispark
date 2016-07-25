@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import TourApplication, ConferenceApplication, ContactForm
+from .models import TourApplication, ConferenceApplication, ContactForm, VacancyApplication
 
 
 class TourApplicationAdmin(admin.ModelAdmin):
@@ -19,3 +19,4 @@ class ConferenceApplicationAdmin(admin.ModelAdmin):
 admin.site.register(ConferenceApplication, ConferenceApplicationAdmin)
 
 admin.site.register(ContactForm)
+admin.site.register(VacancyApplication)

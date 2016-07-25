@@ -51,7 +51,7 @@ class ConferenceApplication(models.Model):
     email = models.EmailField(blank=True, null=True)
     school_name = models.CharField(max_length=200, blank=True, null=True)
     grade_level = models.CharField(max_length=200, blank=True, null=True)
-    # wave = models.CharField(max_length=200)
+    wave = models.CharField(max_length=200, blank=True, null=True)
     payment = models.TextField(blank=True, null=True)
     joined_previous_event = models.NullBooleanField()
     previous_event = models.CharField(max_length=200, blank=True, null=True)
@@ -59,5 +59,22 @@ class ConferenceApplication(models.Model):
     class Meta:
         verbose_name = 'Conference Application'
         verbose_name_plural = 'Conference Applications'
+    def __str__(self):
+        return self.name
+
+class VacancyApplication(models.Model):
+    vacancy = models.ForeignKey('services.Vacancy', related_name='applications')
+    name = models.CharField(max_length=200)
+    age = models.CharField(max_length=200)
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
+    university = models.CharField(max_length=200, blank=True, null=True)
+    major = models.CharField(max_length=200, blank=True, null=True)
+    year_of_study_graduation = models.CharField(max_length=200, blank=True, null=True)
+    why_join = models.TextField(blank=True, null=True)
+    experience = models.TextField(blank=True, null=True)
+    class Meta:
+        verbose_name = 'Vacancy Application'
+        verbose_name_plural = 'Vacancy Applications'
     def __str__(self):
         return self.name

@@ -17,6 +17,7 @@
   <script src="{% static "js/jquery.visible.min.js" %}"></script>
   <script src="{% static "js/moment.min.js" %}"></script>
   <script src="{% static "js/fullcalendar.min.js" %}"></script>
+  <script src="{% static "js/jquery.validate.min.js" %}"></script>
 {% endblock %}
 
 {% block content %}
@@ -57,7 +58,7 @@
         </div>
         <div>
           <button>Learn More</button>
-          <button>Join Now</button>
+          <button data-toggle="modal" data-target="#joinModal">Join Now</button>
         </div>
       </div>
       <img src="{% static "images/slider1.jpg" %}" alt="Flower">
@@ -502,6 +503,240 @@
   </div>
 
 </div>
+
+<!-- modal -->
+<div id="joinModal" class="join-now modal fade form-background" role="dialog">
+  <div class="modal-dialog">
+    <div>
+    <div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <img class="popup-form-close" src="{% static "images/form-close.png" %}" />
+      </button>
+    </div>
+    <div class="container">
+      <div class="row">
+
+        <!-- Logo -->
+        <div class="col-md-12 form-logo">
+          <img src="{% static "images/logo.png" %}" /></a>
+        </div>
+
+        <!-- Hidden field for ID -->
+        <div class="col-md-12 hidden">
+          <p id="event-id"></p>
+        </div>
+
+        <!-- Title -->
+        <div class="col-md-12 form-title">
+          <p class="major-title-2">CAREER DISCOVERY PROGRAM 2.0</p>
+          <p>YOU'RE ONE STEP AWAY FROM AN AWESOME EXPERIENCE !!</p>
+        </div>
+
+        <!-- Form -->
+        <div class="col-md-12">
+          <form id="join-form" method="post" class="popup-form partners">
+            <div class="col-md-4">
+              <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
+            </div>
+            <div class="col-md-4">
+                <input type="text" id="number" name="number" class="form-control" placeholder="Mobile Number" />
+            </div>
+            <div class="col-md-4">
+                <input type="number" id="age" name="age" class="form-control" placeholder="Age" />
+            </div>
+            <div class="clearfix"></div>
+            <div class="popup-form-input-div">
+              <div class="col-md-4">
+                <input type="text" id="parentName" name="parentName" class="form-control" placeholder="Parent's Name" />
+              </div>
+              <div class="col-md-4">
+                  <input type="text" id="parentNumber" name="parentNumber" class="form-control" placeholder="Parent's Mobile Number" />
+              </div>
+              <div class="col-md-4">
+                  <input type="email" id="studentEmail" name="studentEmail" class="form-control" placeholder="Email" />
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="popup-form-input-div">
+              <div class="col-md-4">
+                  <input type="text" id="grade" name="grade" class="form-control" placeholder="Grade Level" />
+              </div>
+              <div class="col-md-4">
+                  <input type="text" id="school" name="school" class="form-control" placeholder="School Name" />
+              </div>
+              <div class="col-md-4">
+                  <input type="text" id="facebook" name="facebook" class="form-control" placeholder="Facebook URL" />
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="vertical-space"></div>
+            <div class="col-md-12 popup-form-input-div edu-system">
+                <p class="popup-checkbox-text popup-form-text-1">Education System: </p>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2">Thanaweya Amma</p>
+                  <input type="radio" value="None" id="thanaweya" name="education" checked />
+                  <label for="thanaweya"></label>
+                </label>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">American</p>
+                  <input type="radio" value="None" id="american" name="education" />
+                  <label for="american"></label>
+                </label>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">IGCSE</p>
+                  <input type="radio" value="None" id="igcse" name="education" />
+                  <label for="igcse"></label>
+                </label>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">IB</p>
+                  <input type="radio" value="None" id="ib" name="education" />
+                  <label for="ib"></label>
+                </label>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">Other:</p>
+                  <input type="radio" value="other" id="other" name="education" />
+                  <label for="other"></label>
+                  <input type="text" id="anotherEdu" name="anotherEdu" placeholder="Please specify" disabled />
+                </label>
+            </div>
+            <div class="vertical-space"></div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 popup-form-input-div">
+                <p class="popup-checkbox-text popup-form-text-1">Which wave are you applying to?</p>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2">Wave 1</p>
+                  <input type="radio" value="None" id="wave1" name="wave" checked />
+                  <label for="wave1"></label>
+                </label>
+                <label>
+                  <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">Wave 2</p>
+                  <input type="radio" value="None" id="wave2" name="wave" />
+                  <label for="wave2"></label>
+                </label>
+            </div>
+            <div class="clearfix"></div>
+            <div class="col-md-12 popup-form-input-div form-statments">
+                <p class="popup-checkbox-text popup-form-text-1">How do these statements define your current status?</p><br />
+                <div>
+                  <p class="popup-checkbox-text popup-form-text-1 statements"></p>
+                  <label>1 (Least)</label>
+                  <label>2</label>
+                  <label>3</label>
+                  <label>4</label>
+                  <label>5 (Most)</label>
+                </div>
+                <div>
+                  <p class="popup-checkbox-text popup-form-text-1 statements">I have no clue what major am I going to choose</p>
+                  <label>
+                    <input type="radio" value="None" id="stat1_1" name="statement1" />
+                    <label for="stat1_1"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat1_2" name="statement1" />
+                    <label for="stat1_2"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat1_3" name="statement1" />
+                    <label for="stat1_3"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat1_4" name="statement1" />
+                    <label for="stat1_4"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat1_5" name="statement1" />
+                    <label for="stat1_5"></label>
+                  </label>
+                </div>
+                <div>
+                  <p class="popup-checkbox-text popup-form-text-1 statements">I'm a little bit confused between two or more majors</p>
+                  <label>
+                    <input type="radio" value="None" id="stat2_1" name="statement2" />
+                    <label for="stat2_1"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat2_2" name="statement2" />
+                    <label for="stat2_2"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat2_3" name="statement2" />
+                    <label for="stat2_3"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat2_4" name="statement2" />
+                    <label for="stat2_4"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat2_5" name="statement2" />
+                    <label for="stat2_5"></label>
+                  </label>
+                </div>
+                <div>
+                  <p class="popup-checkbox-text popup-form-text-1 statements">I'm being influenced to choose a certian major but I don't know if I like it</p>
+                  <label>
+                    <input type="radio" value="None" id="stat3_1" name="statement3" />
+                    <label for="stat3_1"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat3_2" name="statement3" />
+                    <label for="stat3_2"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat3_3" name="statement3" />
+                    <label for="stat3_3"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat3_4" name="statement3" />
+                    <label for="stat3_4"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat3_5" name="statement3" />
+                    <label for="stat3_5"></label>
+                  </label>
+                </div>
+                <div>
+                  <p class="popup-checkbox-text popup-form-text-1 statements">I know what major I want to pursue</p>
+                  <label>
+                    <input type="radio" value="None" id="stat4_1" name="statement4" />
+                    <label for="stat4_1"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat4_2" name="statement4" />
+                    <label for="stat4_2"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat4_3" name="statement4" />
+                    <label for="stat4_3"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat4_4" name="statement4" />
+                    <label for="stat4_4"></label>
+                  </label>
+                  <label>
+                    <input type="radio" value="None" id="stat4_5" name="statement4" />
+                    <label for="stat4_5"></label>
+                  </label>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="popup-form-input-div">
+              <div class="col-md-12">
+                <p class="popup-checkbox-text popup-form-text-1 statements">What are your expectations from this program?</p>
+                <textarea name="expectations" id="expectations" class="form-control" placeholder="Please specify"></textarea>
+              </div>
+            </div>
+
+            <div class="col-md-12 popup-form-dropdown-div">
+                <input type="submit" value="Send" class="popup-form-submit">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
 
 {% block extra_script_end %}
@@ -618,6 +853,14 @@
       }
       flexsliderInitialize();
     });
+  //---------- Application another education checkbox ----------//
+   $("form .edu-system input:radio").change(function () {
+     if ($(this).val() == "other") {
+         $("#anotherEdu").removeAttr("disabled");
+     } else {
+         $("#anotherEdu").attr("disabled", "disabled");
+     }
+   });
 
   });
 
@@ -646,5 +889,57 @@
     //---------- Set initial active event ----------//
     var curr_event = $("#calendar").fullCalendar('clientEvents', $(".item.active").attr("id"));
   });
+  $('#joinModal').on('shown.bs.modal', function() {
+  //inital resize
+  resizeTextArea($('.popup-form textarea'));
+});
+
+//'live' event
+$('.popup-form textarea').on('keyup', function() {
+    var elem = $(this);
+
+    //bind scroll
+    if(!elem.data('has-scroll'))
+    {
+        elem.data('has-scroll', true);
+        elem.bind('scroll keyup', function(){
+            resizeTextArea($(this));
+        });
+    }
+
+    resizeTextArea($(this));
+});
+
+//resize text area
+function resizeTextArea(elem) {
+    elem.height(elem[0].scrollHeight - elem[0].clientHeight + elem.height());
+}
+
+$("#join-form").validate({
+  rules: {
+    name: "required",
+    number: "required",
+    parentName: "required",
+    parentNumber: "required",
+    age: { required: true, number: true },
+    grade: "required",
+    school: "required",
+    facebook: "required",
+    expectations: "required",
+    education: "required",
+    wave: "required",
+    statement1: "required",
+    statement2: "required",
+    statement3: "required",
+    statement4: "required"
+  },
+  errorPlacement: function(error, element) {
+    if(element.attr("name") == "statement1" || element.attr("name") == "statement2" || element.attr("name") == "statement3" || element.attr("name") == "statement4") {
+      error.insertBefore(element.parent().parent().children("p"));
+    } else {
+      error.insertAfter(element);
+    }
+  }
+});
   </script>
 {% endblock %}

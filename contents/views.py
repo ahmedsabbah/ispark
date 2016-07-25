@@ -1,7 +1,10 @@
 from django.shortcuts import render, redirect
 from models import Contact, TeamMember, Mentor, Category
 from services.models import Vacancy
-from applications.models import ContactForm
+from applications.models import ContactForm, VacancyApplication
+
+from django.core import serializers
+from django.http.response import HttpResponse
 
 def home(request):
     addresses = Contact.objects.filter(type='AD')
@@ -68,9 +71,45 @@ def mentors(request):
     except Contact.DoesNotExist:
         yt = ''
 
-    categories = Category.objects.all()
-    mentors = Mentor.objects.filter(areas_of_expertise=Category.objects.first())
-    return render(request, 'mentors.html', {'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'mentors': mentors, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    query = request.GET.get('q', None)
+    if query:
+        try:
+            category = Category.objects.get(id=query)
+            mentors = Mentor.objects.filter(areas_of_expertise=category)
+            data = serializers.serialize("json", mentors)
+            print data
+            return HttpResponse(data, content_type='application/json')
+        except Category.DoesNotExist:
+            category = Category.objects.first()
+            categories = Category.objects.all()
+            mentors = Mentor.objects.filter(areas_of_expertise=category)
+            return render(request, 'mentors.html', {'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'mentors': mentors, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    else:
+        category = Category.objects.first()
+        categories = Category.objects.all()
+        mentors = Mentor.objects.filter(areas_of_expertise=category)
+        return render(request, 'mentors.html', {'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'mentors': mentors, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+
+def team_apply(request, pk):
+    try:
+        vacancy = Vacancy.objects.get(pk=pk)
+        name = request.POST.get('name', None)
+        age = request.POST.get('age', None)
+        phone = request.POST.get('phone', None)
+        email = request.POST.get('email_address', None)
+        university = request.POST.get('university', None)
+        major = request.POST.get('major', None)
+        year_of_study_graduation = request.POST.get('year_study', None)
+        why_join = request.POST.get('why_join', None)
+        experience = request.POST.get('experience', None)
+
+        application = VacancyApplication(vacancy=vacancy, name=name, age=age, email=email, phone=phone, university=university, major=major, year_of_study_graduation=year_of_study_graduation, why_join=why_join, experience=experience)
+
+        application.save()
+
+        return redirect('/team')
+    except Vacancy.DoesNotExist:
+        return redirect('/404')
 
 def team(request):
     addresses = Contact.objects.filter(type='AD')
