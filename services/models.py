@@ -6,6 +6,9 @@ class Tour(models.Model):
     university = models.ForeignKey('contents.University', related_name='tours')
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    time = models.TimeField(blank=True, null=True)
+    location = models.CharField(max_length=200, blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
     transportation = models.NullBooleanField(blank=True, null=True)
     age_range = models.CharField(max_length=200, blank=True, null=True)
     majors = models.ManyToManyField('contents.Major', related_name='tours', blank=True)
@@ -23,6 +26,7 @@ class Conference(models.Model):
     location = models.CharField(max_length=200, blank=True, null=True)
     start_date = models.DateField(blank=True, null=True)
     end_date = models.DateField(blank=True, null=True)
+    time = models.TimeField(blank=True, null=True)
     price = models.IntegerField(blank=True, null=True)
     contact_number = models.CharField(max_length=200, blank=True, null=True)
     class Meta:
@@ -67,9 +71,11 @@ class Opportunity(models.Model):
     )
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     job_title = models.CharField(max_length=200)
-    internship_type = models.CharField(max_length=200, blank=True, null=True)
     industry = models.ForeignKey('contents.Category', related_name='opportunities', blank=True, null=True)
+    posted_date = models.DateField(auto_now_add=True)
     start_date = models.DateField(blank=True, null=True)
+    employer = models.CharField(max_length=200, blank=True, null=True)
+    logo = models.ImageField(upload_to='opportunities', blank=True, null=True)
     location = models.CharField(max_length=200, blank=True, null=True)
     class Meta:
         verbose_name = 'Opportunity'

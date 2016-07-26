@@ -70,8 +70,8 @@
 
 <!-- Top banner image -->
 <div class="jobs-banner">
-    <div class="profile-title title">Mostafa Hashisha
-      <div class="sub-title">Cairo, Egypt</div>
+    <div class="profile-title title">{{user.first_name}} {{user.last_name}}
+      <div class="sub-title">{{profile.location}}</div>
     </div>
 </div>
 
@@ -89,19 +89,19 @@
       <div class="col-xs-12 col-md-9 col-lg-8 col-lg-offset-1 profile-info">
         <div class="col-xs-7">
           <img src="{% static "images/env.png" %}" />
-          <span>mostafa.hashisha@gmail.com</span>
+          <span>{{user.email}}</span>
         </div>
         <div class="col-xs-5">
           <img src="{% static "images/calendar.png" %}" />
-          <span>1989 / 05 / 19</span>
+          <span>{{profile.birth_date}}</span>
         </div>
         <div class="col-xs-7">
           <img src="{% static "images/blackboard.png" %}" />
-          <span>Modern Education Schools</span>
+          <span>{{profile.school}}</span>
         </div>
         <div class="col-xs-5">
           <img src="{% static "images/phone.png" %}" />
-          <span>+2 012 3456789 </span>
+          <span>{{profile.phone}}</span>
         </div>
         <div class="col-xs-6 upload">
           <button>Upload CV</button>
@@ -127,11 +127,11 @@
           <div class="col-xs-11">
             <div>Coaching</div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="50"></div>
+              <div class="progress-bar" role="progressbar" data-transitiongoal="{{profile.coaching_progress}}"></div>
             </div>
           </div>
           <div class="col-xs-1 percentage">
-            50%
+            {{profile.coaching_progress}}%
           </div>
           <div class="clear"></div>
         </div>
@@ -139,11 +139,11 @@
           <div class="col-xs-11">
             <div>Training</div>
             <div class="progress">
-              <div class="progress-bar" role="progressbar" data-transitiongoal="75"></div>
+              <div class="progress-bar" role="progressbar" data-transitiongoal="{{profile.training_progress}}"></div>
             </div>
           </div>
           <div class="col-xs-1 percentage">
-            75%
+            {{profile.training_progress}}%
           </div>
           <div class="clear"></div>
         </div>
@@ -169,26 +169,20 @@
         <div class="col-xs-12">
           <div class="flexslider col-xs-12">
             <ul class="slides">
+              {% for badge in badges %}
               <li>
+                {% if badge.type == 'T' %}
                 <img src="{% static "images/tour.png" %}" />
-                <div>GUC</div>
+                {% endif %}
+                {% if badge.type == 'I' %}
+                <img src="{% static "images/internship.png" %}" />
+                {% endif %}
+                {% if badge.type == 'C' %}
+                <img src="{% static "images/presentation.png" %}" />
+                {% endif %}
+                <div>{{badge.name}}</div>
               </li>
-              <li>
-                <img src="{% static "images/tour.png" %}" />
-                <div>PepsiCo</div>
-              </li>
-              <li>
-                <img src="{% static "images/tour.png" %}" />
-                <div>City Stars</div>
-              </li>
-              <li>
-                <img src="{% static "images/tour.png" %}" />
-                <div>GUC</div>
-              </li>
-              <li>
-                <img src="{% static "images/tour.png" %}" />
-                <div>PepsiCo</div>
-              </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -213,7 +207,7 @@
           </div>
           <div class="col-xs-9">
             <div>Find out which major is the one for you</div>
-            <div><a href="#">View More  ></a></div>
+            <div><a href="/majors">View More  ></a></div>
           </div>
           <div class="clear"></div>
         </div>
@@ -225,7 +219,7 @@
           </div>
           <div class="col-xs-9">
             <div>Browse available job openings now</div>
-            <div><a href="#">View More  ></a></div>
+            <div><a href="/jobs">View More  ></a></div>
           </div>
           <div class="clear"></div>
         </div>
@@ -242,7 +236,7 @@
           <div class="clear"></div>
         </div>
       </div>
-    </div>"
+    </div>
   </div>
 </div>
 
@@ -260,10 +254,11 @@
     <div class="col-xs-12 col-md-5 events">
       <div id="eventsCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
-          <div class="item active" id="1">
+          {% for tour in tours %}
+          <div class="item{% if forloop.counter == 1 %} active{% endif %}" id="tour{{tour.id}}">
             <div class="row">
               <div class="col-xs-12">
-                <img src="{% static "images/guc.jpg" %}" />
+                <img src="{{tour.university.photo}}" />
               </div>
             </div>
             <div class="row event-row">
@@ -271,7 +266,7 @@
                 Event Type:
               </div>
               <div class="col-xs-6">
-                Event 1
+                Major Exploration
               </div>
             </div>
             <div class="row event-row">
@@ -279,7 +274,7 @@
                 Event Name:
               </div>
               <div class="col-xs-6">
-                GUC Visit
+                {{tour.university.name}} Visit
               </div>
             </div>
             <div class="row event-row">
@@ -287,7 +282,7 @@
                 Event Date:
               </div>
               <div class="col-xs-6">
-                2016 / 05 / 19
+                {{tour.start_date}}
               </div>
             </div>
             <div class="row event-row">
@@ -295,7 +290,7 @@
                 Event Time:
               </div>
               <div class="col-xs-6">
-                AM 10:00
+                {{tour.time}}
               </div>
             </div>
             <div class="row event-row">
@@ -303,7 +298,7 @@
                 Event Location:
               </div>
               <div class="col-xs-6">
-                5th Settlement
+                {{tour.location}}
               </div>
             </div>
             <div class="row event-row">
@@ -311,14 +306,16 @@
                 Event Details:
               </div>
               <div class="col-xs-6">
-                We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+                {{tour.description}}
               </div>
             </div>
           </div>
-          <div class="item" id="2">
+          {% endfor %}
+          {% for conference in conferences %}
+          <div class="item" id="conference{{conference.id}}">
             <div class="row">
               <div class="col-xs-12">
-                <img src="{% static "images/guc.jpg" %}" />
+                <img src="{{conference.photo}}" />
               </div>
             </div>
             <div class="row event-row">
@@ -326,7 +323,7 @@
                 Event Type:
               </div>
               <div class="col-xs-6">
-                Event 2
+                Conference
               </div>
             </div>
             <div class="row event-row">
@@ -334,7 +331,7 @@
                 Event Name:
               </div>
               <div class="col-xs-6">
-                GUC Visit
+                {{conference.name}} Visit
               </div>
             </div>
             <div class="row event-row">
@@ -342,7 +339,7 @@
                 Event Date:
               </div>
               <div class="col-xs-6">
-                2016 / 05 / 19
+                {{conference.start_date}}
               </div>
             </div>
             <div class="row event-row">
@@ -350,7 +347,7 @@
                 Event Time:
               </div>
               <div class="col-xs-6">
-                AM 10:00
+                {{conference.time}}
               </div>
             </div>
             <div class="row event-row">
@@ -358,7 +355,7 @@
                 Event Location:
               </div>
               <div class="col-xs-6">
-                5th Settlement
+                {{conference.location}}
               </div>
             </div>
             <div class="row event-row">
@@ -366,65 +363,11 @@
                 Event Details:
               </div>
               <div class="col-xs-6">
-                We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+                {{conference.description}}
               </div>
             </div>
           </div>
-          <div class="item" id="3">
-            <div class="row">
-              <div class="col-xs-12">
-                <img src="{% static "images/guc.jpg" %}" />
-              </div>
-            </div>
-            <div class="row event-row">
-              <div class="col-xs-6">
-                Event Type:
-              </div>
-              <div class="col-xs-6">
-                Event 3
-              </div>
-            </div>
-            <div class="row event-row">
-              <div class="col-xs-6">
-                Event Name:
-              </div>
-              <div class="col-xs-6">
-                GUC Visit
-              </div>
-            </div>
-            <div class="row event-row">
-              <div class="col-xs-6">
-                Event Date:
-              </div>
-              <div class="col-xs-6">
-                2016 / 05 / 19
-              </div>
-            </div>
-            <div class="row event-row">
-              <div class="col-xs-6">
-                Event Time:
-              </div>
-              <div class="col-xs-6">
-                AM 10:00
-              </div>
-            </div>
-            <div class="row event-row">
-              <div class="col-xs-6">
-                Event Location:
-              </div>
-              <div class="col-xs-6">
-                5th Settlement
-              </div>
-            </div>
-            <div class="row event-row">
-              <div class="col-xs-6">
-                Event Details:
-              </div>
-              <div class="col-xs-6">
-                We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
-              </div>
-            </div>
-          </div>
+          {% endfor %}
         </div>
         <!-- Left and right controls -->
         <div class="events-controls">
@@ -453,16 +396,16 @@
     </div>
     <div class="row profile-row announcement-item">
       <div class="col-xs-12">
-        Happy New Year!
+        {{announcement.title}}
       </div>
       <div class="col-xs-12">
-        iSpark staff and crew would like to wish you a very happy new year 2016! Looking forwatd to a fruitful year for all of us. Kindly visit our events calendar to check the main events for the upcoming year
+        {{announcement.details}}
       </div>
       <div class="col-xs-6">
-        AM 12:00, 01 / 01 / 2016
+        {{announcement.created_date}}
       </div>
       <div class="col-xs-6">
-        - WEBSITE ADMINISTRATOR
+        - {{announcement.author}}
       </div>
     </div>
     <hr>
@@ -525,12 +468,14 @@
       });
 
       //--- Adding an event ---//
-      var event1 = { id:"1", title: 'Event 1', start: '2016-07-11' };
-      var event2 = { id:"2", title: 'Event 2', start: '2016-07-30' };
-      var event3 = { id:"3", title: 'Event 3', start: '2016-08-30' };
-      $('#calendar').fullCalendar( 'renderEvent', event1, true );
-      $('#calendar').fullCalendar( 'renderEvent', event2, true );
-      $('#calendar').fullCalendar( 'renderEvent', event3, true );
+      {% for tour in tours %}
+        var tour{{tour.id}} = { id:"{{tour.id}}", title: '{{tour.university.name}}', start: '{{tour.start_date}}' };
+        $('#calendar').fullCalendar( 'renderEvent', tour{{tour.id}}, true );
+      {% endfor %}
+      {% for conference in conferences %}
+        var conference{{conference.id}} = { id:"{{conference.id}}", title: '{{conference.name}}', start: '{{conference.start_date}}' };
+        $('#calendar').fullCalendar( 'renderEvent', conference{{conference.id}}, true );
+      {% endfor %}
 
       //---------- Set initial active event ----------//
       var curr_event = $("#calendar").fullCalendar('clientEvents', $(".item.active").attr("id"));

@@ -115,7 +115,7 @@
                 </div>
                 <div class="row accordion-body-icon-row">
                   <div class="col-md-9 col-sm-9 col-xs-9 accordion-body-icon-text accordion-body-icon-text-red">
-                    For more info call</br>+23 6519 050 010
+                    For more info call</br>{{conference.contact_number}}
                   </div>
                   <div class="col-md-3 col-sm-3 col-xs-3">
                     <img src="{% static "images/conferences-phone.png" %}">
@@ -171,6 +171,7 @@
         <!-- Form -->
         <div class="col-md-12">
           <form id="conferences-form{{conference.id}}" method="post" class="popup-form" action="/conference/{{conference.id}}/apply">
+            {% csrf_token %}
             <div class="col-md-4">
                 <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
             </div>
@@ -196,12 +197,12 @@
                 <p class="popup-checkbox-text popup-form-text-1">Method of Payment:</p>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2">Pay at our Location</p>
-                  <input type="radio" value="None" id="check1" name="check1" checked />
+                  <input type="radio" value="Pay at our Location" id="check1" name="check1" checked />
                   <label for="check1"></label>
                 </label>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">Needs a Runner - 25 EGP Addional fees</p>
-                  <input type="radio" value="None" id="check2" name="check1" />
+                  <input type="radio" value="Needs a Runner" id="check2" name="check1" />
                   <label for="check2"></label>
                 </label>
             </div>
@@ -228,10 +229,12 @@
             <div class="col-md-12 partners popup-form-dropdown-div">
                 <p class="popup-checkbox-text">How did you know about us?</p>
                 <div class="popup-form-select select-container">
-                  <select name="select1">
-                    <option value="1">Previous Event</option>
-                    <option value="2">Another Option</option>
-                    <option value="3">Third Option</option>
+                  <select name="about_us">
+                    <option value="FB">Facebook</option>
+                    <option value="FR">Friend</option>
+                    <option value="YS">Your School</option>
+                    <option value="OW">Our Website</option>
+                    <option value="PE">Previous Event</option>
                   </select>
                 </div>
             </div>
@@ -308,7 +311,7 @@ $("#conferences-form{{conference.id}}").validate({
     school: "required",
     grade: "required",
     wave: "required",
-    select1: { valueNotEquals: "1" }
+    about_us: { valueNotEquals: "1" }
   },
   errorPlacement: function(error, element) {
     if(element.attr("name") == "select1") {

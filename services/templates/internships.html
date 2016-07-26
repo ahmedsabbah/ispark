@@ -69,126 +69,23 @@
     <!-- Dropdown menu -->
     <div class="col-md-12 select-container">
       <select>
-        <option value="1">Adminstratin and business managment</option>
-        <option value="2">Another Option</option>
-        <option value="3">Third Option</option>
+        {% for category in categories %}
+        <option value="{{category.id}}">{{category.name}}</option>
+        {% endfor %}
       </select>
     </div>
 
     <!-- Main content -->
     <div id="main-content" class="col-md-12">
-      <a href="#">
+      {% for internship in internships %}
+      <a href="/internship/{{internship.id}}">
         <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
+          <p class="job-outer-title">{{internship.job_title}}</p>
+          <p class="job-outer-sub">{{internship.employer}} - {{internship.location}}</p>
+          <p class="job-outer-text">{{internship.start_date}}</p>
         </div>
       </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
+      {% endfor %}
     </div>
 
     <!-- Load more -->

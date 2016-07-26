@@ -69,102 +69,55 @@
     <!-- First block content -->
     <div class="col-md-12 job-title-border">
       <div class="col-md-6 job-float-left">
-        <p class="job-title-text-main">SALES PRODUCTION ENGINEER</p>
-        <p class="job-title-text-sub">Internship - Job Shadowing</p>
+        <p class="job-title-text-main">{{internship.job_title}}</p>
+        <p class="job-title-text-sub">{% if internship.type == 'I' %}Internship{% else %}'Job Shadowing'{% endif %}</p>
       </div>
       <div class="col-md-6 job-logo">
-        <img src="{% static "images/job-logo.png" %}">
+        <img src="{{internship.logo.url}}">
       </div>
       <div class="clearfix"></div>
       <div class="col-md-6 job-float-left job-company">
-        <p class="job-company-text">ZaranCo Engine<span>- Cairo, Egypt</span></p>
+        <p class="job-company-text">{{internship.employer}}<span>- {{internship.location}}</span></p>
       </div>
       <div class="col-md-6 job-logo job-company">
-        <p class="job-desc-text">Adminstration, and business managment </p>
+        <p class="job-desc-text">{{internship.industry.name}} </p>
       </div>
       <div class="clearfix"></div>
       <hr class="job-hr">
       <div class="clearfix"></div>
       <div class="col-md-6 job-float-left">
         <button class="job-button">Apply Now</button>
-        <p class="job-button-text">Starts 15/06/2016</p>
+        <p class="job-button-text">Starts {{internship.start_date}}</p>
       </div>
       <div class="col-md-6 job-logo">
-        <p class="job-button-text">Posted 2 Hours Ago</p>
+        <p class="job-button-text">Posted {{internship.posted_date}}</p>
       </div>
     </div>
     <div class="col-md-12 job-title-border job-main-margin job-float-left">
       <p class="job-title-text-main job-qualify-margin">INTERNSHIP REQUIRMENTS:</p>
-      <p class="job-qualify-text">- Test Test Test Test Test</p>
-      <p class="job-qualify-text">- Test Test Test Test Test</p>
-      <p class="job-qualify-text">- Test Test Test Test Test</p>
-      <p class="job-qualify-text">- Test Test Test Test Test</p>
-      <p class="job-qualify-text">- Test Test Test Test Test</p>
+      {% for requirement in requirements %}
+      <p class="job-qualify-text">- {{requirement.text}}</p>
+      {% endfor %}
     </div>
     <div class="col-md-12 job-title-border job-main-margin job-float-left job-more-div-margin">
       <p class="job-title-text-main job-qualify-margin">SIMILAR INTERNSHIPS:</p>
       <div id="main-content" class="col-md-12">
-      <a href="#">
+      {% for item in related %}
+      {% if item.id != internship.id %}
+      <a href="/internship/{{item.id}}">
         <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
+          <p class="job-outer-title">{{item.job_title}}</p>
+          <p class="job-outer-sub">{{item.employer}} - {{item.location}}</p>
+          <p class="job-outer-text">{{item.start_date}}</p>
         </div>
       </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
-      <a href="#">
-        <div class="col-md-3 col-sm-6 col-xs-12 job-main-content">
-          <p class="job-outer-title">Sales Production Engineer</p>
-          <p class="job-outer-sub">ZahranCo Engine - Cairo</p>
-          <p class="job-outer-text">2016-06-01</p>
-        </div>
-      </a>
+      {% endif %}
+      {% endfor %}
     </div>
 
     <!-- Load more -->
     <div class="col-md-12 job-load-more-div job-load-more-div-inner">
-      <button class="job-load-more-button">Load More</button>
+      <button class="job-load-more-button" onclick="window.location='/internships'">Load More</button>
     </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.contrib.auth.models import User
 
 class ContactForm(models.Model):
     name = models.CharField(max_length=200)
@@ -78,3 +79,13 @@ class VacancyApplication(models.Model):
         verbose_name_plural = 'Vacancy Applications'
     def __str__(self):
         return self.name
+
+class OpportunityApplication(models.Model):
+    opportunity = models.ForeignKey('services.opportunity', related_name='applications')
+    user = models.ForeignKey(User, related_name='opportunity_applications')
+    submitted_date = models.DateField(auto_now_add=True)
+    class Meta:
+        verbose_name = 'Opportunity Application'
+        verbose_name_plural = 'Opportunity Applications'
+    def __str__(self):
+        return '%s %s' % (self.user.first_name, self.user.last_name)

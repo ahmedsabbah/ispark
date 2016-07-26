@@ -77,7 +77,6 @@ def mentors(request):
             category = Category.objects.get(id=query)
             mentors = Mentor.objects.filter(areas_of_expertise=category)
             data = serializers.serialize("json", mentors)
-            print data
             return HttpResponse(data, content_type='application/json')
         except Category.DoesNotExist:
             category = Category.objects.first()
