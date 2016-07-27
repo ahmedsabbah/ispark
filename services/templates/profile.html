@@ -104,7 +104,12 @@
           <span>{{profile.phone}}</span>
         </div>
         <div class="col-xs-6 upload">
-          <button>Upload CV</button>
+          <form action="/upload_cv/" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <button>Upload CV</button>
+            <input class="hidden" type="file" name="cv" />
+            <input class="hidden" type="submit">
+          </form>
         </div>
       </div>
     </div>
@@ -231,7 +236,7 @@
           </div>
           <div class="col-xs-9">
             <div>Join us during our upcoming events</div>
-            <div><a href="#">View More  ></a></div>
+            <div><a href="#events_calendar">View More  ></a></div>
           </div>
           <div class="clear"></div>
         </div>
@@ -241,7 +246,7 @@
 </div>
 
 <!-- Events calendar -->
-<div class="container">
+<div id="events_calendar" class="container">
   <div class="row profile-row">
     <div class="title col-xs-12">
       Events Calendar
@@ -258,7 +263,7 @@
           <div class="item{% if forloop.counter == 1 %} active{% endif %}" id="tour{{tour.id}}">
             <div class="row">
               <div class="col-xs-12">
-                <img src="{{tour.university.photo}}" />
+                <img src="/media/{{tour.university.photo}}" />
               </div>
             </div>
             <div class="row event-row">
@@ -315,7 +320,7 @@
           <div class="item" id="conference{{conference.id}}">
             <div class="row">
               <div class="col-xs-12">
-                <img src="{{conference.photo}}" />
+                <img src="/media/{{conference.photo}}" />
               </div>
             </div>
             <div class="row event-row">
@@ -431,6 +436,15 @@
     }
 
     $(document).ready(function(){
+      $('.upload button').click(function(){
+        $('.upload input:file').click();
+        return false;
+    });
+    $(".upload input:file").change(function (){
+       $(".upload input:submit").click();
+       console.log("hello");
+     });
+
       var animated = false;
       $(window).scroll(function() {
         //---------- Progress bars animation ---------->=

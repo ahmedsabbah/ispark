@@ -86,7 +86,11 @@
       <hr class="job-hr">
       <div class="clearfix"></div>
       <div class="col-md-6 job-float-left">
-        <button class="job-button">Apply Now</button>
+        {% if applied %}
+        <button class="job-button" disabled>Applied</button>
+        {% else %}
+        <button class="job-button" onclick="apply({{internship.id}})">Apply Now</button>
+        {% endif %}
         <p class="job-button-text">Starts {{internship.start_date}}</p>
       </div>
       <div class="col-md-6 job-logo">
@@ -125,4 +129,23 @@
 {% endblock %}
 
 {% block extra_script_end %}
+<script>
+
+function apply(internship_id) {
+    $.ajax({
+        type: "GET",
+        url: "/internship/"+internship_id+"/apply",
+        success: function (results) {
+          console.log('true');
+          $('.job-button').html('Applied');
+          $('.job-button').prop('disabled', false);
+          $('.job-button').prop('onclick',null).off('click');
+        },
+        error: function(err) {
+          console.log(err);
+        }
+    });
+}
+
+</script>
 {% endblock %}

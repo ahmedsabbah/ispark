@@ -71,17 +71,17 @@
     <div class="container jobs-inner">
       <div class="row profile-row">
         <div class="col-xs-12 title">
-          Animals, Farming & Environment
+          {{job.category.name}}
         </div>
       </div>
       <div class="row">
         <div class="col-xs-12 icon">
-          <div><img src="{% static "images/hourse.png" %}" /></div>
+          <div><img src="/media/{{job.logo}}" /></div>
         </div>
       </div>
       <div class="row profile-row">
         <div class="col-xs-12 title">
-          <span>Animal Care Worker</span>
+          <span>{{job.title}}</span>
         </div>
       </div>
     </div>
@@ -91,7 +91,7 @@
       <div class="container">
         <div class="row job-desc-container">
           <div class="col-md-4 col-xs-12">
-            <div><img src="{% static "images/amc1.jpg" %}" /></div>
+            <div><img src="/media/{{job.photo}}" /></div>
           </div>
           <div class="col-md-4 col-xs-12">
             <div class="job-desc">
@@ -101,15 +101,7 @@
               </div>
               <div class="clear"></div>
               <div>
-                - Bachelor degree in any related field <br />
-                - Minimum 3 years of experience <br />
-                - Excellent good communication skills <br />
-                - Good spoken & written English <br />
-                - Ability to work under pressure <br />
-                - Working with minimum supervision <br />
-                - Excellent good communication skills <br />
-                - Good spoken & written English <br />
-                - Ability to work under pressure <br />
+                {{job.description}}
               </div>
             </div>
           </div>
@@ -121,12 +113,9 @@
               </div>
               <div class="clear"></div>
               <div class="interests">
-                <span class="pull-left">Animal Care</span>
-                <span class="pull-left">Caretaker</span>
-                <span class="pull-left">Visiting Vets</span>
-                <span class="pull-left">Zoo Keepers</span>
-                <span class="pull-left">Playing with Animals</span>
-                <span class="add-btn pull-left" onclick="addInterest()">+</span>
+                {% for interest in interests %}
+                <span class="pull-left">{{interest.name}}</span>
+                {% endfor %}
                 <div class="clear"></div>
               </div>
             </div>
@@ -144,54 +133,14 @@
           </div>
           <div class="progress-bars-container flexslider col-xs-12">
             <ul class="slides progress-bars">
+              {% for skill in skills %}
               <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                <div id="pie_progress{{skill.id}}" class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
                   <span class="pie_progress__number">0%</span>
                 </div>
-                <div>Teamwork</div>
+                <div>{{skill.name}}</div>
               </li>
-              <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
-                  <span class="pie_progress__number">0%</span>
-                </div>
-                <div>Analyze</div>
-              </li>
-              <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
-                  <span class="pie_progress__number">0%</span>
-                </div>
-                <div>Work with Numbers</div>
-              </li>
-              <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
-                  <span class="pie_progress__number">0%</span>
-                </div>
-                <div>Budget</div>
-              </li>
-              <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
-                  <span class="pie_progress__number">0%</span>
-                </div>
-                <div>Teamwork</div>
-              </li>
-              <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
-                  <span class="pie_progress__number">0%</span>
-                </div>
-                <div>Analyze</div>
-              </li>
-              <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
-                  <span class="pie_progress__number">0%</span>
-                </div>
-                <div>Work with Numbers</div>
-              </li>
-              <li>
-                <div class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
-                  <span class="pie_progress__number">0%</span>
-                </div>
-                <div>Budget</div>
-              </li>
+              {% endfor %}
             </ul>
           </div>
         </div>
@@ -206,48 +155,17 @@
         </div>
         <div class="related-jobs flexslider col-xs-12">
           <ul class="slides">
+            {% for item in related %}
+            {% if item.id != job.id %}
             <li>
-              <div>Animal Care Worker</div>
+              <div>{{item.title}}</div>
               <div>
-                <img src="{% static "images/amc3.jpg" %}" />
-                <button class="full-width">View</button>
+                <img src="/media/{{item.photo}}" />
+                <button class="full-width" onclick="goToJob({{item.id}})">View</button>
               </div>
             </li>
-            <li>
-              <div>Ecologist</div>
-              <div>
-                <img src="{% static "images/eco.jpg" %}" />
-                <button class="full-width">View</button>
-              </div>
-            </li>
-            <li>
-              <div>Veterinarian</div>
-              <div>
-                <img src="{% static "images/vet2.jpg" %}" />
-                <button class="full-width">View</button>
-              </div>
-            </li>
-            <li>
-              <div>Animal Care Worker</div>
-              <div>
-                <img src="{% static "images/amc3.jpg" %}" />
-                <button class="full-width">View</button>
-              </div>
-            </li>
-            <li>
-              <div>Ecologist</div>
-              <div>
-                <img src="{% static "images/eco.jpg" %}" />
-                <button class="full-width">View</button>
-              </div>
-            </li>
-            <li>
-              <div>Veterinarian</div>
-              <div>
-                <img src="{% static "images/vet2.jpg" %}" />
-                <button class="full-width">View</button>
-              </div>
-            </li>
+            {% endif %}
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -257,6 +175,10 @@
 {% block extra_script_end %}
 <script>
       var animated = false;
+
+      function goToJob(id) {
+        window.location.href = "/job/"+id+"/";
+      }
 
       /* Add interest button */
       function addInterest() {
@@ -274,14 +196,9 @@
         $(window).scroll(function() {
           if($('.progress-bars-container').visible() && animated == false) {
             animated = true;
-            $('.progress-bars > li:nth-child(1) .pie_progress').asPieProgress('go','75%');
-            $('.progress-bars > li:nth-child(2) .pie_progress').asPieProgress('go','50%');
-            $('.progress-bars > li:nth-child(3) .pie_progress').asPieProgress('go','25%');
-            $('.progress-bars > li:nth-child(4) .pie_progress').asPieProgress('go','100%');
-            $('.progress-bars > li:nth-child(5) .pie_progress').asPieProgress('go','75%');
-            $('.progress-bars > li:nth-child(6) .pie_progress').asPieProgress('go','50%');
-            $('.progress-bars > li:nth-child(7) .pie_progress').asPieProgress('go','25%');
-            $('.progress-bars > li:nth-child(8) .pie_progress').asPieProgress('go','100%');
+            {% for skill in skills %}
+            $('#pie_progress{{skill.id}}').asPieProgress('go','{{skill.value}}%');
+            {% endfor %}
           }
         })
 

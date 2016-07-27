@@ -88,9 +88,12 @@
       {% endfor %}
     </div>
 
+
     <!-- Load more -->
     <div class="col-md-12 job-load-more-div">
-      <button class="job-load-more-button">Load More</button>
+      {% if has_next %}
+      <button onclick="loadMore()" class="job-load-more-button">Load More</button>
+      {% endif %}
     </div>
   </div>
 </div>
@@ -98,8 +101,53 @@
 
 {% block extra_script_end %}
 <script>
+var page = 1;
+var intern_id;
+function getInternships(intern_id) {
+  page = 1;
+    $.ajax({
+        type: "GET",
+        url: "/internships/?q=" + intern_id + "&p=1",
+        success: function (results) {
+          // console.log(results.data);
+          var data = results;
+          // var next = results.has_next;
+          $("#main-content").html("");
+          for (var i=0; i<data.length; i++) {
+            $("#main-content").append('<a href="/internship/'+data[i].pk+'"><div class="col-md-3 col-sm-6 col-xs-12 job-main-content"><p class="job-outer-title">'+data[i].fields.job_title+'</p><p class="job-outer-sub">'+data[i].fields.employer+' - '+data[i].fields.location+'</p><p class="job-outer-text">'+data[i].fields.start_date+'</p></div></a>');
+          }
+        },
+        error: function(err) {
+          console.log(err);
+        }
+    });
+}
+function loadMore() {
+  page++;
+  $.ajax({
+      type: "GET",
+      url: "/internships/?q=" + intern_id + "&p=" + page,
+      success: function (results) {
+        // console.log(results.data);
+        var data = results;
+        // var next = results.has_next;
+        $("#main-content").html("");
+        for (var i=0; i<data.length; i++) {
+          $("#main-content").append('<a href="/internship/'+data[i].pk+'"><div class="col-md-3 col-sm-6 col-xs-12 job-main-content"><p class="job-outer-title">'+data[i].fields.job_title+'</p><p class="job-outer-sub">'+data[i].fields.employer+' - '+data[i].fields.location+'</p><p class="job-outer-text">'+data[i].fields.start_date+'</p></div></a>');
+        }
+      },
+      error: function(err) {
+        console.log(err);
+      }
+  });
+}
 $(document).ready(function(){
   $(".select-container select").bselect({ searchInput : false });
+  intern_id = $( ".select-container select option:selected" ).val();
+  $(".select-container select").change(function() {
+    intern_id = $( ".select-container select option:selected" ).val();
+    getInternships(intern_id);
+  });
 });
 </script>
 {% endblock %}

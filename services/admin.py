@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Tour, Conference, Vacancy, Opportunity
+from .models import Tour, Conference, Vacancy, Opportunity, Job, JobSkill
 
 # class TourForm(forms.ModelForm):
 #     def __init__(self, *args, **kwargs):
@@ -43,3 +43,7 @@ class VacancyAdmin(admin.ModelAdmin):
     search_fields = ('position',)
     list_filter = ('role',)
 admin.site.register(Vacancy, VacancyAdmin)
+
+
+admin.site.register(Job)
+admin.site.register(JobSkill)

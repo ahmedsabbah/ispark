@@ -75,66 +75,13 @@
       </div>
       <div class="row">
         <div class="col-xs-6 col-md-8 jobs-list">
+          {% for item in categories %}
           <div class="job-item">
-            <div>Art</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
+            <input class="hidden" name="category" value="{{item.id}}">
+            <div>{{item.name}}</div>
+            <div><img src="/media/{{item.photo}}" /></div>
           </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Art</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Art</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
-          <div class="job-item">
-            <div>Animals, Farming & Environment</div>
-            <div><img src="{% static "images/art.png" %}" /></div>
-          </div>
+          {% endfor %}
         </div>
         <div class="col-xs-6 col-md-4 job-details sticky-sidebar">
           <div>
@@ -142,18 +89,9 @@
             <div>Animals, Farming & Environment</div>
             <div>
               <div class="job-types">
-                <div><span onclick="chooseJob(1);">Vet</span></div>
-                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
-                <div><span onclick="chooseJob(1);">Ecologist</span></div>
-                <div><span onclick="chooseJob(1);">Vet</span></div>
-                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
-                <div><span onclick="chooseJob(1);">Ecologist</span></div>
-                <div><span onclick="chooseJob(1);">Vet</span></div>
-                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
-                <div><span onclick="chooseJob(1);">Ecologist</span></div>
-                <div><span onclick="chooseJob(1);">Vet</span></div>
-                <div><span onclick="chooseJob(1);">Animal Care Worker</span></div>
-                <div><span onclick="chooseJob(1);">Ecologist</span></div>
+                {% for job in jobs %}
+                <div><span onclick="chooseJob({{job.id}});">{{job.title}}</span></div>
+                {% endfor %}
               </div>
             </div>
           </div>
@@ -185,11 +123,29 @@
 
     // Job item click event //
     $(".job-item").click(function() {
+      var id = $(this).find("input[name^='category']").val();
       $(".job-item").removeClass("active");
       $(this).addClass("active");
-      $(".job-types").html("");
-      $(".job-types").html('<div><span onclick="chooseJob(1);">Vet</span></div>');
+      getJobs(id);
     });
+
+    function getJobs(id) {
+      $.ajax({
+          type: "GET",
+          url: "/jobs/?q=" + id,
+          success: function (results) {
+            // console.log(results.data);
+            var data = results;
+            $(".job-types").html("");
+            for (var i=0; i<data.length; i++) {
+              $(".job-types").append('<div><span onclick="chooseJob('+data[i].pk+');">'+data[i].fields.title+'</span></div>');
+            }
+          },
+          error: function(err) {
+            console.log(err);
+          }
+      });
+    }
 
     var headerHeight = $(".sticky").height(),
       footerHeight = $("footer").height();

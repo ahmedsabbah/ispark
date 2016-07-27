@@ -92,6 +92,23 @@ class OpportunityRequirement(models.Model):
     def __str__(self):
         return self.text
 
+class Job(models.Model):
+    category = models.ForeignKey('contents.Category', related_name='jobs')
+    title = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to='jobs', blank=True, null=True)
+    photo = models.ImageField(upload_to='jobs', blank=True, null=True)
+    description = models.TextField(blank=True, null=True)
+    interests = models.ManyToManyField('contents.Skill', related_name='jobs', blank=True)
+    class Meta:
+        verbose_name = 'Job'
+        verbose_name_plural = 'Jobs'
+    def __str__(self):
+        return self.title
+
+class JobSkill(models.Model):
+    job = models.ForeignKey(Job, related_name='skills')
+    name = models.CharField(max_length=200)
+    value = models.IntegerField(default=0)
 
 # class Wave(models.Model):
 #     title = models.CharField(max_length=200)

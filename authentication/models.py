@@ -34,4 +34,4 @@ class Badge(models.Model):
 
 class Token(models.Model):
     user = models.OneToOneField(User, related_name='token')
-    token = models.CharField(max_length=100, blank=True, unique=True, default=uuid.uuid4)
+    token = models.CharField(max_length=40, blank=True, unique=True, default=uuid.uuid4)

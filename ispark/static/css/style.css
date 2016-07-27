@@ -1096,6 +1096,12 @@ input#password {
     font-family: 'Open Sans', sans-serif;
     padding: 15px;
 }
+.profile-info .upload input {
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
 .profile-info .upload button {
     background-image: url("../images/upload.png");
     background-position: 160px -2px;
