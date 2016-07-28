@@ -1,12 +1,22 @@
 from django.shortcuts import render, redirect
-from models import Contact, TeamMember, Mentor, Category
-from services.models import Vacancy
-from applications.models import ContactForm, VacancyApplication
+from models import Contact, TeamMember, Mentor, Category, Job, SliderSecondary, Testimonial
+from services.models import Vacancy, Conference, Tour
+from applications.models import VacancyApplication
+from django.utils import timezone
 
 from django.core import serializers
 from django.http.response import HttpResponse
 
 def home(request):
+    second_sliders = SliderSecondary.objects.all()
+    testimonials = Testimonial.objects.all()
+    tours = Tour.objects.filter(start_date__gte = timezone.now()).order_by('start_date')
+    tours_to_show = tours[:2]
+    conferences = Conference.objects.filter(start_date__gte = timezone.now()).order_by('start_date')
+    if tours_to_show.count() != 2:
+        conferences_to_show = conferences[:2]
+    else:
+        conferences_to_show = conferences[:1]
     addresses = Contact.objects.filter(type='AD')
     emails = Contact.objects.filter(type='EM')
     phones = Contact.objects.filter(type='PH')
@@ -26,7 +36,7 @@ def home(request):
         yt = Contact.objects.get(type='YT')
     except Contact.DoesNotExist:
         yt = ''
-    return render(request, 'home.html', {'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    return render(request, 'home.html', {'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': tours, 'conferences': conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
 def jobs_majors(request):
     addresses = Contact.objects.filter(type='AD')
@@ -49,6 +59,74 @@ def jobs_majors(request):
     except Contact.DoesNotExist:
         yt = ''
     return render(request, 'jobs_majors.html', {'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+
+def jobs(request):
+    addresses = Contact.objects.filter(type='AD')
+    emails = Contact.objects.filter(type='EM')
+    phones = Contact.objects.filter(type='PH')
+    try:
+        fb = Contact.objects.get(type='FB')
+    except Contact.DoesNotExist:
+        fb = ''
+    try:
+        tw = Contact.objects.get(type='TW')
+    except Contact.DoesNotExist:
+        tw = ''
+    try:
+        ins = Contact.objects.get(type='IN')
+    except Contact.DoesNotExist:
+        ins = ''
+    try:
+        yt = Contact.objects.get(type='YT')
+    except Contact.DoesNotExist:
+        yt = ''
+
+    query = request.GET.get('q', None)
+    if query:
+        try:
+            category = Category.objects.get(id=query)
+            jobs = Job.objects.filter(category=category)
+            data = serializers.serialize("json", jobs)
+            return HttpResponse(data, content_type='application/json')
+        except Category.DoesNotExist:
+            category = Category.objects.first()
+            categories = Category.objects.all()
+            jobs = Job.objects.filter(category=category)
+            return render(request, 'jobs.html', {'jobs': jobs, 'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    else:
+        category = Category.objects.first()
+        categories = Category.objects.all()
+        jobs = Job.objects.filter(category=category)
+        return render(request, 'jobs.html', {'jobs': jobs, 'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+
+def job(request, pk):
+    try:
+        job = Job.objects.get(pk=pk)
+        interests = job.interests.all()
+        skills = job.skills.all()
+        related = Job.objects.filter(category=job.category)
+        addresses = Contact.objects.filter(type='AD')
+        emails = Contact.objects.filter(type='EM')
+        phones = Contact.objects.filter(type='PH')
+        try:
+            fb = Contact.objects.get(type='FB')
+        except Contact.DoesNotExist:
+            fb = ''
+        try:
+            tw = Contact.objects.get(type='TW')
+        except Contact.DoesNotExist:
+            tw = ''
+        try:
+            ins = Contact.objects.get(type='IN')
+        except Contact.DoesNotExist:
+            ins = ''
+        try:
+            yt = Contact.objects.get(type='YT')
+        except Contact.DoesNotExist:
+            yt = ''
+        return render(request, 'job.html', {'job': job, 'interests': interests, 'skills': skills, 'related': related, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    except Job.DoesNotExist:
+        return redirect('/404')
 
 def mentors(request):
     addresses = Contact.objects.filter(type='AD')
@@ -136,6 +214,8 @@ def team(request):
     internship_vacancies = Vacancy.objects.filter(role='I')
     return render(request, 'team.html', {'emails': emails, 'addresses': addresses, 'phones': phones, 'cores': cores, 'interns': interns, 'job_vacancies': job_vacancies, 'internship_vacancies': internship_vacancies, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
+from django.core.mail import send_mail
+
 def contact(request):
     if request.method == 'POST':
         name = request.POST.get('name', None)
@@ -143,8 +223,13 @@ def contact(request):
         number = request.POST.get('number', None)
         message = request.POST.get('message', None)
         if name and email and number and message:
-            form = ContactForm(name=name, email=email, number=number, message=message)
-            form.save()
+            send_mail(
+                'iSpark Contact Request',
+                'Name: '+name+'\n'+'Email: '+email+'\n'+'Phone: '+number+'\n'+'Message:\n'+message,
+                'ahmedsabba7@gmail.com',
+                ['ahmedsabba7@gmail.com'],
+                fail_silently=False,
+            )
     addresses = Contact.objects.filter(type='AD')
     emails = Contact.objects.filter(type='EM')
     phones = Contact.objects.filter(type='PH')

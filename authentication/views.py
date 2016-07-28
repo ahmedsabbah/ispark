@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from django import forms
 
 def login_request(request):
-    if request.user.is_authenticated():
+    if request.user.is_authenticated() and not request.user.is_superuser and not request.user.is_staff:
         return redirect('/')
     message = ''
     if request.method == 'POST':
@@ -17,8 +17,11 @@ def login_request(request):
         if username and password:
             user = authenticate(username=username, password=password)
             if user is not None:
-                login(request, user)
-                return redirect('/')
+                if not user.is_superuser and not user.is_staff:
+                    login(request, user)
+                    return redirect('/')
+                else:
+                    message = 'Invalid username or password'
             else:
                 message = 'Invalid username or password'
         else:
@@ -80,7 +83,7 @@ def reset_password(request, token):
                 user = token.user
                 user.set_password(new_password)
                 user.save()
-                return redirect('/login')
+                return redirect('/login/')
             else:
                 return render(request, 'reset_password.html', {'message': "Passwords don't match" ,'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
         else:
@@ -168,14 +171,16 @@ class FileUploadForm(forms.Form):
     cv = forms.FileField()
 
 def upload_cv(request):
+    if not request.user.is_authenticated():
+        return redirect('/login/')
     if request.method == 'POST':
         form = FileUploadForm(request.POST, request.FILES)
         if form.is_valid():
             profile = request.user.profile
             profile.cv = form.cleaned_data['cv']
             profile.save()
-            return redirect('/profile')
+            return redirect('/profile/')
         else:
-            return redirect('/profile')
+            return redirect('/profile/')
     else:
-        return redirect('/profile')
+        return redirect('/profile/')

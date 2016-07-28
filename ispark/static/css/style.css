@@ -6,7 +6,7 @@
 @font-face {
     font-family: 'Sketch Rockwell';
     src: url('../fonts/sketch-rockwell.woff') format('woff'),
-       url('../fonts/scetch-rockwell.ttf')  format('truetype');
+       url('../fonts/sketch-rockwell.ttf')  format('truetype');
 }
 * {
     font-family: 'Rockwell', sans-serif;
@@ -55,6 +55,9 @@ a:hover {
 }
 .sticky .navbar-nav {
 	padding: 35px 0;
+}
+.navbar-nav .logged-in ul {
+  width: 100%;
 }
 .sticky .navbar-nav .logged-in a {
     color: #102b4c !important;
@@ -929,6 +932,12 @@ input#password {
 }
 #accordion{
     margin-bottom: 40px;
+}
+#accordion .accordion-button-div .fa {
+    font-size: 30px;
+    float: none;
+    position: relative;
+    top: 3px;
 }
 #accordion h3 {
     background-image: url("../images/conferences-title-icon.png");

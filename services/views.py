@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from models import Opportunity, Tour, Conference, Job
+from models import Opportunity, Tour, Conference
 from applications.models import TourApplication, ConferenceApplication, OpportunityApplication
 from contents.models import Contact, Category, Announcement
 from django.utils import timezone
@@ -9,9 +9,8 @@ from django.http.response import HttpResponse
 from django.core.paginator import Paginator
 
 
-# Create your views here.
 def major_exploration(request):
-    tours = Tour.objects.filter(start_date__gte = timezone.now())
+    tours = Tour.objects.filter(start_date__gte = timezone.now()).order_by('start_date')
     addresses = Contact.objects.filter(type='AD')
     emails = Contact.objects.filter(type='EM')
     phones = Contact.objects.filter(type='PH')
@@ -71,7 +70,7 @@ def tour_apply(request, pk):
         return redirect('/404')
 
 def conferences(request):
-    upcoming_conferences = Conference.objects.filter(start_date__gte = timezone.now())
+    upcoming_conferences = Conference.objects.filter(start_date__gte = timezone.now()).order_by('start_date')
     previous_conferences_tmp = Conference.objects.filter(start_date__lt = timezone.now())
     p = Paginator(previous_conferences_tmp, 5)
     page = p.page(1)
@@ -124,6 +123,8 @@ def conference_apply(request, pk):
         return redirect('/404')
 
 def profile(request):
+    if not request.user.is_authenticated() or request.user.is_superuser or request.user.is_staff:
+        return redirect('/login')
     addresses = Contact.objects.filter(type='AD')
     emails = Contact.objects.filter(type='EM')
     phones = Contact.objects.filter(type='PH')
@@ -148,11 +149,13 @@ def profile(request):
     badges = profile.badges.all()
     tours = Tour.objects.all()
     conferences = Conference.objects.all()
-    announcement = Announcement.objects.all().order_by('-created_date').first()
-    return render(request, 'profile.html', {'announcement': announcement, 'tours': tours, 'conferences': conferences, 'profile': profile, 'badges': badges,'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    announcements = Announcement.objects.all().order_by('-created_date')[:5]
+    return render(request, 'profile.html', {'announcements': announcements, 'tours': tours, 'conferences': conferences, 'profile': profile, 'badges': badges,'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
 
 def internships(request):
+    if not request.user.is_authenticated() or request.user.is_superuser or request.user.is_staff:
+        return redirect('/login')
     addresses = Contact.objects.filter(type='AD')
     emails = Contact.objects.filter(type='EM')
     phones = Contact.objects.filter(type='PH')
@@ -206,6 +209,8 @@ def internships(request):
         return render(request, 'internships.html', {'internships': internships, 'has_next': has_next, 'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
 def internship(request, pk):
+    if not request.user.is_authenticated() or request.user.is_superuser or request.user.is_staff:
+        return redirect('/login')
     try:
         internship = Opportunity.objects.get(pk=pk)
         requirements = internship.requirements.all()
@@ -215,7 +220,7 @@ def internship(request, pk):
         page = p.page(1)
         related = page.object_list
         try:
-            applied_tmp = OpportunityApplication.objects.get(user=request.user, opportunity=internship)
+            applied_tmp = OpportunityApplication.objects.get(user=request.user.profile, opportunity=internship)
             applied = True
         except OpportunityApplication.DoesNotExist:
             applied = False
@@ -242,79 +247,12 @@ def internship(request, pk):
     except Opportunity.DoesNotExist:
         return redirect('/404')
 
-def jobs(request):
-    addresses = Contact.objects.filter(type='AD')
-    emails = Contact.objects.filter(type='EM')
-    phones = Contact.objects.filter(type='PH')
-    try:
-        fb = Contact.objects.get(type='FB')
-    except Contact.DoesNotExist:
-        fb = ''
-    try:
-        tw = Contact.objects.get(type='TW')
-    except Contact.DoesNotExist:
-        tw = ''
-    try:
-        ins = Contact.objects.get(type='IN')
-    except Contact.DoesNotExist:
-        ins = ''
-    try:
-        yt = Contact.objects.get(type='YT')
-    except Contact.DoesNotExist:
-        yt = ''
-
-    query = request.GET.get('q', None)
-    if query:
-        try:
-            category = Category.objects.get(id=query)
-            jobs = Job.objects.filter(category=category)
-            data = serializers.serialize("json", jobs)
-            return HttpResponse(data, content_type='application/json')
-        except Category.DoesNotExist:
-            category = Category.objects.first()
-            categories = Category.objects.all()
-            jobs = Job.objects.filter(category=category)
-            return render(request, 'jobs.html', {'jobs': jobs, 'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
-    else:
-        category = Category.objects.first()
-        categories = Category.objects.all()
-        jobs = Job.objects.filter(category=category)
-        return render(request, 'jobs.html', {'jobs': jobs, 'categories': categories, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
-
-def job(request, pk):
-    try:
-        job = Job.objects.get(pk=pk)
-        interests = job.interests.all()
-        skills = job.skills.all()
-        related = Job.objects.filter(category=job.category)
-        addresses = Contact.objects.filter(type='AD')
-        emails = Contact.objects.filter(type='EM')
-        phones = Contact.objects.filter(type='PH')
-        try:
-            fb = Contact.objects.get(type='FB')
-        except Contact.DoesNotExist:
-            fb = ''
-        try:
-            tw = Contact.objects.get(type='TW')
-        except Contact.DoesNotExist:
-            tw = ''
-        try:
-            ins = Contact.objects.get(type='IN')
-        except Contact.DoesNotExist:
-            ins = ''
-        try:
-            yt = Contact.objects.get(type='YT')
-        except Contact.DoesNotExist:
-            yt = ''
-        return render(request, 'job.html', {'job': job, 'interests': interests, 'skills': skills, 'related': related, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
-    except Job.DoesNotExist:
-        return redirect('/404')
 
 def internship_apply(request, pk):
     try:
         internship = Opportunity.objects.get(pk=pk)
         try:
-            applied_tmp = OpportunityApplication.objects.get(user=request.user, opportunity=internship)
+            applied_tmp = OpportunityApplication.objects.get(user=request.user.profile, opportunity=internship)
         except OpportunityApplication.DoesNotExist:
             application = OpportunityApplication(user=request.user, opportunity=internship)
             application.save()

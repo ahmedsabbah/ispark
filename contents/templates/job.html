@@ -1,0 +1,241 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load static %}
+
+{% block extra_css %}
+  <link rel="stylesheet" type="text/css" href="{% static "css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/flexslider.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/bselect.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "css/progress.css" %}">
+{% endblock %}
+
+{% block extra_script %}
+  <script src="{% static "js/jquery-ui.min.js" %}"></script>
+  <script src="{% static "js/jquery.flexslider-min.js" %}"></script>
+  <script src="{% static "js/bselect.min.js" %}"></script>
+  <script src="{% static "js/jquery.animateNumber.min.js" %}"></script>
+  <script src="{% static "js/jquery.visible.min.js" %}"></script>
+  <script src="{% static "js/jquery-asPieProgress.js" %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+      <!--Headers -->
+      <div class="row">
+        <!-- Sticky Header -->
+        <nav class="sticky navbar navbar-default">
+          <div class="container">
+            <div class="container-fluid">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse" aria-expanded="false">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img src="{% static "images/logo.png" %}" /></a>
+              </div>
+              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/majors/">Major Exploration</a></li>
+                      <li><a href="/internships/">Job Shadowing & Internships</a></li>
+                      <li><a href="/conferences/">Conferences</a></li>
+                    </ul>
+                  </li>
+                  <li class="active"><a href="/jobs&majors/">Jobs & Majors</a></li>
+                  <li><a href="/mentors/">Mentors</a></li>
+                  <li><a href="/team/">Team</a></li>
+                  <li><a href="/contact/">Contact Us</a></li>
+                  {% if not user.is_authenticated or user.is_superuser or user.is_staff %}
+                  <li><a href="/login/">Login</a></li>
+                  {% else %}
+                  <li class="logged-in dropdown">
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="navToProfile()">Welcome, {{ user.first_name }} {{ user.last_name }}</a>
+                    <ul class="dropdown-menu">
+                      <li><a href="/logout/">Logout</a></li>
+                    </ul>
+                  </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="jobs-outer-banner">
+        <div class="title"><span>Jobs</span></div>
+    </div>
+
+    <!-- Page titles -->
+    <div class="container jobs-inner">
+      <div class="row profile-row">
+        <div class="col-xs-12 title">
+          {{job.category.name}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 icon">
+          <div><img src="{{job.category.photo.url}}" /></div>
+        </div>
+      </div>
+      <div class="row profile-row">
+        <div class="col-xs-12 title">
+          <span>{{job.title}}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Job description and interests -->
+    <div class="grey-bg">
+      <div class="container">
+        <div class="row job-desc-container">
+          <div class="col-md-4 col-xs-12">
+            <div><img src="{{job.photo.url}}" /></div>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <div class="job-desc">
+              <div>
+                <img class="pull-left" src="{% static "images/business-presentation.png" %}" />
+                <div class="pull-left">Job Description:</div>
+              </div>
+              <div class="clear"></div>
+              <div>
+                {{job.description}}
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-xs-12">
+            <div class="job-desc">
+              <div>
+                <img class="pull-left" src="{% static "images/in-love.png" %}" />
+                <div class="pull-left">Interests:</div>
+              </div>
+              <div class="clear"></div>
+              <div class="interests">
+                {% for interest in interests %}
+                <span class="pull-left">{{interest.name}}</span>
+                {% endfor %}
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skills -->
+    <div class="dark-bg">
+      <div class="container">
+        <div class="row profile-row">
+          <div class="col-xs-12 title">
+            Required Skills
+          </div>
+          <div class="progress-bars-container flexslider col-xs-12">
+            <ul class="slides progress-bars">
+              {% for skill in skills %}
+              <li>
+                <div id="pie_progress{{skill.id}}" class="pie_progress" role="progressbar" data-goal="100" aria-valuemin="-100" aria-valuemax="100">
+                  <span class="pie_progress__number">0%</span>
+                </div>
+                <div>{{skill.name}}</div>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Related jobs -->
+    <div class="container">
+      <div class="row profile-row">
+        <div class="col-xs-12 title">
+          Related Jobs
+        </div>
+        <div class="related-jobs flexslider col-xs-12">
+          <ul class="slides">
+            {% for item in related %}
+            {% if item.id != job.id %}
+            <li>
+              <div>{{item.title}}</div>
+              <div>
+                <img src="{{item.photo.url}}" />
+                <button class="full-width" onclick="goToJob({{item.id}})">View</button>
+              </div>
+            </li>
+            {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+{% endblock %}
+
+{% block extra_script_end %}
+<script>
+
+//---------- Profile Navigation ----------//
+  function navToProfile() {
+    window.location.href = "/profile/";
+  }
+
+      var animated = false;
+
+      function goToJob(id) {
+        window.location.href = "/job/"+id+"/";
+      }
+
+      /* Add interest button */
+      function addInterest() {
+        $(".interests .add-btn").remove();
+        $(".interests > div").remove();
+        $(".interests").append('<span class="pull-left">Animal Care</span><span class="pull-left">Caretaker</span><span class="pull-left">Visiting Vets</span><span class="pull-left">Zoo Keepers</span><span class="pull-left">Playing with Animals</span><span class="pull-left add-btn" onclick="addInterest()">+</span><div class="clear"></div>');
+      }
+
+      $(document).ready(function() {
+        /* Pie charts animation */
+        $('.pie_progress').asPieProgress({
+            namespace: 'pie_progress'
+        });
+
+        $(window).scroll(function() {
+          if($('.progress-bars-container').visible() && animated == false) {
+            animated = true;
+            {% for skill in skills %}
+            $('#pie_progress{{skill.id}}').asPieProgress('go','{{skill.value}}%');
+            {% endfor %}
+          }
+        })
+
+        $('.progress-bars-container.flexslider').flexslider({
+          animation: "slide",
+          animationLoop: false,
+          itemWidth: 260,
+          itemMargin: 30,
+          prevText: "",
+          nextText: "",
+          start: function(slider){
+              $('.flexslider').resize();
+          }
+        });
+
+        $('.related-jobs.flexslider').flexslider({
+          animation: "slide",
+          animationLoop: false,
+          itemWidth: 365,
+          itemMargin: 30,
+          prevText: "",
+          nextText: "",
+          start: function(slider){
+              $('.flexslider').resize();
+          }
+        });
+      })
+    </script>
+{% endblock %}

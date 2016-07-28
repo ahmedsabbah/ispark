@@ -101,19 +101,24 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/majors">Major Exploration</a></li>
-                  <li><a href="/internships">Job Shadowing & Internships</a></li>
-                  <li><a href="/conferences">Conferences</a></li>
+                  <li><a href="/majors/">Major Exploration</a></li>
+                  <li><a href="/internships/">Job Shadowing & Internships</a></li>
+                  <li><a href="/conferences/">Conferences</a></li>
                 </ul>
               </li>
-              <li><a href="/jobs&majors">Jobs & Majors</a></li>
-              <li><a href="/mentors">Mentors</a></li>
-              <li><a href="/team">Team</a></li>
-              <li><a href="/contact">Contact Us</a></li>
-              {% if user.is_authenticated %}
-              <li class="logged-in"><a href="/profile">Welcome, {{ user.first_name }} {{ user.last_name }}</a></li>
+              <li><a href="/jobs&majors/">Jobs & Majors</a></li>
+              <li><a href="/mentors/">Mentors</a></li>
+              <li><a href="/team/">Team</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              {% if not user.is_authenticated or user.is_superuser or user.is_staff %}
+              <li><a href="/login/">Login</a></li>
               {% else %}
-              <li><a href="/login">Login</a></li>
+              <li class="logged-in dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="navToProfile()">Welcome, {{ user.first_name }} {{ user.last_name }}</a>
+                <ul class="dropdown-menu">
+                  <li><a href="/logout/">Logout</a></li>
+                </ul>
+              </li>
               {% endif %}
             </ul>
           </div>
@@ -142,19 +147,24 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/majors">Major Exploration</a></li>
-                  <li><a href="/internships">Job Shadowing & Internships</a></li>
-                  <li><a href="/conferences">Conferences</a></li>
+                  <li><a href="/majors/">Major Exploration</a></li>
+                  <li><a href="/internships/">Job Shadowing & Internships</a></li>
+                  <li><a href="/conferences/">Conferences</a></li>
                 </ul>
               </li>
-              <li><a href="/jobs&majors">Jobs & Majors</a></li>
-              <li><a href="/mentors">Mentors</a></li>
-              <li><a href="/team">Team</a></li>
-              <li><a href="/contact">Contact Us</a></li>
-              {% if user.is_authenticated %}
-              <li class="logged-in"><a href="/profile">Welcome, {{ user.first_name }} {{ user.last_name }}</a></li>
+              <li><a href="/jobs&majors/">Jobs & Majors</a></li>
+              <li><a href="/mentors/">Mentors</a></li>
+              <li><a href="/team/">Team</a></li>
+              <li><a href="/contact/">Contact Us</a></li>
+              {% if not user.is_authenticated or user.is_superuser or user.is_staff %}
+              <li><a href="/login/">Login</a></li>
               {% else %}
-              <li><a href="/login">Login</a></li>
+              <li class="logged-in dropdown">
+                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="navToProfile()">Welcome, {{ user.first_name }} {{ user.last_name }}</a>
+                <ul class="dropdown-menu">
+                  <li><a href="/logout/">Logout</a></li>
+                </ul>
+              </li>
               {% endif %}
             </ul>
           </div>
@@ -296,26 +306,18 @@
     </div>
     <div id="testCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
-          <div class="item active">
-            <div><img src="{% static "images/user1.png" %}" alt="Chania" /></div>
-            <div class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less  normal distribution of letters, as  opposed to using 'Content here</div>
+          {% for testimonial in testimonials %}
+          <div class="item{%if forloop.counter == 1%} active{% endif %}">
+            <div><img src="{{testimonial.photo.url}}" alt="Chania" /></div>
+            <div class="text">{{testimonial.text}}</div>
             <div class="author">
-              <span>Ahmed Saeed</span>
+              <span>{{testimonial.name}}</span>
               <span>|</span>
-              <span>Successful Student 2016</span>
+              <span>{{testimonial.definition}}</span>
             </div>
-            <button>Video Testimonials</button>
+            <button onclick="window.location='{{testimonial.video_link}}'">Video Testimonials</button>
           </div>
-          <div class="item">
-            <div><img src="{% static "images/user1.png" %}" alt="Chania" /></div>
-            <div class="text">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less  normal distribution of letters, as  opposed to using 'Content here</div>
-            <div class="author">
-              <span>Ahmed Saeed</span>
-              <span>|</span>
-              <span>Successful Student 2016</span>
-            </div>
-            <button>Video Testimonials</button>
-          </div>
+          {% endfor %}
         </div>
         <a class="left carousel-control" href="#testCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -336,38 +338,24 @@
     </ol>
 
     <div class="carousel-inner" role="listbox">
-      <div class="item active">
+      {% for slider in second_sliders %}
+      <div class="item{%if forloop.counter == 1%} active{% endif %}">
         <div class="slider-panel">
           <div class="col-xs-3">
-            <img class="logo" src="{% static "images/injaz1.png" %}" alt="Chania">
+            <img class="logo" src="{{slider.logo.url}}" alt="Chania">
           </div>
           <div class="col-xs-9 text">
             <div>
-              INJAZ STARTUP EGYPT WINNER 2016
+              {{slider.title}}
             </div>
             <div>
-              Injaz Egypt is a non-profit organization that strives to actively engage the Egyptian community in inspiring and educating current and future generations in becoming qualified employees and entrepreneurs who can help contribute to the growth of our local and global economy.
+              {{slider.content}}
             </div>
           </div>
         </div>
-        <img src="{% static "images/slider2.jpg" %}" alt="Chania">
+        <img src="{{slider.background.url}}" alt="Chania">
       </div>
-      <div class="item">
-        <div class="slider-panel">
-          <div class="col-xs-3">
-            <img class="logo" src="{% static "images/injaz1.png" %}" alt="Chania">
-          </div>
-          <div class="col-xs-9 text">
-            <div>
-              INJAZ STARTUP EGYPT WINNER 2016
-            </div>
-            <div>
-              Injaz Egypt is a non-profit organization that strives to actively engage the Egyptian community in inspiring and educating current and future generations in becoming qualified employees and entrepreneurs who can help contribute to the growth of our local and global economy.
-            </div>
-          </div>
-        </div>
-        <img src="{% static "images/slider2.jpg" %}" alt="Chania">
-      </div>
+      {% endfor %}
     </div>
 
     <!-- Left and right controls -->
@@ -390,15 +378,16 @@
       <a href="#">Check our calendar</a>
     </div>
     <div>
+      {% for tour in tours_to_show %}
       <div class="event col-xs-12 col-md-4">
         <div class="inner-event">
           <div class="row">
             <div class="col-xs-12">
-              <img class="pic" src="{% static "images/event1.jpg" %}" />
+              <img class="pic" src="{{tour.university.photo.url}}" />
             </div>
           </div>
           <div class="date">
-            <div class="col-xs-8 pull-left">1st of June 2016</div>
+            <div class="col-xs-8 pull-left">{{tour.start_date}}</div>
             <img class="col-xs-4 pull-right" src="{% static "images/tour.png" %}" />
           </div>
           <div class="clear"></div>
@@ -406,77 +395,51 @@
             Find out which major is the one for you
           </div>
           <div class="location">
-            <div class="col-xs-8 pull-left">Event Location</div>
+            <div class="col-xs-8 pull-left">{{tour.location}}</div>
             <img class="col-xs-4 pull-right" src="{% static "images/pin.png" %}" />
           </div>
           <div class="clear"></div>
           <div class="col-xs-12 content">
-            We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+            {{tour.description}}
           </div>
           <div class="col-xs-12 submit-btn">
-            <button>View Event</button>
+            <button onclick="window.location='/majors/'">View Event</button>
           </div>
           <div class="clear"></div>
         </div>
       </div>
+      {% endfor %}
+      {% for conference in conferences_to_show %}
       <div class="event col-xs-12 col-md-4">
         <div class="inner-event">
           <div class="row">
             <div class="col-xs-12">
-              <img class="pic" src="{% static "images/event1.jpg" %}" />
+              <img class="pic" src="{{conference.photo.url}}" />
             </div>
           </div>
           <div class="date">
-            <div class="col-xs-8 pull-left">1st of June 2016</div>
-            <img class="col-xs-4 pull-right" src="{% static "images/tour.png" %}" />
+            <div class="col-xs-8 pull-left">{{conference.start_date}}</div>
+            <img class="col-xs-4 pull-right" src="{% static "images/presentation.png" %}" />
           </div>
           <div class="clear"></div>
           <div class="col-xs-12 text">
             Find out which major is the one for you
           </div>
           <div class="location">
-            <div class="col-xs-8 pull-left">Event Location</div>
+            <div class="col-xs-8 pull-left">{{conference.location}}</div>
             <img class="col-xs-4 pull-right" src="{% static "images/pin.png" %}" />
           </div>
           <div class="clear"></div>
           <div class="col-xs-12 content">
-            We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
+            {{conference.description}}
           </div>
           <div class="col-xs-12 submit-btn">
-            <button>View Event</button>
+            <button onclick="window.location='/conferences/'">View Event</button>
           </div>
           <div class="clear"></div>
         </div>
       </div>
-      <div class="event col-xs-12 col-md-4">
-        <div class="inner-event">
-          <div class="row">
-            <div class="col-xs-12">
-              <img class="pic" src="{% static "images/event1.jpg" %}" />
-            </div>
-          </div>
-          <div class="date">
-            <div class="col-xs-8 pull-left">1st of June 2016</div>
-            <img class="col-xs-4 pull-right" src="{% static "images/tour.png" %}" />
-          </div>
-          <div class="clear"></div>
-          <div class="col-xs-12 text">
-            Find out which major is the one for you
-          </div>
-          <div class="location">
-            <div class="col-xs-8 pull-left">Event Location</div>
-            <img class="col-xs-4 pull-right" src="{% static "images/pin.png" %}" />
-          </div>
-          <div class="clear"></div>
-          <div class="col-xs-12 content">
-            We will be visiting the German University in Cairo to give the students first hand experience of the facilites of the university
-          </div>
-          <div class="col-xs-12 submit-btn">
-            <button>View Event</button>
-          </div>
-          <div class="clear"></div>
-        </div>
-      </div>
+      {% endfor %}
     </div>
     <div class="more-events">
       <button type="button" id="all-events-btn" data-toggle="modal" data-target="#allEventsModal">View All Events</button>
@@ -741,6 +704,12 @@
 
 {% block extra_script_end %}
   <script>
+
+  //---------- Profile Navigation ----------//
+    function navToProfile() {
+      window.location.href = "/profile/";
+    }
+
   function flexsliderInitialize(){
     $('.flexslider').flexslider({
       animation: "slide",
@@ -879,16 +848,27 @@
     });
 
     //--- Adding an event ---//
-    var event1 = { id:"1", title: 'Event 1', start: '2016-07-11', url: '/major_exploration' };
-    var event2 = { id:"2", title: 'Event 2', start: '2016-07-30', url: '/job_shadowing' };
-    var event3 = { id:"3", title: 'Event 3', start: '2016-08-30', url: '/conferences' };
-    $('#calendar').fullCalendar( 'renderEvent', event1, true );
-    $('#calendar').fullCalendar( 'renderEvent', event2, true );
-    $('#calendar').fullCalendar( 'renderEvent', event3, true );
+    {% for tour in tours %}
+      var tour{{tour.id}} = { id:"tour{{tour.id}}", title: '{{tour.university.name}}', start: '{{tour.start_date}}', end: '{{tour.end_date}}', url: '/majors/' };
+      $('#calendar').fullCalendar( 'renderEvent', tour{{tour.id}}, true );
+    {% endfor %}
+    {% for conference in conferences %}
+      var conference{{conference.id}} = { id:"conference{{conference.id}}", title: '{{conference.name}}', start: '{{conference.start_date}}', end: '{{conference.end_date}}', url: '/conferences/' };
+      $('#calendar').fullCalendar( 'renderEvent', conference{{conference.id}}, true );
+    {% endfor %}
+
+    // //--- Adding an event ---//
+    // var event1 = { id:"1", title: 'Event 1', start: '2016-07-11', url: '/major_exploration' };
+    // var event2 = { id:"2", title: 'Event 2', start: '2016-07-30', url: '/job_shadowing' };
+    // var event3 = { id:"3", title: 'Event 3', start: '2016-08-30', url: '/conferences' };
+    // $('#calendar').fullCalendar( 'renderEvent', event1, true );
+    // $('#calendar').fullCalendar( 'renderEvent', event2, true );
+    // $('#calendar').fullCalendar( 'renderEvent', event3, true );
 
     //---------- Set initial active event ----------//
     var curr_event = $("#calendar").fullCalendar('clientEvents', $(".item.active").attr("id"));
   });
+
   $('#joinModal').on('shown.bs.modal', function() {
   //inital resize
   resizeTextArea($('.popup-form textarea'));

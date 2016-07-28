@@ -1,17 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from django.contrib.auth.models import User
-
-class ContactForm(models.Model):
-    name = models.CharField(max_length=200)
-    number = models.CharField(max_length=200, blank=True, null=True)
-    email = models.CharField(max_length=200, blank=True, null=True)
-    message = models.TextField(blank=True, null=True)
-    class Meta:
-        verbose_name = 'Contact Form'
-        verbose_name_plural = 'Contact Forms'
-    def __str__(self):
-        return self.name
+from authentication.models import Profile
 
 class TourApplication(models.Model):
     KNOW_CHOICES = (
@@ -22,13 +11,13 @@ class TourApplication(models.Model):
         ('PE', 'Previous Event')
     )
     tour = models.ForeignKey('services.Tour', related_name='applications')
-    majors = models.ManyToManyField('contents.Major', related_name='tour_applications', blank=True)
+    majors = models.ManyToManyField('services.Major', related_name='tour_applications', blank=True)
     name = models.CharField(max_length=200)
-    phone = models.CharField(max_length=15, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    school_name = models.CharField(max_length=200, blank=True, null=True)
-    grade_level = models.CharField(max_length=200, blank=True, null=True)
-    wave = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField()
+    school_name = models.CharField(max_length=200)
+    grade_level = models.CharField(max_length=200)
+    wave = models.CharField(max_length=200)
     joined_previous_event = models.BooleanField(default=False)
     previous_event = models.CharField(max_length=200, blank=True, null=True)
     know_about_us = models.CharField(max_length=2, choices=KNOW_CHOICES)
@@ -48,13 +37,13 @@ class ConferenceApplication(models.Model):
     )
     conference = models.ForeignKey('services.Conference', related_name='applications')
     name = models.CharField(max_length=200)
-    phone = models.CharField(max_length=15, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    school_name = models.CharField(max_length=200, blank=True, null=True)
-    grade_level = models.CharField(max_length=200, blank=True, null=True)
-    wave = models.CharField(max_length=200, blank=True, null=True)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField()
+    school_name = models.CharField(max_length=200)
+    grade_level = models.CharField(max_length=200)
+    wave = models.CharField(max_length=200)
     payment = models.TextField(blank=True, null=True)
-    joined_previous_event = models.NullBooleanField()
+    joined_previous_event = models.BooleanField(default=False)
     previous_event = models.CharField(max_length=200, blank=True, null=True)
     know_about_us = models.CharField(max_length=2, choices=KNOW_CHOICES)
     class Meta:
@@ -67,12 +56,12 @@ class VacancyApplication(models.Model):
     vacancy = models.ForeignKey('services.Vacancy', related_name='applications')
     name = models.CharField(max_length=200)
     age = models.CharField(max_length=200)
-    phone = models.CharField(max_length=15, blank=True, null=True)
-    email = models.EmailField(blank=True, null=True)
-    university = models.CharField(max_length=200, blank=True, null=True)
-    major = models.CharField(max_length=200, blank=True, null=True)
-    year_of_study_graduation = models.CharField(max_length=200, blank=True, null=True)
-    why_join = models.TextField(blank=True, null=True)
+    phone = models.CharField(max_length=15)
+    email = models.EmailField()
+    university = models.CharField(max_length=200)
+    major = models.CharField(max_length=200)
+    year_of_study_graduation = models.CharField(max_length=200)
+    why_join = models.TextField()
     experience = models.TextField(blank=True, null=True)
     class Meta:
         verbose_name = 'Vacancy Application'
@@ -82,10 +71,10 @@ class VacancyApplication(models.Model):
 
 class OpportunityApplication(models.Model):
     opportunity = models.ForeignKey('services.opportunity', related_name='applications')
-    user = models.ForeignKey(User, related_name='opportunity_applications')
+    user = models.ForeignKey(Profile, related_name='opportunity_applications')
     submitted_date = models.DateField(auto_now_add=True)
     class Meta:
         verbose_name = 'Opportunity Application'
         verbose_name_plural = 'Opportunity Applications'
     def __str__(self):
-        return '%s %s' % (self.user.first_name, self.user.last_name)
+        return '%s %s' % (self.user.user.first_name, self.user.user.last_name)

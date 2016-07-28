@@ -4,31 +4,41 @@ from django.db import models
 
 class Tour(models.Model):
     university = models.ForeignKey('contents.University', related_name='tours')
-    start_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
-    time = models.TimeField(blank=True, null=True)
-    location = models.CharField(max_length=200, blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    transportation = models.NullBooleanField(blank=True, null=True)
-    age_range = models.CharField(max_length=200, blank=True, null=True)
-    majors = models.ManyToManyField('contents.Major', related_name='tours', blank=True)
-    contact_number = models.CharField(max_length=200, blank=True, null=True)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    time = models.TimeField()
+    location = models.CharField(max_length=200)
+    description = models.TextField()
+    transportation = models.BooleanField()
+    age_range = models.CharField(max_length=200)
+    contact_number = models.CharField(max_length=15)
+    fb_link = models.CharField(max_length=200, blank=True, null=True)
     class Meta:
         verbose_name = 'Tour'
         verbose_name_plural = 'Tours'
     def __str__(self):
         return self.university.name
 
+class Major(models.Model):
+    tour = models.ForeignKey('services.Tour', related_name='majors')
+    name = models.CharField(max_length=200)
+    class Meta:
+        verbose_name = 'Major'
+        verbose_name_plural = 'Majors'
+    def __str__(self):
+        return self.name
+
 class Conference(models.Model):
-    name = models.CharField(max_length=200) # check if really needed
-    photo = models.ImageField(upload_to='conferences', blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    location = models.CharField(max_length=200, blank=True, null=True)
-    start_date = models.DateField(blank=True, null=True)
-    end_date = models.DateField(blank=True, null=True)
-    time = models.TimeField(blank=True, null=True)
-    price = models.IntegerField(blank=True, null=True)
-    contact_number = models.CharField(max_length=200, blank=True, null=True)
+    name = models.CharField(max_length=200)
+    photo = models.ImageField(upload_to='conferences')
+    description = models.TextField()
+    location = models.CharField(max_length=200)
+    start_date = models.DateField()
+    end_date = models.DateField()
+    time = models.TimeField()
+    price = models.IntegerField()
+    contact_number = models.CharField(max_length=15)
+    fb_link = models.CharField(max_length=200, blank=True, null=True)
     class Meta:
         verbose_name = 'Conference'
         verbose_name_plural = 'Conferences'
@@ -42,27 +52,14 @@ class Vacancy(models.Model):
     )
     role = models.CharField(max_length=1, choices=TYPE_CHOICES)
     position = models.CharField(max_length=200)
-    photo = models.ImageField(upload_to='vacancies', blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    contact_email = models.EmailField(blank=True, null=True)
-    working_days = models.CharField(max_length=200, blank=True, null=True)
-    working_hours = models.CharField(max_length=200, blank=True, null=True)
-    duration = models.CharField(max_length=200, blank=True, null=True)
-    location = models.CharField(max_length=200, blank=True, null=True)
+    description = models.TextField()
+    contact_email = models.EmailField()
     class Meta:
         verbose_name = 'Vacancy'
         verbose_name_plural = 'Vacancies'
     def __str__(self):
         return '%s (%s)' % (self.position, self.role)
 
-class VacancyRequirement(models.Model):
-    text = models.TextField()
-    vacancy = models.ForeignKey('services.Vacancy', related_name='requirements')
-    class Meta:
-        verbose_name = 'Requirement'
-        verbose_name_plural = 'Requirements'
-    def __str__(self):
-        return self.text
 
 class Opportunity(models.Model):
     TYPE_CHOICES = (
@@ -71,12 +68,12 @@ class Opportunity(models.Model):
     )
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     job_title = models.CharField(max_length=200)
-    industry = models.ForeignKey('contents.Category', related_name='opportunities', blank=True, null=True)
+    industry = models.ForeignKey('contents.Category', related_name='opportunities')
     posted_date = models.DateField(auto_now_add=True)
-    start_date = models.DateField(blank=True, null=True)
-    employer = models.CharField(max_length=200, blank=True, null=True)
-    logo = models.ImageField(upload_to='opportunities', blank=True, null=True)
-    location = models.CharField(max_length=200, blank=True, null=True)
+    start_date = models.DateField()
+    employer = models.CharField(max_length=200)
+    logo = models.ImageField(upload_to='opportunities')
+    location = models.CharField(max_length=200)
     class Meta:
         verbose_name = 'Opportunity'
         verbose_name_plural = 'Opportunities'
@@ -92,23 +89,7 @@ class OpportunityRequirement(models.Model):
     def __str__(self):
         return self.text
 
-class Job(models.Model):
-    category = models.ForeignKey('contents.Category', related_name='jobs')
-    title = models.CharField(max_length=200)
-    logo = models.ImageField(upload_to='jobs', blank=True, null=True)
-    photo = models.ImageField(upload_to='jobs', blank=True, null=True)
-    description = models.TextField(blank=True, null=True)
-    interests = models.ManyToManyField('contents.Skill', related_name='jobs', blank=True)
-    class Meta:
-        verbose_name = 'Job'
-        verbose_name_plural = 'Jobs'
-    def __str__(self):
-        return self.title
 
-class JobSkill(models.Model):
-    job = models.ForeignKey(Job, related_name='skills')
-    name = models.CharField(max_length=200)
-    value = models.IntegerField(default=0)
 
 # class Wave(models.Model):
 #     title = models.CharField(max_length=200)
