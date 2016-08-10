@@ -118,9 +118,9 @@ class JobSkill(models.Model):
 
 class Partner(models.Model):
     TYPE_CHOICES = (
-        ('AD', 'Address'),
-        ('EM', 'Email'),
-        ('PH', 'Phone')
+        ('S', 'School'),
+        ('U', 'University'),
+        ('C', 'Company')
     )
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     name = models.CharField(max_length=200)

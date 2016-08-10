@@ -181,6 +181,9 @@
         <div class="col-xs-12">
           <div class="flexslider col-xs-12">
             <ul class="slides">
+              {% if not badges %}
+              <div><h3>No badges acquired.</h3>
+              {% endif %}
               {% for badge in badges %}
               <li>
                 {% if badge.type == 'T' %}

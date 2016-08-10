@@ -215,7 +215,7 @@ def internship(request, pk):
         internship = Opportunity.objects.get(pk=pk)
         requirements = internship.requirements.all()
         category = internship.industry
-        related_tmp = Opportunity.objects.filter(industry=category)
+        related_tmp = Opportunity.objects.filter(industry=category).filter(start_date__gte = timezone.now())
         p = Paginator(related_tmp, 8)
         page = p.page(1)
         related = page.object_list
@@ -254,7 +254,7 @@ def internship_apply(request, pk):
         try:
             applied_tmp = OpportunityApplication.objects.get(user=request.user.profile, opportunity=internship)
         except OpportunityApplication.DoesNotExist:
-            application = OpportunityApplication(user=request.user, opportunity=internship)
+            application = OpportunityApplication(user=request.user.profile, opportunity=internship)
             application.save()
         return HttpResponse('')
     except Opportunity.DoesNotExist:

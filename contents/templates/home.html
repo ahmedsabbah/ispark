@@ -222,56 +222,23 @@
       </div>
       <div class="col-xs-12 select-container">
         <select>
-          <option value="1">Trusted Partners</option>
-          <option value="2">Another Option</option>
-          <option value="3">Third Option</option>
+          <option value="1">Schools</option>
+          <option value="2">Universities</option>
+          <option value="3">Companies</option>
         </select>
       </div>
       <div class="sliders col-xs-12">
         <div class="flexslider">
           <ul class="slides">
+            {% for partner in partners_schools %}
             <li>
               <div class="overlay">
-                <div>Injaz</div>
+                <div>{{partner.name}}</div>
                 <div>Trusted Partner</div>
               </div>
-              <img src="{% static "images/injaz.png" %}" />
+              <img src="{{partner.photo.url}}" />
             </li>
-            <li>
-              <div class="overlay">
-                <div>GUC</div>
-                <div>Trusted Partner</div>
-              </div>
-              <img src="{% static "images/guc.png" %}" />
-            </li>
-            <li>
-              <div class="overlay">
-                <div>Vodafone</div>
-                <div>Trusted Partner</div>
-              </div>
-              <img src="{% static "images/vodafone.png" %}" />
-            </li>
-            <li>
-              <div class="overlay">
-                <div>Edge</div>
-                <div>Trusted Partner</div>
-              </div>
-              <img src="{% static "images/edge.png" %}" />
-            </li>
-            <li>
-              <div class="overlay">
-                <div>Career Advancers</div>
-                <div>Trusted Partner</div>
-              </div>
-              <img src="{% static "images/career-advancers.png" %}" />
-            </li>
-            <li>
-              <div class="overlay">
-                <div>Wuzzuf</div>
-                <div>Trusted Partner</div>
-              </div>
-              <img src="{% static "images/wuzzuf.png" %}" />
-            </li>
+            {% endfor %}
           </ul>
         </div>
       </div>
@@ -440,6 +407,13 @@
         </div>
       </div>
       {% endfor %}
+
+      {% if not conferences_to_show and not tours_to_show %}
+      <!-- EMPTY_NO_ITEMS -->
+      <div class="sub-title col-xs-12">
+        <h3>There are no upcoming events.</h3>
+      </div>
+      {% endif %}
     </div>
     <div class="more-events">
       <button type="button" id="all-events-btn" data-toggle="modal" data-target="#allEventsModal">View All Events</button>
@@ -793,32 +767,23 @@
       if(val == "1") {
         $(".sliders").html("");
         $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/injaz.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>GUC</div><div>Trusted Partner</div></div><img src="{% static "images/guc.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Vodafone</div><div>Trusted Partner</div></div><img src="{% static "images/vodafone.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Edge</div><div>Trusted Partner</div></div><img src="{% static "images/edge.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Career Advancers</div><div>Trusted Partner</div></div><img src="{% static "images/career-advancers.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Wuzzuf</div><div>Trusted Partner</div></div><img src="{% static "images/wuzzuf.png" %}" /></li>');
+        {% for partner in partners_schools %}
+          $(".flexslider .slides").append('<li><div class="overlay"><div>{{partner.name}}</div><div>Trusted Partner</div></div><img src="{{partner.photo.url}}" /></li>');
+        {% endfor %}
       }
       else if(val == "2") {
         $(".sliders").html("");
         $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/logo.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/logo.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/logo.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/logo.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/logo.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/logo.png" %}" /></li>');
+        {% for partner in partners_universities %}
+          $(".flexslider .slides").append('<li><div class="overlay"><div>{{partner.name}}</div><div>Trusted Partner</div></div><img src="{{partner.photo.url}}" /></li>');
+        {% endfor %}
       }
       else if(val == "3") {
         $(".sliders").html("");
         $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/circle.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/circle.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/circle.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/circle.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/circle.png" %}" /></li>');
-        $(".flexslider .slides").append('<li><div class="overlay"><div>Injaz</div><div>Trusted Partner</div></div><img src="{% static "images/circle.png" %}" /></li>');
+        {% for partner in partners_companies %}
+          $(".flexslider .slides").append('<li><div class="overlay"><div>{{partner.name}}</div><div>Trusted Partner</div></div><img src="{{partner.photo.url}}" /></li>');
+        {% endfor %}
       }
       flexsliderInitialize();
     });

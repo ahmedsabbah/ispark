@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django import forms
-from .models import Category, Skill, University, Mentor, Contact, Announcement, TeamMember, Job, JobSkill, Testimonial, SliderSecondary
+from .models import Category, Skill, University, Mentor, Contact, Announcement, Partner, TeamMember, Job, JobSkill, Testimonial, SliderSecondary
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -54,3 +54,4 @@ admin.site.register(Announcement, AnnouncementAdmin)
 admin.site.register(TeamMember)
 admin.site.register(Testimonial)
 admin.site.register(SliderSecondary)
+admin.site.register(Partner)

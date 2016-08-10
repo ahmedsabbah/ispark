@@ -91,6 +91,12 @@
         </div>
       </a>
       {% endfor %}
+      {% if not internships %}
+      <!-- EMPTY_NO_ITEMS -->
+      <div>
+        <h3>There are no internships in this major at the moment.</h3>
+      </div>
+      {% endif %}
     </div>
 
 
@@ -127,6 +133,10 @@ function getInternships(intern_id) {
           for (var i=0; i<data.length; i++) {
             $("#main-content").append('<a href="/internship/'+data[i].pk+'"><div class="col-md-3 col-sm-6 col-xs-12 job-main-content"><p class="job-outer-title">'+data[i].fields.job_title+'</p><p class="job-outer-sub">'+data[i].fields.employer+' - '+data[i].fields.location+'</p><p class="job-outer-text">'+data[i].fields.start_date+'</p></div></a>');
           }
+          if (data.length == 0) {
+            // EMPTY_NO_ITEMS
+            $("#main-content").append('<div><h3>There are no internships in this major at the moment.</h3></div>');
+          }
         },
         error: function(err) {
           console.log(err);
@@ -139,7 +149,7 @@ function loadMore() {
       type: "GET",
       url: "/internships/?q=" + intern_id + "&p=" + page,
       success: function (results) {
-        // console.log(results.data);
+        console.log(results);
         var data = results;
         // var next = results.has_next;
         $("#main-content").html("");

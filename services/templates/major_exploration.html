@@ -75,8 +75,15 @@
 
     <!-- Accordion -->
     <div class="col-md-12 conf-accordion-container">
+      {% if not tours %}
+      <!-- EMPTY_NO_ITEMS -->
+      <div>
+        <h3>There are no upcoming tours.</h3>
+      </div>
+      {% endif %}
       <div id="accordion">
-        {% if tours %}
+
+
           {% for tour in tours.all %}
           <h3 class="accordion-color major-accordion-h3">{{tour.university.name}} Visit - <span class="date major-accordion-date">{{tour.start_date}}</span> {% if forloop.counter0 == 0 %} <span class="fa flip-arrow fa-chevron-up"></span> {% else %} <span class="fa flip-arrow fa-chevron-down"></span> {% endif %} </h3>
           <div class="accordion-body">
@@ -154,9 +161,7 @@
             </div>
           </div>
           {% endfor %}
-        {% else %}
 
-        {% endif %}
       </div>
     </div>
   </div>

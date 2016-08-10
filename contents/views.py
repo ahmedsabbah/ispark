@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from models import Contact, TeamMember, Mentor, Category, Job, SliderSecondary, Testimonial
+from models import Contact, TeamMember, Mentor, Category, Job, SliderSecondary, Testimonial, Partner
 from services.models import Vacancy, Conference, Tour
 from applications.models import VacancyApplication
 from django.utils import timezone
@@ -10,13 +10,21 @@ from django.http.response import HttpResponse
 def home(request):
     second_sliders = SliderSecondary.objects.all()
     testimonials = Testimonial.objects.all()
-    tours = Tour.objects.filter(start_date__gte = timezone.now()).order_by('start_date')
+    all_conferences = Conference.objects.all()
+    all_tours = Tour.objects.all()
+    tours = all_tours.filter(start_date__gte = timezone.now()).order_by('start_date')
     tours_to_show = tours[:2]
-    conferences = Conference.objects.filter(start_date__gte = timezone.now()).order_by('start_date')
-    if tours_to_show.count() != 2:
-        conferences_to_show = conferences[:2]
+    conferences = all_conferences.filter(start_date__gte = timezone.now()).order_by('start_date')
+    if tours_to_show.count() == 0:
+        conferences_to_show = conferences[:3]
     else:
-        conferences_to_show = conferences[:1]
+        if tours_to_show.count() == 1:
+            conferences_to_show = conferences[:2]
+        else:
+            conferences_to_show = conferences[:1]
+    partners_schools = Partner.objects.filter(type='S')
+    partners_universities = Partner.objects.filter(type='U')
+    partners_companies = Partner.objects.filter(type='C')
     addresses = Contact.objects.filter(type='AD')
     emails = Contact.objects.filter(type='EM')
     phones = Contact.objects.filter(type='PH')
@@ -36,7 +44,7 @@ def home(request):
         yt = Contact.objects.get(type='YT')
     except Contact.DoesNotExist:
         yt = ''
-    return render(request, 'home.html', {'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': tours, 'conferences': conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    return render(request, 'home.html', {'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies,'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
 def jobs_majors(request):
     addresses = Contact.objects.filter(type='AD')

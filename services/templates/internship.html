@@ -102,12 +102,13 @@
         <p class="job-button-text">Posted {{internship.posted_date}}</p>
       </div>
     </div>
-    <div class="col-md-12 job-title-border job-main-margin job-float-left">
+    <div class="col-md-12 job-title-border job-main-margin job-float-left {% if not related.1 %}job-more-div-margin{% endif %}">
       <p class="job-title-text-main job-qualify-margin">INTERNSHIP REQUIRMENTS:</p>
       {% for requirement in requirements %}
       <p class="job-qualify-text">- {{requirement.text}}</p>
       {% endfor %}
     </div>
+    {% if related.1 %}
     <div class="col-md-12 job-title-border job-main-margin job-float-left job-more-div-margin">
       <p class="job-title-text-main job-qualify-margin">SIMILAR INTERNSHIPS:</p>
       <div id="main-content" class="col-md-12">
@@ -129,6 +130,7 @@
       <button class="job-load-more-button" onclick="window.location='/internships'">Load More</button>
     </div>
     </div>
+    {% endif %}
   </div>
 </div>
 {% endblock %}
