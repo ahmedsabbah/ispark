@@ -46,7 +46,7 @@
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
                 <ul class="dropdown-menu">
-                  <li><a href="/majors/">Major Exploration</a></li>
+                  <li><a href="/majors/">Majors Exploration</a></li>
                   <li><a href="/internships/">Job Shadowing & Internships</a></li>
                   <li><a href="/conferences/">Conferences</a></li>
                 </ul>
@@ -284,7 +284,7 @@
                 Event Type:
               </div>
               <div class="col-xs-6">
-                Major Exploration
+                Majors Exploration
               </div>
             </div>
             <div class="row event-row">
@@ -405,7 +405,7 @@
 </div>
 
 <!-- Announcements -->
-{% if announcements %}
+
 <div class="grey-bg">
   <div class="container announcements">
     <div class="row profile-row">
@@ -413,6 +413,11 @@
         Announcements
       </div>
     </div>
+    {% if not announcements %}
+    <div>
+      <h3>There are no announcements at the moment.</h3>
+    </div>
+    {% endif %}
     {% for announcement in announcements %}
     <div class="row profile-row announcement-item">
       <div class="col-xs-12">
@@ -437,7 +442,6 @@
     </div>
   </div>
 </div>
-{% endif %}
 {% endblock %}
 
 {% block extra_script_end %}

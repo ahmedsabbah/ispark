@@ -108,11 +108,20 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'ahmedsabba7@gmail.com'
-EMAIL_HOST_PASSWORD = '13021993'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'email.isparkegypt.com'
+# EMAIL_HOST_USER = 'ahmed.saeed@isparkegypt.com'
+# EMAIL_HOST_PASSWORD = 'ispark2015'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_HOST_USER = 'ahmed.saeed@isparkegypt.com'
+EMAIL_HOST_PASSWORD = 'ispark2015'
+DEFAULT_FROM_EMAIL = 'ahmed.saeed@isparkegypt.com'
+SERVER_EMAIL = 'ahmed.saeed@isparkegypt.com'
+EMAIL_PORT = 25
+EMAIL_USE_TLS = False
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)

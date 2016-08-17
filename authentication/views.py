@@ -104,7 +104,7 @@ def forgot_password(request):
                     send_mail(
                         'iSpark Password Reset',
                         'Click on the following link to reset your password /password_reset/%s' % token.token,
-                        'ahmedsabba7@gmail.com',
+                        'ahmed.saeed@isparkegypt.com',
                         ['%s' % user.email],
                         fail_silently=False,
                     )
@@ -115,7 +115,7 @@ def forgot_password(request):
                     send_mail(
                         'iSpark Password Reset',
                         'Click on the following link to reset your password /password_reset/%s' % token.token,
-                        'ahmedsabba7@gmail.com',
+                        'ahmed.saeed@isparkegypt.com',
                         ['%s' % user.email],
                         fail_silently=False,
                     )
