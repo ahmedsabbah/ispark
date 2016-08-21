@@ -147,15 +147,20 @@ MEDIA_URL = '/media/'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-# STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_ROOT = '/home/enlighthost/webapps/static/'
-STATIC_URL = '/static/'
+STATIC_URL = 'https://enlighthost.webfactional.com/static/'
+#STATIC_URL = 'https:/enlighthost.webfactional.com/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
+    #os.path.join(PROJECT_ROOT, 'static/css/'),
+    #os.path.join(PROJECT_ROOT, 'static/js/'),
+    #os.path.join(PROJECT_ROOT, 'static/fonts/'),
+    #os.path.join(PROJECT_ROOT, 'static/images/'),
 ]
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
-STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
