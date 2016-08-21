@@ -149,7 +149,7 @@ MEDIA_URL = '/media/'
 
 #STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_ROOT = '/home/enlighthost/webapps/static/'
-STATIC_URL = 'https://enlighthost.webfactional.com/static/'
+STATIC_URL = 'http://www.isparkegypt.com/static/'
 #STATIC_URL = 'https:/enlighthost.webfactional.com/static/'
 
 # Extra places for collectstatic to find static files.
