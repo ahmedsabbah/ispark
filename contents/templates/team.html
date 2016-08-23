@@ -94,12 +94,14 @@
           <img src="{% static "images/team-mail-icon.png" %}">
           <div class="team-name-div"><p class="team-email">{{core.email}}</p></div>
         </div>
+        {% if core.profile }}
         <a href="{{core.profile.url}}">
           <div class="team-name-div">
             <img src="{% static "images/team-file-icon.png" %}">
             <div class="team-name-div"><p class="team-download">Download Profile</p></div>
           </div>
         </a>
+        {% endif %}
         <hr class="team-line-yellow">
       </div>
       {% endfor %}
@@ -165,12 +167,14 @@
           <img src="{% static "images/team-mail-icon.png" %}">
           <div class="team-name-div"><p class="team-email">{{intern.email}}</p></div>
         </div>
+        {% if intern.profile %}
         <a href="{{intern.profile.url}}">
           <div class="team-name-div">
             <img src="{% static "images/team-file-icon.png" %}">
             <div class="team-name-div"><p class="team-download">Download Profile</p></div>
           </div>
         </a>
+        {% endif %}
         <hr class="team-line-yellow">
       </div>
       {% endfor %}
