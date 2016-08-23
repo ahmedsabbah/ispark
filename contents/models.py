@@ -73,7 +73,9 @@ class Contact(models.Model):
         ('PP', 'Phone Students and Parents'),
         ('PS', 'Phone Schools'),
         ('PU', 'Phone Universities'),
-        ('PC', 'Phone Companies')
+        ('PC', 'Phone Companies'),
+        ('SC', 'Students Start Count'),
+        ('JC', 'Jobs Start Count')
     )
     type = models.CharField(max_length=2, choices=TYPE_CHOICES)
     value = models.CharField(max_length=300)

@@ -88,13 +88,3 @@ class OpportunityRequirement(models.Model):
         verbose_name_plural = 'Requirements'
     def __str__(self):
         return self.text
-
-
-
-# class Wave(models.Model):
-#     title = models.CharField(max_length=200)
-#     class Meta:
-#         verbose_name = 'Wave'
-#         verbose_name_plural = 'Waves'
-#     def __str__(self):
-#         return self.title

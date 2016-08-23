@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from models import Contact, TeamMember, Mentor, Category, Job, SliderSecondary, Testimonial, Partner
-from services.models import Vacancy, Conference, Tour
+from services.models import Vacancy, Conference, Tour, Opportunity
 from applications.models import VacancyApplication
 from django.utils import timezone
 
@@ -22,6 +22,17 @@ def home(request):
             conferences_to_show = conferences[:2]
         else:
             conferences_to_show = conferences[:1]
+    try:
+        students = Contact.objects.get(type='SC')
+    except Contact.DoesNotExist:
+        students = 0
+    students = students + User.objects.filter(is_superuser=False, is_staff=False).count()
+    try:
+        jobs = Contact.objects.get(type='JC')
+    except Contact.DoesNotExist:
+        jobs = 0
+    jobs = jobs + Opportunity.objects.all()
+    hours = students * 8;
     partners_schools = Partner.objects.filter(type='S')
     partners_universities = Partner.objects.filter(type='U')
     partners_companies = Partner.objects.filter(type='C')
@@ -44,7 +55,7 @@ def home(request):
         yt = Contact.objects.get(type='YT')
     except Contact.DoesNotExist:
         yt = ''
-    return render(request, 'home.html', {'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies,'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    return render(request, 'home.html', {'hours': hours, 'students': students, 'jobs': jobs,'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies,'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
 def jobs_majors(request):
     addresses = Contact.objects.filter(type='AD')

@@ -123,7 +123,7 @@ USE_TZ = True
 # EMAIL_PORT = 587
 # EMAIL_USE_TLS = True
 
-EMAIL_HOST = 'smtpout.secureserver.net'
+EMAIL_HOST = 'mail.isparkegypt.com'
 EMAIL_HOST_USER = 'ahmed.saeed@isparkegypt.com'
 EMAIL_HOST_PASSWORD = 'ispark2015'
 DEFAULT_FROM_EMAIL = 'ahmed.saeed@isparkegypt.com'
