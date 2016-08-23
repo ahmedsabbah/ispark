@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from models import Contact, TeamMember, Mentor, Category, Job, SliderSecondary, Testimonial, Partner
 from services.models import Vacancy, Conference, Tour, Opportunity
 from applications.models import VacancyApplication
+from django.contrib.auth.models import User
 from django.utils import timezone
 
 from django.core import serializers
