@@ -32,7 +32,7 @@ def home(request):
         jobs = Contact.objects.get(type='JC')
     except Contact.DoesNotExist:
         jobs = 0
-    jobs = jobs + Opportunity.objects.all()
+    jobs = jobs + Opportunity.objects.all().count()
     hours = students * 8;
     partners_schools = Partner.objects.filter(type='S')
     partners_universities = Partner.objects.filter(type='U')
