@@ -24,12 +24,14 @@ def home(request):
         else:
             conferences_to_show = conferences[:1]
     try:
-        students = Contact.objects.get(type='SC')
+        students_tmp = Contact.objects.get(type='SC')
+        students = int(students_tmp.value)
     except Contact.DoesNotExist:
         students = 0
     students = students + User.objects.filter(is_superuser=False, is_staff=False).count()
     try:
-        jobs = Contact.objects.get(type='JC')
+        jobs_tmp = Contact.objects.get(type='JC')
+        jobs = int(jobs_tmp.value)
     except Contact.DoesNotExist:
         jobs = 0
     jobs = jobs + Opportunity.objects.all().count()
