@@ -23,10 +23,9 @@
 {% block content %}
 <div id="homeCarousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
-    <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#homeCarousel" data-slide-to="1"></li>
-    <li data-target="#homeCarousel" data-slide-to="2"></li>
-    <li data-target="#homeCarousel" data-slide-to="3"></li>
+    {% for slider in main_sliders %}
+    <li data-target="#homeCarousel" data-slide-to="{{forloop.counter0}}"{%if forloop.counter == 1%} class="active"{% endif %}></li>
+    {% endfor %}
   </ol>
 
   <div class="down-arrow">
@@ -41,8 +40,8 @@
           JOIN OUR <span>COMMUNITY</span> OF BRIGHT YOUNG MINDS
         </div>
         <div>
-          <button>Learn More</button>
-          <button>Join Now</button>
+          <button class="learn-more">Learn More</button>
+          <button data-toggle="modal" data-target="#joinModal">Join Now</button>
         </div>
       </div>
       {% if slider.image %}
@@ -304,8 +303,9 @@
   <!-- Endorsment -->
   <div id="endCarousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-      <li data-target="#endCarousel" data-slide-to="0" class="active"></li>
-      <li data-target="#endCarousel" data-slide-to="1"></li>
+      {% for slider in second_sliders %}
+      <li data-target="#endCarousel" data-slide-to="{{forloop.counter0}}"{%if forloop.counter == 1%} class="active"{% endif %}></li>
+      {% endfor %}
     </ol>
 
     <div class="carousel-inner" role="listbox">
@@ -726,6 +726,14 @@
 
     //---------- Scroll to content of page when clicking on the down arrow in the homepage slider -----------//
     $('.down-arrow').click(function () {
+      $('body,html').animate({
+        scrollTop: $('#content').offset().top + (-sticky_header_height)},
+        1000);
+      return false;
+    });
+
+    //---------- Scroll to content of page when clicking on the down arrow in the homepage slider -----------//
+    $('.learn-more').click(function () {
       $('body,html').animate({
         scrollTop: $('#content').offset().top + (-sticky_header_height)},
         1000);
