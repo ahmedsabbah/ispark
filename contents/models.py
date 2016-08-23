@@ -155,3 +155,12 @@ class SliderSecondary(models.Model):
         verbose_name_plural = 'Sliders Secondary'
     def __str__(self):
         return self.title
+
+class SliderMain(models.Model):
+    image = models.ImageField(upload_to='partners')
+    date = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name = 'Slider Main'
+        verbose_name_plural = 'Sliders Main'
+    def __str__(self):
+        return 'Slider Item'

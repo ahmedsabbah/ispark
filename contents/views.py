@@ -9,6 +9,7 @@ from django.core import serializers
 from django.http.response import HttpResponse
 
 def home(request):
+    main_sliders = SliderMain.objects.all().order_by('-date')
     second_sliders = SliderSecondary.objects.all()
     testimonials = Testimonial.objects.all()
     all_conferences = Conference.objects.all()
@@ -58,7 +59,7 @@ def home(request):
         yt = Contact.objects.get(type='YT')
     except Contact.DoesNotExist:
         yt = ''
-    return render(request, 'home.html', {'hours': hours, 'students': students, 'jobs': jobs,'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies,'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    return render(request, 'home.html', {'main_sliders': main_sliders, 'hours': hours, 'students': students, 'jobs': jobs,'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies,'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
 def jobs_majors(request):
     addresses = Contact.objects.filter(type='AD')
