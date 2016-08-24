@@ -186,7 +186,7 @@
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="conferences-form{{conference.id}}" method="post" class="popup-form" action="/conference/{{conference.id}}/apply">
+          <form id="conferences-form{{conference.id}}" method="post" class="popup-form" action="/conference/{{conference.id}}/apply/">
             {% csrf_token %}
             <div class="col-md-4">
                 <input type="text" id="name" name="name" class="form-control" placeholder="Name" />

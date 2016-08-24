@@ -244,7 +244,7 @@
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="major-exploration-form{{job_vacancy.id}}" method="post" class="popup-form partners" action="/team/{{job_vacancy.id}}/apply">
+          <form id="major-exploration-form{{job_vacancy.id}}" method="post" class="popup-form partners" action="/team/{{job_vacancy.id}}/apply/">
             {% csrf_token %}
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
@@ -330,7 +330,7 @@
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="major-exploration-form{{internship_vacancy.id}}" method="post" class="popup-form partners" action="/team/{{internship_vacancy.id}}/apply">
+          <form id="major-exploration-form{{internship_vacancy.id}}" method="post" class="popup-form partners" action="/team/{{internship_vacancy.id}}/apply/">
             {% csrf_token %}
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
