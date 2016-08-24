@@ -476,7 +476,8 @@
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="join-form" method="post" class="popup-form partners">
+          <form id="join-form" method="post" class="popup-form partners" action="/apply">
+            {% csrf_token %}
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
             </div>
@@ -516,22 +517,22 @@
                 <p class="popup-checkbox-text popup-form-text-1">Education System: </p>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2">Thanaweya Amma</p>
-                  <input type="radio" value="None" id="thanaweya" name="education" checked />
+                  <input type="radio" value="thanaweya" id="thanaweya" name="education" checked />
                   <label for="thanaweya"></label>
                 </label>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">American</p>
-                  <input type="radio" value="None" id="american" name="education" />
+                  <input type="radio" value="american" id="american" name="education" />
                   <label for="american"></label>
                 </label>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">IGCSE</p>
-                  <input type="radio" value="None" id="igcse" name="education" />
+                  <input type="radio" value="igcse" id="igcse" name="education" />
                   <label for="igcse"></label>
                 </label>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">IB</p>
-                  <input type="radio" value="None" id="ib" name="education" />
+                  <input type="radio" value="ib" id="ib" name="education" />
                   <label for="ib"></label>
                 </label>
                 <label>
@@ -547,12 +548,12 @@
                 <p class="popup-checkbox-text popup-form-text-1">Which wave are you applying to?</p>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2">Wave 1</p>
-                  <input type="radio" value="None" id="wave1" name="wave" checked />
+                  <input type="radio" value="wave1" id="wave1" name="wave" checked />
                   <label for="wave1"></label>
                 </label>
                 <label>
                   <p class="popup-checkbox-text popup-form-text-2 popup-form-text-3">Wave 2</p>
-                  <input type="radio" value="None" id="wave2" name="wave" />
+                  <input type="radio" value="wave2" id="wave2" name="wave" />
                   <label for="wave2"></label>
                 </label>
             </div>
@@ -570,92 +571,92 @@
                 <div>
                   <p class="popup-checkbox-text popup-form-text-1 statements">I have no clue what major am I going to choose</p>
                   <label>
-                    <input type="radio" value="None" id="stat1_1" name="statement1" />
+                    <input type="radio" value="1" id="stat1_1" name="statement1" />
                     <label for="stat1_1"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat1_2" name="statement1" />
+                    <input type="radio" value="2" id="stat1_2" name="statement1" />
                     <label for="stat1_2"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat1_3" name="statement1" />
+                    <input type="radio" value="3" id="stat1_3" name="statement1" />
                     <label for="stat1_3"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat1_4" name="statement1" />
+                    <input type="radio" value="4" id="stat1_4" name="statement1" />
                     <label for="stat1_4"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat1_5" name="statement1" />
+                    <input type="radio" value="5" id="stat1_5" name="statement1" />
                     <label for="stat1_5"></label>
                   </label>
                 </div>
                 <div>
                   <p class="popup-checkbox-text popup-form-text-1 statements">I'm a little bit confused between two or more majors</p>
                   <label>
-                    <input type="radio" value="None" id="stat2_1" name="statement2" />
+                    <input type="radio" value="1" id="stat2_1" name="statement2" />
                     <label for="stat2_1"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat2_2" name="statement2" />
+                    <input type="radio" value="2" id="stat2_2" name="statement2" />
                     <label for="stat2_2"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat2_3" name="statement2" />
+                    <input type="radio" value="3" id="stat2_3" name="statement2" />
                     <label for="stat2_3"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat2_4" name="statement2" />
+                    <input type="radio" value="4" id="stat2_4" name="statement2" />
                     <label for="stat2_4"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat2_5" name="statement2" />
+                    <input type="radio" value="5" id="stat2_5" name="statement2" />
                     <label for="stat2_5"></label>
                   </label>
                 </div>
                 <div>
                   <p class="popup-checkbox-text popup-form-text-1 statements">I'm being influenced to choose a certian major but I don't know if I like it</p>
                   <label>
-                    <input type="radio" value="None" id="stat3_1" name="statement3" />
+                    <input type="radio" value="1" id="stat3_1" name="statement3" />
                     <label for="stat3_1"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat3_2" name="statement3" />
+                    <input type="radio" value="2" id="stat3_2" name="statement3" />
                     <label for="stat3_2"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat3_3" name="statement3" />
+                    <input type="radio" value="3" id="stat3_3" name="statement3" />
                     <label for="stat3_3"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat3_4" name="statement3" />
+                    <input type="radio" value="4" id="stat3_4" name="statement3" />
                     <label for="stat3_4"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat3_5" name="statement3" />
+                    <input type="radio" value="5" id="stat3_5" name="statement3" />
                     <label for="stat3_5"></label>
                   </label>
                 </div>
                 <div>
                   <p class="popup-checkbox-text popup-form-text-1 statements">I know what major I want to pursue</p>
                   <label>
-                    <input type="radio" value="None" id="stat4_1" name="statement4" />
+                    <input type="radio" value="1" id="stat4_1" name="statement4" />
                     <label for="stat4_1"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat4_2" name="statement4" />
+                    <input type="radio" value="2" id="stat4_2" name="statement4" />
                     <label for="stat4_2"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat4_3" name="statement4" />
+                    <input type="radio" value="3" id="stat4_3" name="statement4" />
                     <label for="stat4_3"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat4_4" name="statement4" />
+                    <input type="radio" value="4" id="stat4_4" name="statement4" />
                     <label for="stat4_4"></label>
                   </label>
                   <label>
-                    <input type="radio" value="None" id="stat4_5" name="statement4" />
+                    <input type="radio" value="5" id="stat4_5" name="statement4" />
                     <label for="stat4_5"></label>
                   </label>
                 </div>
@@ -879,6 +880,7 @@ $("#join-form").validate({
     number: "required",
     parentName: "required",
     parentNumber: "required",
+    studentEmail: "required",
     age: { required: true, number: true },
     grade: "required",
     school: "required",

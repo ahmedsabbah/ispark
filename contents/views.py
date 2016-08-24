@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from models import Contact, TeamMember, Mentor, Category, Job, SliderSecondary, Testimonial, Partner, SliderMain
 from services.models import Vacancy, Conference, Tour, Opportunity
-from applications.models import VacancyApplication
+from applications.models import VacancyApplication, IsparkApplication
 from django.contrib.auth.models import User
 from django.utils import timezone
 
@@ -60,6 +60,30 @@ def home(request):
     except Contact.DoesNotExist:
         yt = ''
     return render(request, 'home.html', {'main_sliders': main_sliders, 'hours': hours, 'students': students, 'jobs': jobs,'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies,'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+
+def ispark_apply(request):
+    if request.method == 'POST':
+        name = request.POST.get('name', None)
+        number = request.POST.get('number', None)
+        age = request.POST.get('age', None)
+        parentName = request.POST.get('parentName', None)
+        parentNumber = request.POST.get('parentNumber', None)
+        studentEmail = request.POST.get('studentEmail', None)
+        grade = request.POST.get('grade', None)
+        school = request.POST.get('school', None)
+        facebook = request.POST.get('facebook', None)
+        education = request.POST.get('education', None)
+        anotherEdu = request.POST.get('anotherEdu', None)
+        wave = request.POST.get('wave', None)
+        statement1 = request.POST.get('statement1', None)
+        statement2 = request.POST.get('statement2', None)
+        statement3 = request.POST.get('statement3', None)
+        statement4 = request.POST.get('statement4', None)
+        expectations = request.POST.get('expectations', None)
+
+        application = IsparkApplication(name=name, number=number, age=age, parentName=parentName, parentNumber=parentNumber, studentEmail=studentEmail, grade=grade, school=school, facebook=facebook, education=education, anotherEdu=anotherEdu, wave=wave, statement1=statement1, statement2=statement2, statement3=statement3, statement4=statement4, expectations=expectations)
+        application.save()
+    return redirect('/')
 
 def jobs_majors(request):
     addresses = Contact.objects.filter(type='AD')

@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 
 urlpatterns = [
+    url(r'^apply/$', 'contents.views.ispark_apply', name='ispark_apply'),
     url(r'^jobs&majors/$', 'contents.views.jobs_majors', name='jobs_majors'),
     url(r'^jobs/$', 'contents.views.jobs', name='jobs'),
     url(r'^job/(?P<pk>[0-9]+)/$', 'contents.views.job', name='job'),

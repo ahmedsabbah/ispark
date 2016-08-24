@@ -78,3 +78,27 @@ class OpportunityApplication(models.Model):
         verbose_name_plural = 'Opportunity Applications'
     def __str__(self):
         return '%s %s' % (self.user.user.first_name, self.user.user.last_name)
+
+class IsparkApplication(models.Model):
+    name = models.CharField(max_length=200, blank=True, null=True)
+    number = models.CharField(max_length=20, blank=True, null=True)
+    age = models.CharField(max_length=20, blank=True, null=True)
+    parentName = models.CharField(max_length=200, blank=True, null=True)
+    parentNumber = models.CharField(max_length=20, blank=True, null=True)
+    studentEmail = models.EmailField(blank=True, null=True)
+    grade = models.CharField(max_length=20, blank=True, null=True)
+    school = models.CharField(max_length=200, blank=True, null=True)
+    facebook = models.CharField(max_length=200, blank=True, null=True)
+    education = models.CharField(max_length=200, blank=True, null=True)
+    anotherEdu = models.CharField(max_length=200, blank=True, null=True)
+    wave = models.CharField(max_length=20, blank=True, null=True)
+    statement1 = models.IntegerField(blank=True, null=True)
+    statement2 = models.IntegerField(blank=True, null=True)
+    statement3 = models.IntegerField(blank=True, null=True)
+    statement4 = models.IntegerField(blank=True, null=True)
+    expectations = models.TextField(blank=True, null=True)
+    class Meta:
+        verbose_name = 'iSpark Application'
+        verbose_name_plural = 'iSpark Applications'
+    def __str__(self):
+        return self.name
