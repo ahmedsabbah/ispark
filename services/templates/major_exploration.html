@@ -199,7 +199,7 @@
 
         <!-- Form -->
         <div class="col-md-12">
-          <form id="major-exploration-form{{tour.id}}" method="post" class="popup-form partners" action="/tour/{{tour.id}}/apply">
+          <form id="major-exploration-form{{tour.id}}" method="post" class="popup-form partners" action="/tour/{{tour.id}}/apply/">
             {% csrf_token %}
             <div class="col-md-4">
               <input type="text" id="name" name="name" class="form-control" placeholder="Name" />
