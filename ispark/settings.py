@@ -24,7 +24,7 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = "2x=^s1jc8hi4i$&m_ea_g!ic1pg99*-cl+3$v=jbe0tubkfqo2"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Application definition
 
@@ -115,21 +115,6 @@ TIME_ZONE = 'Africa/Cairo'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'email.isparkegypt.com'
-# EMAIL_HOST_USER = 'ahmed.saeed@isparkegypt.com'
-# EMAIL_HOST_PASSWORD = 'ispark2015'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-
-# EMAIL_HOST = 'mail.isparkegypt.com'
-# EMAIL_HOST_USER = 'ahmed.saeed@isparkegypt.com'
-# EMAIL_HOST_PASSWORD = 'ispark2015'
-# DEFAULT_FROM_EMAIL = 'ahmed.saeed@isparkegypt.com'
-# SERVER_EMAIL = 'ahmed.saeed@isparkegypt.com'
-# EMAIL_PORT = 25
-# EMAIL_USE_TLS = False
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.privateemail.com'

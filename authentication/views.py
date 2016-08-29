@@ -123,8 +123,6 @@ def forgot_password(request):
                 message = 'Enter a valid email.'
         except User.DoesNotExist:
             message = 'You are not registered.'
-        except Exception as e:
-            message = 'Exception %s' % e
         addresses = Contact.objects.filter(type='AD')
         emails = Contact.objects.filter(type='EM')
         phones = Contact.objects.filter(type='PH')
