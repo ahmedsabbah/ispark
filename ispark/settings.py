@@ -137,7 +137,7 @@ EMAIL_PORT=465
 EMAIL_HOST_USER='info@isparkegypt.com'
 EMAIL_HOST_PASSWORD='ispark2015'
 EMAIL_USE_SSL=True
-EMAIL_USE_TLS=True
+# EMAIL_USE_TLS=True
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
