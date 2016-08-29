@@ -1207,6 +1207,7 @@ input#password {
 }
 .team-person-img {
     width: 100%;
+    border-radius: 50%;
 }
 .team-person-img-border {
     border: 10px solid #821638;
@@ -1589,6 +1590,8 @@ input#password {
 .mentors .flexslider li > img {
     border: 10px solid #821638;
     border-radius: 50%;
+    width: 265;
+    height: 265px;
 }
 .mentors .flexslider .overlay {
     width: 265px;
@@ -1922,6 +1925,8 @@ label:hover:before {
     max-width: 180px;
     cursor: pointer;
     display: inline-block;
+    width: 180px;
+    margin-bottom: 20px;
 }
 .jobs-list .job-item > div:first-child {
     font-size: 20px;
@@ -1943,6 +1948,7 @@ label:hover:before {
     -moz-transition: 0.5s ease-in-out;
     -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
+    width: 150px;
 }
 .jobs-list .job-item:hover img {
     -webkit-transform: rotate(180deg);
