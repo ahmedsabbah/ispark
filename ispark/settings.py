@@ -134,8 +134,11 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
+# MEDIA_URL = '/media/'
+
+MEDIA_ROOT = '/home/enlighthost/webapps/media/'
+MEDIA_URL = 'http://www.isparkegypt.com/media/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
