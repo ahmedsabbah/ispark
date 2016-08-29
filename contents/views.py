@@ -273,8 +273,8 @@ def contact(request):
             send_mail(
                 'iSpark Contact Request',
                 'Name: '+name+'\n'+'Email: '+email+'\n'+'Phone: '+number+'\n'+'Message:\n'+message,
-                'ahmed.saeed@isparkegypt.com',
-                ['ahmed.saeed@isparkegypt.com'],
+                'info@isparkegypt.com',
+                ['info@isparkegypt.com'],
                 fail_silently=False,
             )
     addresses = Contact.objects.filter(type='AD')
