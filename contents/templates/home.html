@@ -37,9 +37,6 @@
     <div class="item{%if forloop.counter == 1%} active{% endif %}">
       <div class="slider-panel">
         <div>
-          JOIN OUR <span>COMMUNITY</span> OF BRIGHT YOUNG MINDS
-        </div>
-        <div>
           <button class="learn-more">Learn More</button>
           <button data-toggle="modal" data-target="#joinModal">Join Now</button>
         </div>
@@ -181,10 +178,10 @@
   <div class="container">
     <div id="content" class="row white-bg">
       <div class="title col-xs-12">
-        OUR STORY SO FAR
+        WHO ARE WE?
       </div>
       <div class="sub-title col-xs-12">
-        <a href="#">Check our bio</a>
+        <a>Check our bio</a>
       </div>
       <div class="col-xs-12">
         <div class="col-xs-6 mission">
@@ -199,10 +196,10 @@
         </div>
       </div>
       <div class="title col-xs-12">
-        OUR PROGRAM
+        OUR PROGRAM BENEFITS
       </div>
       <div class="sub-title col-xs-12">
-        <a href="#">Check our illustration</a>
+        <a>Check our illustration</a>
       </div>
     </div>
   </div>
@@ -221,7 +218,7 @@
         OUR PARTNERS
       </div>
       <div class="sub-title col-xs-12">
-        <a href="#">Check our partners</a>
+        <a>Check our partners</a>
       </div>
       <div class="col-xs-12 select-container">
         <select>
@@ -272,7 +269,7 @@
       OUR PARTICIPANTS' TESTIMONIALS
     </div>
     <div class="sub-title col-xs-12">
-      <a href="#">Check our happy participants</a>
+      <a>Check our happy participants</a>
     </div>
     <div id="testCarousel" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner" role="listbox">
@@ -285,7 +282,7 @@
               <span>|</span>
               <span>{{testimonial.definition}}</span>
             </div>
-            <button onclick="window.location='{{testimonial.video_link}}'">Video Testimonials</button>
+            <button onclick="window.open('{{testimonial.video_link}}', '_blank');">Video Testimonials</button>
           </div>
           {% endfor %}
         </div>
@@ -346,7 +343,7 @@
       OUR MAIN EVENTS
     </div>
     <div class="sub-title col-xs-12">
-      <a href="#">Check our calendar</a>
+      <a>Check our calendar</a>
     </div>
     <div>
       {% for tour in tours_to_show %}
@@ -698,6 +695,7 @@
       itemMargin: 5,
       start: function(slider){
           $('.flexslider').resize();
+          if (slider.pagingCount === 1) slider.addClass('flex-centered');
       }
     });
     $(".flexslider .slides li").mouseenter(function(){

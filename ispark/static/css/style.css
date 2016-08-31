@@ -168,9 +168,11 @@ a:hover {
     top: 50%;
     left: 50%;
     margin-left: -322px;
-    margin-top: -100px;
+    margin-top: 100px;
     z-index: 2;
 }
+.flex-centered .slides {width: 100%!important; text-align: center;}
+.flex-centered .slides li {display: inline-block!important; *display: inline!important; float: none!important;}
 #homeCarousel .slider-panel {
     width: 644px;
 }
@@ -435,6 +437,8 @@ a:hover {
     border: 6px solid #821638;
     border-radius: 50%;
     margin-bottom: 30px;
+    width:235px;
+    height: 235px;
 }
 #testCarousel .item .text {
     font-weight: 600;
@@ -533,6 +537,7 @@ a:hover {
     color: #821638;
 }
 .event .content {
+    word-wrap: break-word;
     font-size: 20px;
     color: #821638;
     font-family: 'Open Sans', sans-serif;
@@ -888,13 +893,13 @@ input#password {
 }
 .footer-main-block-p-1 {
     margin-top: 10px;
-    width: 120px;
+    width: 150px;
 }
 .footer-main-block-p-2 {
-    margin-top: 30px;
+    margin-top: 70px;
     position: relative;
-    bottom: 10px;
-    width: 120px;
+    bottom: 40px;
+    width: 150px;
 }
 .footer-main-row {
     text-align: center;
@@ -1590,7 +1595,7 @@ input#password {
 .mentors .flexslider li > img {
     border: 10px solid #821638;
     border-radius: 50%;
-    width: 265;
+    width: 265px;
     height: 265px;
 }
 .mentors .flexslider .overlay {
