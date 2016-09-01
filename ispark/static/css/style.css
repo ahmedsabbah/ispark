@@ -191,7 +191,7 @@ a:hover {
 }
 #homeCarousel .slider-panel button {
     height: 42px;
-    width: 136px;
+    width: 170px;
     box-shadow: none;
     border: 1px solid #feb041;
     border-radius: 15px;
@@ -440,6 +440,11 @@ a:hover {
     width:235px;
     height: 235px;
 }
+#testCarousel .item .text-container {
+    display: table;
+    width: 100%;
+    padding: 0 160px;
+}
 #testCarousel .item .text {
     font-weight: 600;
     font-family: 'Open Sans', sans-serif;
@@ -448,6 +453,9 @@ a:hover {
     color: #821638;
     font-size: 20px;
     letter-spacing: -1px;
+    display: table-cell;
+    vertical-align: middle;
+    height: 100px;
 }
 #testCarousel .item .author {
     padding: 35px;
@@ -558,6 +566,9 @@ a:hover {
     font-weight: bold;
     font-size: 22px;
     margin: 7px;
+}
+.major-item button {
+    color: #feb041;
 }
 .message .submit-btn:hover, .submit-btn button:hover, .more-events button:hover, #testCarousel button:hover, .job-item button:hover, .major-item button:hover, .announcements button:hover {
     background-color: #821638;
@@ -714,15 +725,15 @@ a:hover {
     border-top: 5px solid #feb041;
     width: 230px;
 }
-.jobs .job-item .job-title, .jobs .major-item .job-title {
+.jobs .job-item .job-title a, .jobs .major-item .job-title a {
     font-size: 32px;
     font-weight: bold;
     padding: 20px;
 }
-.jobs .job-item .job-title {
+.jobs .major-item .job-title a {
     color: #feb041;
 }
-.jobs .major-item .job-title {
+.jobs .job-item .job-title a {
     color: #821638;
 }
 .contact-info .info-item {
@@ -1249,10 +1260,19 @@ input#password {
 .team-quote-table {
     display: table;
 }
+.team-position-table {
+    display: table;
+    width: 100%;
+}
 .team-quote-table-cell {
     display: table-cell;
     vertical-align: middle;
     height: 200px;
+}
+.team-position-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 55px;
 }
 .team-quote {
     position: relative;
@@ -1311,11 +1331,11 @@ input#password {
     margin-top: -25px;
     margin-left: -25px;
 }
-.job .bselect {
+/*.job .bselect {
     width: 435px;
-}
+}*/
 .job .bselect-label {
-    min-width: 220px !important;
+    width: 350px !important;
 }
 .job-outer-title {
     font-size: 19px;
@@ -2038,7 +2058,7 @@ label:hover:before {
 }
 .job-desc-container .job-desc {
     padding: 10px 20px;
-    height: 293px;
+    min-height: 293px;
 }
 .job-desc-container .job-desc > div:first-child > img {
     width: auto;
@@ -2191,6 +2211,9 @@ label:hover:before {
 #allEventsModal {
     z-index: 100000;
 }
+#allEventsModal .modal-dialog {
+    width: 100%;
+}
 
 @media (max-width: 1199px) {
     .sticky .navbar-nav > li > a {
@@ -2242,6 +2265,9 @@ label:hover:before {
     .popup-form-text-1.statements {
         width: 350px;
     }
+    #joinModal .modal-dialog .container {
+        width: 100%;
+    }
 }
 @media (max-width: 923px) {
 .counter > div > div:last-child {
@@ -2264,6 +2290,9 @@ label:hover:before {
 .popup-form-text-1.statements {
     width: 250px;
 }
+.jobs {
+        padding: 200px 0;
+    }
 }
 @media (max-width: 584px) {
 .popup-form-text-1.statements {

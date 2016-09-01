@@ -84,7 +84,11 @@
           </div>
         </div>
         <div class="team-name-div"><p class="team-name">{{core.name}}</p></div>
-        <div class="team-name-div"><p class="team-position">- {{core.position}} -</p></div>
+        <div class="team-position-table">
+          <div class="team-position-table-cell">
+            <p class="team-position">- {{core.position}} -</p>
+          </div>
+        </div>
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
           <div class="team-quote-table-cell"><p class="team-quote-text">{{core.quote}}</p></div>
@@ -141,7 +145,7 @@
     {% if interns or internship_vacancies %}
     <!-- Interns text -->
     <div class="col-md-12">
-      <p class="conf-main-text">ITERNS</p>
+      <p class="conf-main-text">INTERNS</p>
     </div>
 
     <!-- Interns profile -->

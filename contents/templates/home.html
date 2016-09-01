@@ -276,7 +276,9 @@
           {% for testimonial in testimonials %}
           <div class="item{%if forloop.counter == 1%} active{% endif %}">
             <div><img src="{{testimonial.photo.url}}" alt="Chania" /></div>
-            <div class="text">{{testimonial.text}}</div>
+            <div class="text-container">
+              <div class="text">{{testimonial.text}}</div>
+            </div>
             <div class="author">
               <span>{{testimonial.name}}</span>
               <span>|</span>

@@ -85,10 +85,11 @@
           Choose a Category
         </div>
         <div class="sub-title col-xs-12">
-          <a href="#">View our Mentors</a>
+          <a>Contact our mentors if you need any guidance</a>
         </div>
         <div class="col-xs-12 select-container">
           <select>
+            <option selected="true" disabled="disabled">CHOOSE A CATEGORY</option>
             {% for category in categories %}
             <option value="{{category.id}}">{{category.name}}</option>
             {% endfor %}
