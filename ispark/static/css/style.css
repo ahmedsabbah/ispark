@@ -324,7 +324,7 @@ a:hover {
     width: auto !important;
 }
 .mentors .bselect-label {
-    width: 350px !important;
+    width: 390px !important;
 }
 .partners .bselect .bselect-caret, .mentors .bselect .bselect-caret {
 	background-image: url("../images/select-arrow.png");
@@ -2290,7 +2290,7 @@ label:hover:before {
 .popup-form-text-1.statements {
     width: 250px;
 }
-.jobs {
+.jobs, .login-form-container {
         padding: 200px 0;
     }
 }
