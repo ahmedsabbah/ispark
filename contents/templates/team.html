@@ -120,7 +120,12 @@
           </div>
         </div>
         <div class="team-name-div"><p class="team-name">APPLY NOW</p></div>
-        <div class="team-name-div"><p class="team-position">- {{job_vacancy.position}} -</p></div>
+        <div class="team-position-table">
+          <div class="team-position-table-cell">
+            <p class="team-position">- {{job_vacancy.position}} -</p>
+          </div>
+        </div>
+        <!--<div class="team-name-div"><p class="team-position">- {{job_vacancy.position}} -</p></div>-->
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
           <div class="team-quote-table-cell"><p class="team-quote-text">{{job_vacancy.description}}</p></div>
@@ -161,7 +166,12 @@
           </div>
         </div>
         <div class="team-name-div"><p class="team-name">{{intern.name}}</p></div>
-        <div class="team-name-div"><p class="team-position">- {{intern.position}} -</p></div>
+        <div class="team-position-table">
+          <div class="team-position-table-cell">
+            <p class="team-position">- {{intern.position}} -</p>
+          </div>
+        </div>
+        <!--<div class="team-name-div"><p class="team-position">- {{intern.position}} -</p></div>-->
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
           <div class="team-quote-table-cell"><p class="team-quote-text">{{intern.quote}}</p></div>
@@ -193,7 +203,12 @@
           </div>
         </div>
         <div class="team-name-div"><p class="team-name">APPLY NOW</p></div>
-        <div class="team-name-div"><p class="team-position">- {{internship_vacancy.position}} -</p></div>
+        <div class="team-position-table">
+          <div class="team-position-table-cell">
+            <p class="team-position">- {{internship_vacancy.position}} -</p>
+          </div>
+        </div>
+        <!--<div class="team-name-div"><p class="team-position">- {{internship_vacancy.position}} -</p></div>-->
         <div class="team-quote-table">
           <img src="{% static "images/team-quotation-one.png" %}">
           <div class="team-quote-table-cell"><p class="team-quote-text">{{internship_vacancy.description}}</p></div>
