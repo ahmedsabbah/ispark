@@ -51,7 +51,7 @@
                 <li><a href="/login/">Login</a></li>
                 {% else %}
                 <li class="logged-in dropdown">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="navToProfile()">Welcome, {{ user.first_name }} {{ user.last_name }}</a>
+                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="navToProfile()">Welcome, {{ user.first_name }}</a>
                   <ul class="dropdown-menu">
                     <li><a href="/logout/">Logout</a></li>
                   </ul>
@@ -72,7 +72,7 @@
       <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 job-item">
               <img onclick="window.location='/jobs'" src="{% static "images/jobs.png" %}" />
-              <div class="job-title"><a href='onclick="window.location='/jobs'"'>Jobs</a></div>
+              <div class="job-title"><a href="onclick='window.location="/jobs"'">Jobs</a></div>
               <div class="text">Check out which job is the correct one for you through our extensive directory of available positions. If you’re still not sure what industry you’d like to pursue a career in, you can tell us what kind of skills and interests you possess and we’ll suggest some jobs for you</div>
               <div class="submit-btn">
                   <button onclick="window.location='/jobs'">Find a job</button>
@@ -81,7 +81,7 @@
           </div>
           <div class="col-xs-12 col-sm-6 col-md-4 major-item">
               <img src="{% static "images/majors.png" %}" />
-              <div class="job-title"><a href='onclick="window.location='/jobs'"'>Majors</a></div>
+              <div class="job-title"><a href="onclick='window.location="/jobs"'">Majors</a></div>
               <div class="text">Check out which job is the correct one for you through our extensive directory of available positions. If you’re still not sure what industry you’d like to pursue a career in, you can tell us what kind of skills and interests you possess and we’ll suggest some jobs for you</div>
               <div class="submit-btn">
                   <button>Coming soon</button>
