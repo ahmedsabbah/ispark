@@ -168,9 +168,11 @@ a:hover {
     top: 50%;
     left: 50%;
     margin-left: -322px;
-    margin-top: -100px;
+    margin-top: 100px;
     z-index: 2;
 }
+.flex-centered .slides {width: 100%!important; text-align: center;}
+.flex-centered .slides li {display: inline-block!important; *display: inline!important; float: none!important;}
 #homeCarousel .slider-panel {
     width: 644px;
 }
@@ -189,7 +191,7 @@ a:hover {
 }
 #homeCarousel .slider-panel button {
     height: 42px;
-    width: 136px;
+    width: 170px;
     box-shadow: none;
     border: 1px solid #feb041;
     border-radius: 15px;
@@ -322,7 +324,7 @@ a:hover {
     width: auto !important;
 }
 .mentors .bselect-label {
-    width: 350px !important;
+    width: 390px !important;
 }
 .partners .bselect .bselect-caret, .mentors .bselect .bselect-caret {
 	background-image: url("../images/select-arrow.png");
@@ -435,6 +437,13 @@ a:hover {
     border: 6px solid #821638;
     border-radius: 50%;
     margin-bottom: 30px;
+    width:235px;
+    height: 235px;
+}
+#testCarousel .item .text-container {
+    display: table;
+    width: 100%;
+    padding: 0 160px;
 }
 #testCarousel .item .text {
     font-weight: 600;
@@ -444,6 +453,9 @@ a:hover {
     color: #821638;
     font-size: 20px;
     letter-spacing: -1px;
+    display: table-cell;
+    vertical-align: middle;
+    height: 130px;
 }
 #testCarousel .item .author {
     padding: 35px;
@@ -533,6 +545,7 @@ a:hover {
     color: #821638;
 }
 .event .content {
+    word-wrap: break-word;
     font-size: 20px;
     color: #821638;
     font-family: 'Open Sans', sans-serif;
@@ -553,6 +566,9 @@ a:hover {
     font-weight: bold;
     font-size: 22px;
     margin: 7px;
+}
+.major-item button {
+    color: #feb041;
 }
 .message .submit-btn:hover, .submit-btn button:hover, .more-events button:hover, #testCarousel button:hover, .job-item button:hover, .major-item button:hover, .announcements button:hover {
     background-color: #821638;
@@ -709,15 +725,15 @@ a:hover {
     border-top: 5px solid #feb041;
     width: 230px;
 }
-.jobs .job-item .job-title, .jobs .major-item .job-title {
+.jobs .job-item .job-title a, .jobs .major-item .job-title a {
     font-size: 32px;
     font-weight: bold;
     padding: 20px;
 }
-.jobs .job-item .job-title {
+.jobs .major-item .job-title a {
     color: #feb041;
 }
-.jobs .major-item .job-title {
+.jobs .job-item .job-title a {
     color: #821638;
 }
 .contact-info .info-item {
@@ -888,13 +904,13 @@ input#password {
 }
 .footer-main-block-p-1 {
     margin-top: 10px;
-    width: 120px;
+    width: 150px;
 }
 .footer-main-block-p-2 {
-    margin-top: 30px;
+    margin-top: 70px;
     position: relative;
-    bottom: 10px;
-    width: 120px;
+    bottom: 40px;
+    width: 150px;
 }
 .footer-main-row {
     text-align: center;
@@ -979,6 +995,7 @@ input#password {
 }
 .accordion-body-icon-text-red {
     color: #821638;
+    word-wrap: break-word;
 }
 .accordion-body-border {
     border: 1px solid #102b4c;
@@ -998,6 +1015,7 @@ input#password {
 }
 .accordion-table {
     display: table;
+    table-layout: fixed;
 }
 .accordion-table-cell {
     display: table-cell;
@@ -1027,7 +1045,16 @@ input#password {
     margin-bottom: 30px;
 }
 .accordion-main-block {
-    margin-top: 30px;
+    margin-top: 30px 0;
+}
+.accordion-description {
+    border: 1px solid #102b4c;
+    border-radius: 30px;
+    min-height: 80px;
+    margin-bottom: 10px;
+    padding: 15px 25px;
+    text-align: left;
+    word-wrap: break-word;
 }
 .major-title-span {
     margin-right: 20px;
@@ -1235,10 +1262,19 @@ input#password {
 .team-quote-table {
     display: table;
 }
+.team-position-table {
+    display: table;
+    width: 100%;
+}
 .team-quote-table-cell {
     display: table-cell;
     vertical-align: middle;
     height: 200px;
+}
+.team-position-table-cell {
+    display: table-cell;
+    vertical-align: middle;
+    height: 55px;
 }
 .team-quote {
     position: relative;
@@ -1297,11 +1333,11 @@ input#password {
     margin-top: -25px;
     margin-left: -25px;
 }
-.job .bselect {
+/*.job .bselect {
     width: 435px;
-}
+}*/
 .job .bselect-label {
-    min-width: 220px !important;
+    width: 350px !important;
 }
 .job-outer-title {
     font-size: 19px;
@@ -1590,7 +1626,7 @@ input#password {
 .mentors .flexslider li > img {
     border: 10px solid #821638;
     border-radius: 50%;
-    width: 265;
+    width: 265px;
     height: 265px;
 }
 .mentors .flexslider .overlay {
@@ -2024,7 +2060,7 @@ label:hover:before {
 }
 .job-desc-container .job-desc {
     padding: 10px 20px;
-    height: 293px;
+    min-height: 293px;
 }
 .job-desc-container .job-desc > div:first-child > img {
     width: auto;
@@ -2177,6 +2213,9 @@ label:hover:before {
 #allEventsModal {
     z-index: 100000;
 }
+#allEventsModal .modal-dialog {
+    width: 100%;
+}
 
 @media (max-width: 1199px) {
     .sticky .navbar-nav > li > a {
@@ -2228,6 +2267,9 @@ label:hover:before {
     .popup-form-text-1.statements {
         width: 350px;
     }
+    #joinModal .modal-dialog .container {
+        width: 100%;
+    }
 }
 @media (max-width: 923px) {
 .counter > div > div:last-child {
@@ -2250,6 +2292,9 @@ label:hover:before {
 .popup-form-text-1.statements {
     width: 250px;
 }
+.jobs, .login-form-container {
+        padding: 200px 0;
+    }
 }
 @media (max-width: 584px) {
 .popup-form-text-1.statements {

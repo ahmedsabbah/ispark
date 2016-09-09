@@ -81,7 +81,7 @@
         Contact Information
       </div>
       <div class="sub-title col-xs-12">
-        <a href="#">Check our channels</a>
+        <a>Check our channels</a>
       </div>
     </div>
     <div class="row">
@@ -127,42 +127,13 @@
     </div>
   </div>
 
-  <!-- Contact form -->
-  <div class="message grey-bg contact-row">
-    <div class="title col-xs-12">
-      Write Us a Message
-    </div>
-    <div class="sub-title col-xs-12">
-      <a href="#">Drop us an email</a>
-    </div>
-    <form id="contact-form" class="col-xs-12 col-md-8 col-md-offset-2" method="post" action="/contact/">
-      {% csrf_token %}
-      <div class="form-group col-xs-12 col-md-4">
-        <input class="full-width" name="name" placeholder="Name" />
-      </div>
-      <div class="form-group col-xs-12 col-md-4">
-        <input class="full-width" name="email" placeholder="Email" />
-      </div>
-      <div class="form-group col-xs-12 col-md-4">
-        <input class="full-width" name="number" placeholder="Number" />
-      </div>
-      <div class="form-group col-xs-12">
-        <textarea class="full-width" name="message" placeholder="Type your message here"></textarea>
-      </div>
-      <div class="form-group col-xs-12 col-md-4 pull-right">
-        <input class="full-width submit-btn" type="submit" value="Send Message" />
-      </div>
-    </form>
-    <div class="clear"></div>
-  </div>
-
   <!-- Contact numbers -->
-  <div class="contact-row">
+  <div class="contact-row grey-bg">
     <div class="title col-xs-12">
       Contact numbers
     </div>
     <div class="sub-title col-xs-12">
-      <a href="#">For different entities</a>
+      <a>For different entities</a>
     </div>
     <div class="col-xs-12 col-md-8 col-md-offset-2 contact-numbers">
       <div class="col-xs-12">
@@ -215,6 +186,35 @@
       </div>
       <div class="col-xs-12"><hr></div>
     </div>
+    <div class="clear"></div>
+  </div>
+
+  <!-- Contact form -->
+  <div class="message contact-row">
+    <div class="title col-xs-12">
+      Write Us a Message
+    </div>
+    <div class="sub-title col-xs-12">
+      <a>Drop us an email</a>
+    </div>
+    <form id="contact-form" class="col-xs-12 col-md-8 col-md-offset-2" method="post" action="/contact/">
+      {% csrf_token %}
+      <div class="form-group col-xs-12 col-md-4">
+        <input class="full-width" name="name" placeholder="Name" />
+      </div>
+      <div class="form-group col-xs-12 col-md-4">
+        <input class="full-width" name="email" placeholder="Email" />
+      </div>
+      <div class="form-group col-xs-12 col-md-4">
+        <input class="full-width" name="number" placeholder="Number" />
+      </div>
+      <div class="form-group col-xs-12">
+        <textarea class="full-width" name="message" placeholder="Type your message here"></textarea>
+      </div>
+      <div class="form-group col-xs-12 col-md-4 pull-right">
+        <input class="full-width submit-btn" type="submit" value="Send Message" />
+      </div>
+    </form>
     <div class="clear"></div>
   </div>
 
