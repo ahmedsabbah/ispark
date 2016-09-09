@@ -53,7 +53,7 @@
                   <li><a href="/login/">Login</a></li>
                   {% else %}
                   <li class="logged-in dropdown">
-                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="navToProfile()">Welcome, {{ user.first_name }} {{ user.last_name }}</a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" onclick="navToProfile()">Welcome, {{ user.first_name }}</a>
                     <ul class="dropdown-menu">
                       <li><a href="/logout/">Logout</a></li>
                     </ul>
