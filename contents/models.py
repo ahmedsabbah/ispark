@@ -65,7 +65,7 @@ class Contact(models.Model):
         ('EM', 'Email'),
         ('PH', 'Phone'),
         ('FB', 'Facebook'),
-        ('TW', 'Twitter'),
+        ('TW', 'SnapChat'),
         ('IN', 'Instagram'),
         ('YT', 'Youtube'),
         ('LT', 'Latitude'),
