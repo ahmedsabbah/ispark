@@ -92,12 +92,10 @@
         <div class="col-xs-6 col-md-4 job-details sticky-sidebar">
           <div>
             <div>Choose your preferred <span>JOB</span>:</div>
-            <div id="title_category">{{categories.0.name}}</div>
+            <div id="title_category"></div>
             <div>
               <div class="job-types">
-                {% for job in jobs %}
-                <div><span onclick="chooseJob({{job.id}});">{{job.title}}</span></div>
-                {% endfor %}
+
               </div>
             </div>
           </div>

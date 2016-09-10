@@ -99,36 +99,7 @@
           <div class="flexslider col-xs-12">
 
             <ul class="slides">
-              {% if not mentors %}
-              <!-- EMPTY_NO_ITEMS -->
-              <div>
-                <h3>We are working on finding mentors in this major.</h3>
-              </div>
-              {% else %}
-              {% for mentor in mentors %}
-              <li>
-                <div class="overlay" onclick="openModal(this)">
-                  <div>
-                    <img src="{% static "images/zoom.png" %}" />
-                  </div>
-                </div>
-                <img src="{{mentor.photo.url}}" />
-                <div class="data">
-                  <div class="name">{{mentor.name}}</div>
-                  <div class="job">-{{mentor.job}}-</div>
-                  <div class="avail">Availability</div>
-                  <div class="dates">
-                    {{mentor.availability}}
-                  </div>
-                  <div class="email">
-                    <img src="{% static "images/email2.png" %}" />
-                    {{mentor.email}}
-                  </div>
-                  <div class="line"><hr></div>
-                </div>
-              </li>
-              {% endfor %}
-              {% endif %}
+              
             </ul>
           </div>
         </div>
