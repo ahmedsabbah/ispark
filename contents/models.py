@@ -122,7 +122,8 @@ class Partner(models.Model):
     TYPE_CHOICES = (
         ('S', 'School'),
         ('U', 'University'),
-        ('C', 'Company')
+        ('C', 'Company'),
+        ('O', 'Organization')
     )
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
     name = models.CharField(max_length=200)

@@ -226,6 +226,7 @@
           <option value="1">Schools</option>
           <option value="2">Universities</option>
           <option value="3">Companies</option>
+          <option value="4">Organizations</option>
         </select>
       </div>
       <div class="sliders col-xs-12">
@@ -797,6 +798,13 @@
         $(".sliders").html("");
         $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
         {% for partner in partners_companies %}
+          $(".flexslider .slides").append('<li><div class="overlay"><div>{{partner.name}}</div><div>Trusted Partner</div></div><img src="{{partner.photo.url}}" /></li>');
+        {% endfor %}
+      }
+      else if(val == "4") {
+        $(".sliders").html("");
+        $(".sliders").append('<div class="flexslider col-xs-12"><ul class="slides"></ul></div>');
+        {% for partner in partners_organizations %}
           $(".flexslider .slides").append('<li><div class="overlay"><div>{{partner.name}}</div><div>Trusted Partner</div></div><img src="{{partner.photo.url}}" /></li>');
         {% endfor %}
       }

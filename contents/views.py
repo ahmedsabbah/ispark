@@ -40,6 +40,7 @@ def home(request):
     partners_schools = Partner.objects.filter(type='S')
     partners_universities = Partner.objects.filter(type='U')
     partners_companies = Partner.objects.filter(type='C')
+    partners_organizations = Partner.objects.filter(type='O')
     addresses = Contact.objects.filter(type='AD')
     emails = Contact.objects.filter(type='EM')
     phones = Contact.objects.filter(type='PH')
@@ -59,7 +60,7 @@ def home(request):
         yt = Contact.objects.get(type='YT')
     except Contact.DoesNotExist:
         yt = ''
-    return render(request, 'home.html', {'main_sliders': main_sliders, 'hours': hours, 'students': students, 'jobs': jobs,'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies,'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
+    return render(request, 'home.html', {'main_sliders': main_sliders, 'hours': hours, 'students': students, 'jobs': jobs,'partners_schools': partners_schools,'partners_universities': partners_universities,'partners_companies': partners_companies, 'partners_organizations': partners_organizations, 'tours_to_show': tours_to_show, 'conferences_to_show': conferences_to_show, 'tours': all_tours, 'conferences': all_conferences, 'testimonials': testimonials,'second_sliders': second_sliders, 'emails': emails, 'addresses': addresses, 'phones': phones, 'fb': fb, 'tw': tw, 'in': ins, 'yt': yt})
 
 def ispark_apply(request):
     if request.method == 'POST':
