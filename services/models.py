@@ -8,7 +8,7 @@ class Tour(models.Model):
     end_date = models.DateField()
     time = models.TimeField()
     location = models.CharField(max_length=200)
-    short_description = models.TextField(blank=True, null=True)
+    short_description = models.TextField()
     description = models.TextField()
     transportation = models.BooleanField(default=False)
     age_range = models.CharField(max_length=200)
@@ -32,7 +32,7 @@ class Major(models.Model):
 class Conference(models.Model):
     name = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='conferences')
-    short_description = models.TextField(blank=True, null=True)
+    short_description = models.TextField()
     description = models.TextField()
     location = models.CharField(max_length=200)
     start_date = models.DateField()
