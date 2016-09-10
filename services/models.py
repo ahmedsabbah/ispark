@@ -9,7 +9,7 @@ class Tour(models.Model):
     time = models.TimeField()
     location = models.CharField(max_length=200)
     description = models.TextField()
-    transportation = models.BooleanField()
+    transportation = models.BooleanField(default=False)
     age_range = models.CharField(max_length=200)
     contact_number = models.CharField(max_length=15)
     fb_link = models.CharField(max_length=200, blank=True, null=True)
