@@ -117,7 +117,14 @@ TIME_ZONE = 'Africa/Cairo'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
-CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_ALLOW_ALL = False
+
+CORS_ORIGIN_WHITELIST = (
+        'www.isparkegypt.com',
+        'isparkegypt.com'
+    )
+
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST='smtp.privateemail.com'
