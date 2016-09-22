@@ -121,8 +121,8 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-        'www.isparkegypt.com',
-        'isparkegypt.com'
+        'http://www.isparkegypt.com',
+        'http://isparkegypt.com'
     )
 
 
