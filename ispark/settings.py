@@ -121,9 +121,9 @@ USE_TZ = True
 CORS_ORIGIN_ALLOW_ALL = False
 
 CORS_ORIGIN_WHITELIST = (
-        'http://www.isparkegypt.com',
-        'http://isparkegypt.com'
-    )
+    'http://www.isparkegypt.com',
+    'http://isparkegypt.com'
+)
 
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
