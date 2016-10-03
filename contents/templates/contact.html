@@ -75,7 +75,7 @@
   </div>
 
   <!-- Contact information -->
-  <div class="container contact-info contact-row">
+  <!--<div class="container contact-info contact-row">
     <div class="row">
       <div class="title col-xs-12">
         Contact Information
@@ -125,66 +125,75 @@
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
   <!-- Contact numbers -->
-  <div class="contact-row grey-bg">
-    <div class="title col-xs-12">
-      Contact numbers
+  <div class="contact-row grey-bg contact-info">
+    <div class="col-md-6">
+      <div class="title col-xs-12">
+        Contact numbers
+      </div>
+      <div class="sub-title col-xs-12">
+        <a>For different entities</a>
+      </div>
+      <div class="col-xs-12 col-md-8 col-md-offset-2 contact-numbers">
+        <div class="col-xs-12">
+          <div><img src="{% static "images/family.png" %}" /></div>
+          <div><strong>STUDENTS/PARENTS:  </strong></div>
+          <div>
+            {% for phone in phones_students %}
+            {{ phone.value }}
+            {% if forloop.counter != phones_students|length %}
+            ,
+            {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-12">
+          <div><img src="{% static "images/bus.png" %}" /></div>
+          <div><strong>SCHOOLS:  </strong></div>
+          <div>
+            {% for phone in phones_schools %}
+            {{ phone.value }}
+            {% if forloop.counter != phones_schools|length %}
+            ,
+            {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-12">
+          <div><img src="{% static "images/university.png" %}" /></div>
+          <div><strong>UNIVERSITIES:  </strong></div>
+          <div>
+            {% for phone in phones_universities %}
+            {{ phone.value }}
+            {% if forloop.counter != phones_universities|length %}
+            ,
+            {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-12">
+          <div><img src="{% static "images/company.png" %}" /></div>
+          <div><strong>COMPANIES:  </strong></div>
+          <div>
+            {% for phone in phones_companies %}
+            {{ phone.value }}
+            {% if forloop.counter != phones_companies|length %}
+            ,
+            {% endif%}
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-xs-12"><hr></div>
+      </div>
     </div>
-    <div class="sub-title col-xs-12">
-      <a>For different entities</a>
-    </div>
-    <div class="col-xs-12 col-md-8 col-md-offset-2 contact-numbers">
-      <div class="col-xs-12">
-        <div><img src="{% static "images/family.png" %}" /></div>
-        <div><strong>STUDENTS/PARENTS:  </strong></div>
-        <div>
-          {% for phone in phones_students %}
-          {{ phone.value }}
-          {% if forloop.counter != phones_students|length %}
-          ,
-          {% endif%}
-          {% endfor %}
-          </div>
+    <!-- Map -->
+    <div class="contact-row no-padding col-md-6">
+      <div class="title col-xs-12">
+        Visit our head office
       </div>
-      <div class="col-xs-12">
-        <div><img src="{% static "images/bus.png" %}" /></div>
-        <div><strong>SCHOOLS:  </strong></div>
-        <div>
-          {% for phone in phones_schools %}
-          {{ phone.value }}
-          {% if forloop.counter != phones_schools|length %}
-          ,
-          {% endif%}
-          {% endfor %}
-          </div>
-      </div>
-      <div class="col-xs-12">
-        <div><img src="{% static "images/university.png" %}" /></div>
-        <div><strong>UNIVERSITIES:  </strong></div>
-        <div>
-          {% for phone in phones_universities %}
-          {{ phone.value }}
-          {% if forloop.counter != phones_universities|length %}
-          ,
-          {% endif%}
-          {% endfor %}
-          </div>
-      </div>
-      <div class="col-xs-12">
-        <div><img src="{% static "images/company.png" %}" /></div>
-        <div><strong>COMPANIES:  </strong></div>
-        <div>
-          {% for phone in phones_companies %}
-          {{ phone.value }}
-          {% if forloop.counter != phones_companies|length %}
-          ,
-          {% endif%}
-          {% endfor %}
-          </div>
-      </div>
-      <div class="col-xs-12"><hr></div>
+      <div id="map"></div>
     </div>
     <div class="clear"></div>
   </div>
@@ -218,13 +227,6 @@
     <div class="clear"></div>
   </div>
 
-  <!-- Map -->
-  <div class="contact-row no-padding">
-    <div class="title col-xs-12">
-      Visit our head office
-    </div>
-    <div id="map"></div>
-  </div>
 {% endblock %}
 
 {% block extra_script_end %}
