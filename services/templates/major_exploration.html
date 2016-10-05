@@ -357,6 +357,7 @@ $('.modal').on('hidden.bs.modal', function(){
 
 $("#major1").change(function () {
   var id = $(this).val();
+  alert(id);
   $("#major2 option[value=" + id + "]").remove();
   $("#major3 option[value=" + id + "]").remove();
   $("#major2 option[value=" + id + "]").bselect("destroy");
