@@ -360,7 +360,7 @@ $(document).ready(function () {
     var id = $(this).val();
     $("#major2 option[value=" + id + "]").remove();
     $("#major3 option[value=" + id + "]").remove();
-    $("#major2" option[value=" + id + "]"").bselect("destroy");
+    $("#major2").bselect("destroy");
     $("#major2").bselect();
     $("#major3").bselect("destroy");
     $("#major3").bselect();
