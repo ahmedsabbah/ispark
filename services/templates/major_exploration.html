@@ -355,35 +355,37 @@ $('.modal').on('hidden.bs.modal', function(){
 //   $(str_parent).append('<span class="pull-left">Animal Care</span><span class="pull-left">Caretaker</span><span class="pull-left">Visiting Vets</span><span class="pull-left">Zoo Keepers</span><span class="pull-left">Playing with Animals</span><span class="pull-left add-btn" onclick="addInterest(this)">+</span><div class="clear"></div>');
 // }
 
-$("#major1").change(function () {
-  var id = $(this).val();
-  alert(id);
-  $("#major2 option[value=" + id + "]").remove();
-  $("#major3 option[value=" + id + "]").remove();
-  $("#major2 option[value=" + id + "]").bselect("destroy");
-  $("#major2 option[value=" + id + "]").bselect();
-  $("#major3 option[value=" + id + "]").bselect("destroy");
-  $("#major3 option[value=" + id + "]").bselect();
-});
+$(document).ready(function () {
+  $("#major1").change(function () {
+    var id = $(this).val();
+    alert(id);
+    $("#major2 option[value=" + id + "]").remove();
+    $("#major3 option[value=" + id + "]").remove();
+    $("#major2 option[value=" + id + "]").bselect("destroy");
+    $("#major2 option[value=" + id + "]").bselect();
+    $("#major3 option[value=" + id + "]").bselect("destroy");
+    $("#major3 option[value=" + id + "]").bselect();
+  });
 
-$("#major2").change(function () {
-  var id = $(this).val();
-  $("#major1 option[value=" + id + "]").remove();
-  $("#major3 option[value=" + id + "]").remove();
-  $("#major1 option[value=" + id + "]").bselect("destroy");
-  $("#major1 option[value=" + id + "]").bselect();
-  $("#major3 option[value=" + id + "]").bselect("destroy");
-  $("#major3 option[value=" + id + "]").bselect();
-});
+  $("#major2").change(function () {
+    var id = $(this).val();
+    $("#major1 option[value=" + id + "]").remove();
+    $("#major3 option[value=" + id + "]").remove();
+    $("#major1 option[value=" + id + "]").bselect("destroy");
+    $("#major1 option[value=" + id + "]").bselect();
+    $("#major3 option[value=" + id + "]").bselect("destroy");
+    $("#major3 option[value=" + id + "]").bselect();
+  });
 
-$("#major3").change(function () {
-  var id = $(this).val();
-  $("#major1 option[value=" + id + "]").remove();
-  $("#major2 option[value=" + id + "]").remove();
-  $("#major1 option[value=" + id + "]").bselect("destroy");
-  $("#major1 option[value=" + id + "]").bselect();
-  $("#major2 option[value=" + id + "]").bselect("destroy");
-  $("#major2 option[value=" + id + "]").bselect();
+  $("#major3").change(function () {
+    var id = $(this).val();
+    $("#major1 option[value=" + id + "]").remove();
+    $("#major2 option[value=" + id + "]").remove();
+    $("#major1 option[value=" + id + "]").bselect("destroy");
+    $("#major1 option[value=" + id + "]").bselect();
+    $("#major2 option[value=" + id + "]").bselect("destroy");
+    $("#major2 option[value=" + id + "]").bselect();
+  });
 });
 
 $.validator.addMethod("valueNotEquals", function(value, element, arg){
