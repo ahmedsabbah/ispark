@@ -358,33 +358,32 @@ $('.modal').on('hidden.bs.modal', function(){
 $(document).ready(function () {
   $("#major1").change(function () {
     var id = $(this).val();
-    alert(id);
     $("#major2 option[value=" + id + "]").remove();
     $("#major3 option[value=" + id + "]").remove();
-    $("#major2 option[value=" + id + "]").bselect("destroy");
-    $("#major2 option[value=" + id + "]").bselect();
-    $("#major3 option[value=" + id + "]").bselect("destroy");
-    $("#major3 option[value=" + id + "]").bselect();
+    $("#major2" option[value=" + id + "]"").bselect("destroy");
+    $("#major2").bselect();
+    $("#major3").bselect("destroy");
+    $("#major3").bselect();
   });
 
   $("#major2").change(function () {
     var id = $(this).val();
     $("#major1 option[value=" + id + "]").remove();
     $("#major3 option[value=" + id + "]").remove();
-    $("#major1 option[value=" + id + "]").bselect("destroy");
-    $("#major1 option[value=" + id + "]").bselect();
-    $("#major3 option[value=" + id + "]").bselect("destroy");
-    $("#major3 option[value=" + id + "]").bselect();
+    $("#major1").bselect("destroy");
+    $("#major1").bselect();
+    $("#major3").bselect("destroy");
+    $("#major3").bselect();
   });
 
   $("#major3").change(function () {
     var id = $(this).val();
     $("#major1 option[value=" + id + "]").remove();
     $("#major2 option[value=" + id + "]").remove();
-    $("#major1 option[value=" + id + "]").bselect("destroy");
-    $("#major1 option[value=" + id + "]").bselect();
-    $("#major2 option[value=" + id + "]").bselect("destroy");
-    $("#major2 option[value=" + id + "]").bselect();
+    $("#major1").bselect("destroy");
+    $("#major1").bselect();
+    $("#major2").bselect("destroy");
+    $("#major2").bselect();
   });
 });
 
