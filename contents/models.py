@@ -53,6 +53,7 @@ class TeamMember(models.Model):
     quote = models.TextField()
     email = models.EmailField()
     profile = models.FileField(upload_to='team', blank=True, null=True)
+    created_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         verbose_name = 'Team Member'
         verbose_name_plural = 'Team Members'

@@ -94,21 +94,6 @@ DATABASES = {
     }
 }
 
-# AUTH_PASSWORD_VALIDATORS = (
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-#     },
-# )
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -132,7 +117,6 @@ EMAIL_PORT=465
 EMAIL_HOST_USER='info@isparkegypt.com'
 EMAIL_HOST_PASSWORD='ispark2015'
 EMAIL_USE_SSL=True
-# EMAIL_USE_TLS=True
 
 # Update database configuration with $DATABASE_URL.
 db_from_env = dj_database_url.config(conn_max_age=500)
@@ -144,29 +128,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
 
-# MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
-# MEDIA_URL = '/media/'
-
 MEDIA_ROOT = '/home/enlighthost/webapps/media/'
 MEDIA_URL = 'http://www.isparkegypt.com/media/'
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-#STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 STATIC_ROOT = '/home/enlighthost/webapps/static/'
 STATIC_URL = 'http://www.isparkegypt.com/static/'
-#STATIC_URL = 'https:/enlighthost.webfactional.com/static/'
 
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = [
     os.path.join(PROJECT_ROOT, 'static'),
-    #os.path.join(PROJECT_ROOT, 'static/css/'),
-    #os.path.join(PROJECT_ROOT, 'static/js/'),
-    #os.path.join(PROJECT_ROOT, 'static/fonts/'),
-    #os.path.join(PROJECT_ROOT, 'static/images/'),
 ]
-
-# Simplified static file serving.
-# https://warehouse.python.org/project/whitenoise/
-#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'

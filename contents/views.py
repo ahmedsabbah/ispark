@@ -256,7 +256,7 @@ def team(request):
         yt = Contact.objects.get(type='YT')
     except Contact.DoesNotExist:
         yt = ''
-    cores = TeamMember.objects.filter(role='C')
+    cores = TeamMember.objects.filter(role='C').order_by('created_date')
     interns = TeamMember.objects.filter(role='I')
     job_vacancies = Vacancy.objects.filter(role='J')
     internship_vacancies = Vacancy.objects.filter(role='I')

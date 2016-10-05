@@ -137,7 +137,7 @@
             </div>
             <div class="col-md-4 col-sm-12 accordion-table">
               <div class="accordion-body-border accordion-body-icon-border-2 accordion-body-icon-text-blue accordion-body-icon-text accordion-table-cell accordion-block-min-wdith">
-                  Description:</br></br><span class="accordion-body-icon-text-red">{{conference.description}}</span>
+                  Description:</br></br><span class="accordion-body-icon-text-red">{{conference.description|linebreaksbr}}</span>
               </div>
             </div>
           </div>
@@ -145,12 +145,11 @@
           <div class="col-md-12 accordion-button-div">
             <button id="1" class="accordion-button" data-toggle="modal" data-target="#myModal{{conference.id}}">Apply Now</button>
             {% if conference.fb_link %}
-            <a href="{{conference.fb_link}}"><i class="fa fa-facebook-official"></i></a>
+            <a href="{{conference.fb_link}}" target="_blank"><i class="fa fa-facebook-official"></i></a>
             {% endif %}
           </div>
         </div>
         {% endfor %}
-
       </div>
     </div>
   </div>
