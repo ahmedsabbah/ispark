@@ -32,8 +32,8 @@ class Major(models.Model):
 class Conference(models.Model):
     name = models.CharField(max_length=200)
     photo = models.ImageField(upload_to='conferences')
-    short_description = models.CharField(max_length=100)
-    description = models.CharField(max_length=300)
+    short_description = models.TextField()
+    description = models.TextField()
     location = models.CharField(max_length=200)
     start_date = models.DateField()
     end_date = models.DateField()
