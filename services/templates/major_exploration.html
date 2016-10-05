@@ -363,7 +363,7 @@ $("#major1").change(function () {
   $("#major2 option[value=" + id + "]").bselect();
   $("#major3 option[value=" + id + "]").bselect("destroy");
   $("#major3 option[value=" + id + "]").bselect();
-}
+});
 
 $("#major2").change(function () {
   var id = $(this).val();
@@ -373,7 +373,7 @@ $("#major2").change(function () {
   $("#major1 option[value=" + id + "]").bselect();
   $("#major3 option[value=" + id + "]").bselect("destroy");
   $("#major3 option[value=" + id + "]").bselect();
-}
+});
 
 $("#major3").change(function () {
   var id = $(this).val();
@@ -383,7 +383,7 @@ $("#major3").change(function () {
   $("#major1 option[value=" + id + "]").bselect();
   $("#major2 option[value=" + id + "]").bselect("destroy");
   $("#major2 option[value=" + id + "]").bselect();
-}
+});
 
 $.validator.addMethod("valueNotEquals", function(value, element, arg){
   return arg != value;
