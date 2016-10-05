@@ -359,35 +359,62 @@ $(document).ready(function () {
   $("#major1").change(function () {
     $("#major2").bselect("destroy");
     $("#major3").bselect("destroy");
-    var id = $(this).val();
-    alert(id);
-    $("#major2 option[value=" + id + "]").remove();
-    $("#major3 option[value=" + id + "]").remove();
-    $("#major2").bselect();
-    $("#major3").bselect();
-    return;
+    var selected_id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "/",
+        success: function (results) {
+          $("#major2").html("");
+          $("#major3").html("");
+          for(i=0; i<results.count(); i++){
+            $("#major2").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+            $("#major3").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+          }
+        },
+        error: function(err) {
+          console.log(err);
+        }
+    });
   });
-
   $("#major2").change(function () {
     $("#major1").bselect("destroy");
     $("#major3").bselect("destroy");
-    var id = $(this).val();
-    $("#major1 option[value=" + id + "]").remove();
-    $("#major3 option[value=" + id + "]").remove();
-    $("#major1").bselect();
-    $("#major3").bselect();
-    return;
+    var selected_id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "/",
+        success: function (results) {
+          $("#major1").html("");
+          $("#major3").html("");
+          for(i=0; i<results.count(); i++){
+            $("#major1").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+            $("#major3").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+          }
+        },
+        error: function(err) {
+          console.log(err);
+        }
+    });
   });
-
   $("#major3").change(function () {
-    $("#major1").bselect("destroy");
     $("#major2").bselect("destroy");
-    var id = $(this).val();
-    $("#major1 option[value=" + id + "]").remove();
-    $("#major2 option[value=" + id + "]").remove();
-    $("#major1").bselect();
-    $("#major2").bselect();
-    return;
+    $("#major1").bselect("destroy");
+    var selected_id = $(this).val();
+    $.ajax({
+        type: "GET",
+        url: "/",
+        success: function (results) {
+          $("#major2").html("");
+          $("#major1").html("");
+          for(i=0; i<results.count(); i++){
+            $("#major2").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+            $("#major1").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+          }
+        },
+        error: function(err) {
+          console.log(err);
+        }
+    });
   });
 });
 
