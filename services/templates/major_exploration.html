@@ -230,21 +230,21 @@
             <div class="clearfix"></div>
             <div class="popup-form-input-div major-dropdown">
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="major1">
+                  <select name="major1" id="major1">
                     {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="major2">
+                  <select name="major2" id="major2">
                     {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="major3">
+                  <select name="major3" id="major3">
                     {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %}
@@ -354,6 +354,36 @@ $('.modal').on('hidden.bs.modal', function(){
 //   $(str_parent).children("div:last-child").remove();
 //   $(str_parent).append('<span class="pull-left">Animal Care</span><span class="pull-left">Caretaker</span><span class="pull-left">Visiting Vets</span><span class="pull-left">Zoo Keepers</span><span class="pull-left">Playing with Animals</span><span class="pull-left add-btn" onclick="addInterest(this)">+</span><div class="clear"></div>');
 // }
+
+$("#major1").change(function () {
+  var id = $(this).val();
+  $("#major2 option[value=" + id + "]").remove();
+  $("#major3 option[value=" + id + "]").remove();
+  $("#major2 option[value=" + id + "]").bselect("destroy");
+  $("#major2 option[value=" + id + "]").bselect();
+  $("#major3 option[value=" + id + "]").bselect("destroy");
+  $("#major3 option[value=" + id + "]").bselect();
+}
+
+$("#major2").change(function () {
+  var id = $(this).val();
+  $("#major1 option[value=" + id + "]").remove();
+  $("#major3 option[value=" + id + "]").remove();
+  $("#major1 option[value=" + id + "]").bselect("destroy");
+  $("#major1 option[value=" + id + "]").bselect();
+  $("#major3 option[value=" + id + "]").bselect("destroy");
+  $("#major3 option[value=" + id + "]").bselect();
+}
+
+$("#major3").change(function () {
+  var id = $(this).val();
+  $("#major1 option[value=" + id + "]").remove();
+  $("#major2 option[value=" + id + "]").remove();
+  $("#major1 option[value=" + id + "]").bselect("destroy");
+  $("#major1 option[value=" + id + "]").bselect();
+  $("#major2 option[value=" + id + "]").bselect("destroy");
+  $("#major2 option[value=" + id + "]").bselect();
+}
 
 $.validator.addMethod("valueNotEquals", function(value, element, arg){
   return arg != value;
