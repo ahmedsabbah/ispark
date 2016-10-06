@@ -238,16 +238,16 @@
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
                   <select name="major2" id="major2">
-                    {% for major in tour.majors.all %}
+                    <!-- {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
-                    {% endfor %}
+                    {% endfor %} -->
                   </select>
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
                   <select name="major3" id="major3">
-                    {% for major in tour.majors.all %}
+                    <!-- {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
-                    {% endfor %}
+                    {% endfor %} -->
                   </select>
                 </div>
             </div>
@@ -379,7 +379,6 @@ $(document).ready(function () {
   $("#major2").change(function () {
     $("#major3").bselect("destroy");
     var selected_id = $(this).val();
-    alert(selected_id);
     $.ajax({
         type: "GET",
         url: "/",
