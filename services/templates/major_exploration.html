@@ -379,6 +379,7 @@ $(document).ready(function () {
   $("#major2").change(function () {
     $("#major3").bselect("destroy");
     var selected_id = $(this).val();
+    alert(selected_id);
     $.ajax({
         type: "GET",
         url: "/",
