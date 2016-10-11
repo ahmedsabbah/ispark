@@ -45,7 +45,7 @@ def get_majors(request):
             return HttpResponse(data, content_type='application/json')
 
         except Tour.DoesNotExist:
-            response = HttpResponse(content-type='application/json')
+            response = HttpResponse(content_type='application/json')
             response.status_code = 400
             return response
     else:
@@ -60,14 +60,14 @@ def get_majors(request):
                 context = {
                     'status': '404', 'reason': 'tour not found'
                 }
-                response = HttpResponse(content-type='application/json')
+                response = HttpResponse(content_type='application/json')
                 response.status_code = 400
                 return response
         else:
             context = {
                 'status': '400', 'reason': 'missing input'
             }
-            response = HttpResponse(content-type='application/json')
+            response = HttpResponse(content_type='application/json')
             response.status_code = 400
             return response
 
