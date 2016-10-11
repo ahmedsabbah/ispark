@@ -53,22 +53,14 @@ def get_majors(request):
             try:
                 tour = Tour.objects.get(id=tour_id)
                 majors = tour.majors.all().exclude(id__in=[major1_id])
-                print majors
                 data = serializers.serialize("json", majors)
-                print data
                 return HttpResponse(data, content_type='application/json')
 
             except Tour.DoesNotExist:
-                context = {
-                    'status': '404', 'reason': 'tour not found'
-                }
                 response = HttpResponse(content_type='application/json')
                 response.status_code = 400
                 return response
         else:
-            context = {
-                'status': '400', 'reason': 'missing input'
-            }
             response = HttpResponse(content_type='application/json')
             response.status_code = 400
             return response

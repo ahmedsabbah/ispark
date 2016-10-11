@@ -37,7 +37,7 @@
     <div class="item{%if forloop.counter == 1%} active{% endif %}">
       <div class="slider-panel">
         <div>
-          <button class="learn-more">Learn More</button>
+          <button class="learn-more" onclick="window.open('{{item.url}}','_blank','resizable=yes')">Learn More</button>
           <button data-toggle="modal" data-target="#joinModal">Join Now</button>
         </div>
       </div>
