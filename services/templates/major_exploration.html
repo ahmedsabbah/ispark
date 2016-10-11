@@ -372,6 +372,8 @@ $(document).ready(function () {
           for(i=0; i<results.length; i++){
             $("#major2{{tour.id}}").append('<option value="' + results[i].pk + '">' + results[i].fields.name + '</option>');
           }
+          $("#major2{{tour.id}}").bselect({ searchInput : false });
+          $("#major3{{tour.id}}").bselect({ searchInput : false });
         },
         error: function(err) {
           console.log(err);
@@ -390,6 +392,7 @@ $(document).ready(function () {
           for(i=0; i<results.length; i++){
             $("#major3{{tour.id}}").append('<option value="' + results[i].pk + '">' + results[i].fields.name + '</option>');
           }
+          $("#major3{{tour.id}}").bselect({ searchInput : false });
         },
         error: function(err) {
           console.log(err);
