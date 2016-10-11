@@ -230,21 +230,21 @@
             <div class="clearfix"></div>
             <div class="popup-form-input-div major-dropdown">
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="major1" id="major1">
+                  <select name="major1" id="major1{{tour.id}}">
                     {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %}
                   </select>
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="major2" id="major2">
+                  <select name="major2" id="major2{{tour.id}}">
                     <!-- {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %} -->
                   </select>
                 </div>
                 <div class="col-md-4 select-container popup-form-select">
-                  <select name="major3" id="major3">
+                  <select name="major3" id="major3{{tour.id}}">
                     <!-- {% for major in tour.majors.all %}
                     <option value="{{major.id}}">{{major.name}}</option>
                     {% endfor %} -->
@@ -356,19 +356,21 @@ $('.modal').on('hidden.bs.modal', function(){
 // }
 
 $(document).ready(function () {
-  $("#major1").change(function () {
-    $("#major2").bselect("destroy");
-    $("#major3").bselect("destroy");
+
+  {% for tour in tours.all %}
+
+  $("#major1{{tour.id}}").change(function () {
+    $("#major2{{tour.id}}").bselect("destroy");
+    $("#major3{{tour.id}}").bselect("destroy");
     var selected_id = $(this).val();
     $.ajax({
         type: "GET",
-        url: "/",
+        url: "/get_majors?tour={{tour.id}}&major1="+selected_id,
         success: function (results) {
-          $("#major2").html("");
-          $("#major3").html("");
+          $("#major2{{tour.id}}").html("");
+          $("#major3{{tour.id}}").html("");
           for(i=0; i<results.length; i++){
-            $("#major2").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
-            $("#major3").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+            $("#major3{{tour.id}}").append('<option value="' + results[i].id + '">' + results[i].name + '</option>');
           }
         },
         error: function(err) {
@@ -376,16 +378,17 @@ $(document).ready(function () {
         }
     });
   });
-  $("#major2").change(function () {
-    $("#major3").bselect("destroy");
+  $("#major2{{tour.id}}").change(function () {
+    $("#major3{{tour.id}}").bselect("destroy");
+    var major1 = $("#major1{{tour.id}}").val();
     var selected_id = $(this).val();
     $.ajax({
         type: "GET",
-        url: "/",
+        url: "/get_majors?tour={{tour.id}}&major1="+major1+"&major2="+selected_id,
         success: function (results) {
-          $("#major3").html("");
+          $("#major3{{tour.id}}").html("");
           for(i=0; i<results.length; i++){
-            $("#major3").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
+            $("#major3{{tour.id}}").append('<option value="' + results[i].id + '">' + results[i].name + '</option>');
           }
         },
         error: function(err) {
@@ -393,6 +396,8 @@ $(document).ready(function () {
         }
     });
   });
+
+  {% endfor %}
   // $("#major3").change(function () {
   //   $("#major2").bselect("destroy");
   //   $("#major1").bselect("destroy");
