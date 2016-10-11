@@ -8,7 +8,7 @@ from django.core import serializers
 from django.http.response import HttpResponse
 from django.core.paginator import Paginator
 
-import json
+# import json
 
 def major_exploration(request):
     tours = Tour.objects.filter(start_date__gte = timezone.now()).order_by('start_date')
@@ -45,33 +45,31 @@ def get_majors(request):
             return HttpResponse(data, content_type='application/json')
 
         except Tour.DoesNotExist:
-            context = {
-                'status': '404', 'reason': 'tour not found'
-            }
-            response = HttpResponse(context, content-type='application/json')
-            response.status_code = 400
-            return response
-    elif tour_id and major1_id:
-        try:
-            tour = Tour.objects.get(id=tour_id)
-            majors = tour.majors.all().exclude(id__in=[major1_id])
-            data = serializers.serialize("json", majors)
-            return HttpResponse(data, content_type='application/json')
-
-        except Tour.DoesNotExist:
-            context = {
-                'status': '404', 'reason': 'tour not found'
-            }
-            response = HttpResponse(context, content-type='application/json')
+            response = HttpResponse(content-type='application/json')
             response.status_code = 400
             return response
     else:
-        context = {
-            'status': '400', 'reason': 'missing input'
-        }
-        response = HttpResponse(context, content-type='application/json')
-        response.status_code = 400
-        return response
+        if tour_id and major1_id:
+            try:
+                tour = Tour.objects.get(id=tour_id)
+                majors = tour.majors.all().exclude(id__in=[major1_id])
+                data = serializers.serialize("json", majors)
+                return HttpResponse(data, content_type='application/json')
+
+            except Tour.DoesNotExist:
+                context = {
+                    'status': '404', 'reason': 'tour not found'
+                }
+                response = HttpResponse(content-type='application/json')
+                response.status_code = 400
+                return response
+        else:
+            context = {
+                'status': '400', 'reason': 'missing input'
+            }
+            response = HttpResponse(content-type='application/json')
+            response.status_code = 400
+            return response
 
 
 def tour_apply(request, pk):
