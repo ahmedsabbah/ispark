@@ -159,8 +159,15 @@ class SliderSecondary(models.Model):
         return self.title
 
 class SliderMain(models.Model):
+    TYPE_CHOICES = (
+        ('J', 'Join iSpark'),
+        ('C', 'Conferences'),
+        ('M', 'Major Exploration')
+    )
     image = models.ImageField(upload_to='partners')
+    join_now = models.CharField(max_length=1, choices=TYPE_CHOICES)
     date = models.DateTimeField(auto_now_add=True)
+    url = models.CharField(max_length=200)
     class Meta:
         verbose_name = 'Slider Main'
         verbose_name_plural = 'Sliders Main'
