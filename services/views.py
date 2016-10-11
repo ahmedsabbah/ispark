@@ -48,7 +48,7 @@ def get_majors(request):
             context = {
                 'status': '404', 'reason': 'tour not found'
             }
-            response = HttpResponse(json.dumps(context), content-type='application/json')
+            response = HttpResponse(context, content-type='application/json')
             response.status_code = 400
             return response
     elif tour_id and major1_id:
@@ -62,14 +62,14 @@ def get_majors(request):
             context = {
                 'status': '404', 'reason': 'tour not found'
             }
-            response = HttpResponse(json.dumps(context), content-type='application/json')
+            response = HttpResponse(context, content-type='application/json')
             response.status_code = 400
             return response
     else:
         context = {
             'status': '400', 'reason': 'missing input'
         }
-        response = HttpResponse(json.dumps(context), content-type='application/json')
+        response = HttpResponse(context, content-type='application/json')
         response.status_code = 400
         return response
 
