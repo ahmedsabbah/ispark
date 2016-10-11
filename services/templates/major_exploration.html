@@ -370,7 +370,7 @@ $(document).ready(function () {
           $("#major2{{tour.id}}").html("");
           $("#major3{{tour.id}}").html("");
           for(i=0; i<results.length; i++){
-            $("#major2{{tour.id}}").append('<option value="' + results[i].id + '">' + results[i].name + '</option>');
+            $("#major2{{tour.id}}").append('<option value="' + results[i].pk + '">' + results[i].fields.name + '</option>');
           }
         },
         error: function(err) {
@@ -388,7 +388,7 @@ $(document).ready(function () {
         success: function (results) {
           $("#major3{{tour.id}}").html("");
           for(i=0; i<results.length; i++){
-            $("#major3{{tour.id}}").append('<option value="' + results[i].id + '">' + results[i].name + '</option>');
+            $("#major3{{tour.id}}").append('<option value="' + results[i].pk + '">' + results[i].fields.name + '</option>');
           }
         },
         error: function(err) {
