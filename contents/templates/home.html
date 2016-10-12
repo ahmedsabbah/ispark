@@ -44,12 +44,11 @@
           <button onclick="window.open('/conferences','_blank','resizable=yes')">Learn More</button>
           {% else %}
           <button onclick="window.open('/majors','_blank','resizable=yes')">Learn More</button>
-          {% endif %s}
+          {% endif %}
         </div>
       </div>
       {% if slider.image %}
       <img src="{{slider.image.url}}" alt="Chania">
-      {% endif %}
       {% endif %}
     </div>
     {% endfor %}
