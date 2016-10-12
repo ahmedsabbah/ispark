@@ -40,12 +40,10 @@
           <button class="learn-more" onclick="window.open('{{slider.url}}','_blank','resizable=yes')">Learn More</button>
           {% if slider.join_now == 'J' %}
           <button data-toggle="modal" data-target="#joinModal">Join Now</button>
-          {% else %}
-            {% if slider.join_now == 'C' %}
+          {% elif slider.join_now == 'C' %}
           <button onclick="window.open('/conferences','_blank','resizable=yes')">Learn More</button>
-            {% else %}
+          {% else %}
           <button onclick="window.open('/majors','_blank','resizable=yes')">Learn More</button>
-            {% endif %}
           {% endif %s}
         </div>
       </div>
