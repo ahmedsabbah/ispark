@@ -31,7 +31,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown active">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Programs <!--<span class="caret"></span>--></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Our Program Benefits <!--<span class="caret"></span>--></a>
             <ul class="dropdown-menu">
               <li class="active"><a href="/majors/">Majors Exploration</a></li>
               <li><a href="/internships/">Job Shadowing & Internships</a></li>
@@ -369,6 +369,8 @@ $(document).ready(function () {
         success: function (results) {
           $("#major2{{tour.id}}").html("");
           $("#major3{{tour.id}}").html("");
+          $("#major2{{tour.id}}").append('<option value="0">Select an option</option>');
+          $("#major3{{tour.id}}").append('<option value="0">Select an option</option>');
           for(i=0; i<results.length; i++){
             $("#major2{{tour.id}}").append('<option value="' + results[i].pk + '">' + results[i].fields.name + '</option>');
           }
@@ -389,6 +391,7 @@ $(document).ready(function () {
         url: "/get_majors?tour={{tour.id}}&major1="+major1+"&major2="+selected_id,
         success: function (results) {
           $("#major3{{tour.id}}").html("");
+          $("#major3{{tour.id}}").append('<option value="0">Select an option</option>');
           for(i=0; i<results.length; i++){
             $("#major3{{tour.id}}").append('<option value="' + results[i].pk + '">' + results[i].fields.name + '</option>');
           }
@@ -401,26 +404,6 @@ $(document).ready(function () {
   });
 
   {% endfor %}
-  // $("#major3").change(function () {
-  //   $("#major2").bselect("destroy");
-  //   $("#major1").bselect("destroy");
-  //   var selected_id = $(this).val();
-  //   $.ajax({
-  //       type: "GET",
-  //       url: "/",
-  //       success: function (results) {
-  //         $("#major2").html("");
-  //         $("#major1").html("");
-  //         for(i=0; i<results.length; i++){
-  //           $("#major2").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
-  //           $("#major1").append('<option value="' + {{major.id}} + '">' + {{major.name}} + '</option>');
-  //         }
-  //       },
-  //       error: function(err) {
-  //         console.log(err);
-  //       }
-  //   });
-  // });
 });
 
 $.validator.addMethod("valueNotEquals", function(value, element, arg){
@@ -436,9 +419,9 @@ $("#major-exploration-form{{tour.id}}").validate({
     school: "required",
     grade: "required",
     wave: "required",
-    major1: { valueNotEquals: "1" },
-    major2: { valueNotEquals: "1" },
-    major3: { valueNotEquals: "1" },
+    major1: { valueNotEquals: "0" },
+    major2: { valueNotEquals: "0" },
+    major3: { valueNotEquals: "0" },
     about_us: { valueNotEquals: "1" }
   },
   errorPlacement: function(error, element) {
