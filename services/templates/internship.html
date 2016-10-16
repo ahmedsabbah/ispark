@@ -146,7 +146,7 @@
 function apply(internship_id) {
     $.ajax({
         type: "GET",
-        url: "/internship/"+internship_id+"/apply",
+        url: "/internship/"+internship_id+"/apply/",
         success: function (results) {
           console.log('true');
           $('.job-button').html('Applied');
